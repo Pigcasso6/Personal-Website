@@ -51,7 +51,7 @@ export const CONTENT: Record<Language, ContentData> = {
       title: "Get in Touch",
       description: "I'm always open to discussing new ideas, academic exchanges, or sharing stories.",
       emailLabel: "Email me at",
-      footerText: "© 2024 Liang Zhu. All Rights Reserved.",
+      footerText: "© 2025 Liang Zhu. All Rights Reserved.",
     },
   },
   zh: {
@@ -104,7 +104,7 @@ export const CONTENT: Record<Language, ContentData> = {
       title: "联系我",
       description: "我随时欢迎讨论学习经历、兴趣爱好，或进行学术交流。",
       emailLabel: "发送邮件至",
-      footerText: "© 2024 梁著. 保留所有权利.",
+      footerText: "© 2025 梁著. 保留所有权利.",
     },
   },
 };

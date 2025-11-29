@@ -26,7 +26,7 @@ const Hero: React.FC = () => {
             </>
           )}
         </h1>
-        <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-300 mb-8 max-w-2xl mx-auto leading-relaxed animate-slide-up whitespace-pre-wrap" style={{ animationDelay: '0.1s' }}>
+        <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-300 mb-8 max-w-4xl mx-auto leading-relaxed animate-slide-up whitespace-pre-wrap" style={{ animationDelay: '0.1s' }}>
           {content.hero.description}
         </p>
         <div className="animate-slide-up" style={{ animationDelay: '0.2s' }}>
