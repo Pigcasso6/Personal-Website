@@ -35,13 +35,19 @@ const Hero: React.FC = () => {
     }
   };
 
+  // Adjust max-width specifically for Japanese to fit the long sentence on one line
+  const descriptionMaxWidth = language === 'ja' ? 'max-w-6xl' : 'max-w-4xl';
+
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-      <div className="max-w-4xl mx-auto px-6 text-center z-10">
+      <div className={`mx-auto px-6 text-center z-10 ${language === 'ja' ? 'max-w-7xl' : 'max-w-4xl'}`}>
         <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-slate-900 dark:text-white mb-6 animate-slide-up">
           {renderGreeting()}
         </h1>
-        <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-300 mb-8 max-w-4xl mx-auto leading-relaxed animate-slide-up whitespace-pre-wrap" style={{ animationDelay: '0.1s' }}>
+        <p 
+          className={`text-xl md:text-2xl text-slate-600 dark:text-slate-300 mb-8 mx-auto leading-relaxed animate-slide-up whitespace-pre-wrap ${descriptionMaxWidth}`} 
+          style={{ animationDelay: '0.1s' }}
+        >
           {content.hero.description}
         </p>
         <div className="animate-slide-up" style={{ animationDelay: '0.2s' }}>
