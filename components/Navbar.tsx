@@ -41,15 +41,18 @@ const Navbar: React.FC = () => {
       }`}
     >
       <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
-        {/* Logo Text */}
+        {/* Logo Image */}
         <a 
-          href="#" 
-          onClick={(e) => handleNavClick(e, '#')}
+          href="#home" 
+          onClick={(e) => handleNavClick(e, '#home')}
           className="flex items-center gap-2 group"
+          aria-label="Back to top"
         >
-          <span className="font-serif text-2xl font-bold tracking-wide text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
-            Liang Zhu
-          </span>
+          <img 
+            src="avatar.png" 
+            alt="Logo" 
+            className="h-12 w-auto dark:invert transition-transform group-hover:scale-105" 
+          />
         </a>
 
         {/* Desktop Navigation */}
