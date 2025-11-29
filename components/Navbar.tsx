@@ -85,7 +85,7 @@ const Navbar: React.FC = () => {
         >
           {!imgError ? (
             <img 
-              src="avatar.png" 
+              src="https://raw.githubusercontent.com/Pigcasso6/Personal-Website/refs/heads/main/components/avatar.png?token=GHSAT0AAAAAADQIBTVFBSO4ZM7KEK3J7KPY2JK4MWQ" 
               alt="Liang Zhu" 
               className="h-12 w-auto dark:invert transition-transform group-hover:scale-105" 
               onError={() => setImgError(true)}
