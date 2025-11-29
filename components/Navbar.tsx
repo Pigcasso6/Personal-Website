@@ -49,7 +49,7 @@ const Navbar: React.FC = () => {
           aria-label="Back to top"
         >
           <img 
-            src="components/avatar.png" 
+            src="https://raw.githubusercontent.com/Pigcasso6/Personal-Website/refs/heads/main/components/avatar.png?token=GHSAT0AAAAAADQIBTVFBGKWRKTFYHCUEI5A2JK32MA" 
             alt="Logo" 
             className="h-12 w-auto dark:invert transition-transform group-hover:scale-105" 
           />
