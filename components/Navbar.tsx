@@ -11,7 +11,10 @@ const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
+
+  // ✅ 仍然保留 imgError，但不再阻止图片再次加载
   const [imgError, setImgError] = useState(false);
+
   const langMenuRef = useRef<HTMLDivElement>(null);
 
   const languages: { code: Language; label: string }[] = [
@@ -84,14 +87,16 @@ const Navbar: React.FC = () => {
           className="flex items-center gap-2 group"
           aria-label="Back to top"
         >
-          {!imgError ? (
-            <img 
-              src={avatar} 
-              alt="Liang Zhu" 
-              className="h-12 w-auto dark:invert transition-transform group-hover:scale-105" 
-              onError={() => setImgError(true)}
-            />
-          ) : (
+          {/* ✅ 始终渲染图片，不再被 imgError 永久封印 */}
+          <img 
+            src={avatar} 
+            alt="Liang Zhu" 
+            className="h-12 w-auto dark:invert transition-transform group-hover:scale-105" 
+            onError={() => setImgError(true)}
+          />
+
+          {/* ✅ 仅作为“叠加兜底”，而不是“替代渲染” */}
+          {imgError && (
             <span className="font-serif font-bold text-2xl tracking-tight text-slate-900 dark:text-white group-hover:opacity-80 transition-opacity">
               Liang Zhu
             </span>
