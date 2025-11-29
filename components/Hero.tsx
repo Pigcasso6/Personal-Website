@@ -10,21 +10,36 @@ const Hero: React.FC = () => {
     aboutSection?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const renderGreeting = () => {
+    switch (language) {
+      case 'zh-CN':
+      case 'zh-TW':
+        return (
+          <>
+            你好，<br className="md:hidden" />我是梁著。
+          </>
+        );
+      case 'ja':
+        return (
+          <>
+            こんにちは、<br className="md:hidden" />梁著です。
+          </>
+        );
+      case 'en':
+      default:
+        return (
+          <>
+            Hello,<br className="md:hidden" /> I'm Liang Zhu.
+          </>
+        );
+    }
+  };
+
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-      {/* Old background blob removed in favor of global BackgroundDecor */}
-      
       <div className="max-w-4xl mx-auto px-6 text-center z-10">
         <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-slate-900 dark:text-white mb-6 animate-slide-up">
-          {language === 'zh' ? (
-            <>
-              你好，<br className="md:hidden" />我是梁著。
-            </>
-          ) : (
-            <>
-              Hello,<br className="md:hidden" /> I'm Liang Zhu.
-            </>
-          )}
+          {renderGreeting()}
         </h1>
         <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-300 mb-8 max-w-4xl mx-auto leading-relaxed animate-slide-up whitespace-pre-wrap" style={{ animationDelay: '0.1s' }}>
           {content.hero.description}

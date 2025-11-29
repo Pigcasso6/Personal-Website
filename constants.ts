@@ -54,7 +54,7 @@ export const CONTENT: Record<Language, ContentData> = {
       footerText: "© 2025 Liang Zhu. All Rights Reserved.",
     },
   },
-  zh: {
+  'zh-CN': {
     nav: {
       about: "关于我",
       education: "教育经历",
@@ -105,6 +105,112 @@ export const CONTENT: Record<Language, ContentData> = {
       description: "我随时欢迎讨论学习经历、兴趣爱好，或进行学术交流。",
       emailLabel: "发送邮件至",
       footerText: "© 2025 梁著. 保留所有权利.",
+    },
+  },
+  'zh-TW': {
+    nav: {
+      about: "關於我",
+      education: "教育經歷",
+      contact: "聯絡",
+    },
+    hero: {
+      greeting: "你好，我是梁著。",
+      role: "學生 & 探索者",
+      description: "我致力於打造優雅的數位體驗，將藝術與技術完美融合。\n專注於極簡主義、高性能和無障礙設計。",
+      cta: "了解更多",
+    },
+    about: {
+      title: "關於我",
+      content: [
+        "我是梁著，目前是香港科技大學（廣州）的大一學生。雖然現在我還沒有太多科研經歷，但我相信通過大學期間的不斷努力和探索，我會逐漸在自己感興趣的領域積累經驗並有所突破。",
+        "我非常注重個人成長，不僅僅在學術上追求進步，也希望通過多方面的實踐，拓寬自己的視野。我最大的興趣愛好是外語、排版和明信片交換（Postcrossing），這些都讓我更深入地了解世界，開闊思維。",
+        "如果你對我的學習經歷或興趣有任何問題，歡迎隨時聯繫我！謝謝訪問我的網頁，希望你能從中了解我更多！",
+      ],
+      postcrossingLabel: "訪問我的 Postcrossing 主頁",
+    },
+    education: {
+      title: "教育經歷",
+      items: [
+        {
+          period: "2025 - 至今",
+          school: "香港科技大學（廣州）",
+        },
+        {
+          period: "2022 - 2025",
+          school: "深圳外國語學校（集團）高中部",
+        },
+        {
+          period: "2019 - 2022",
+          school: "深圳中學初中部",
+        },
+        {
+          period: "2013 - 2019",
+          school: "香港中文大學（深圳）附屬天健小學",
+        },
+        {
+          period: "2009 - 2013",
+          school: "深圳市第八幼兒園",
+        },
+      ],
+    },
+    contact: {
+      title: "聯絡我",
+      description: "我隨時歡迎討論學習經歷、興趣愛好，或進行學術交流。",
+      emailLabel: "發送郵件至",
+      footerText: "© 2025 梁著. 保留所有權利.",
+    },
+  },
+  'ja': {
+    nav: {
+      about: "プロフィール",
+      education: "学歴",
+      contact: "お問い合わせ",
+    },
+    hero: {
+      greeting: "こんにちは、梁著です。",
+      role: "学生 & 探求者",
+      description: "芸術と技術を融合させた、優雅なデジタル体験を創造することに尽力しています。\nミニマリズム、パフォーマンス、アクセシビリティを重視しています。",
+      cta: "もっと詳しく",
+    },
+    about: {
+      title: "プロフィール",
+      content: [
+        "梁著（Liang Zhu）と申します。現在、香港科技大学（広州）の1年生です。まだ研究経験は浅いですが、大学での努力と探求を通じて、興味のある分野で経験を積み、ブレイクスルーを達成できると信じています。",
+        "個人の成長を非常に重視しており、学術的な向上だけでなく、多方面での実践を通じて視野を広げたいと考えています。趣味は外国語、タイポグラフィ、そしてポストレター交換（Postcrossing）です。これらは世界をより深く理解し、視野を広げる助けとなっています。",
+        "私の学習経験や興味についてご質問があれば、いつでもご連絡ください！ウェブサイトをご覧いただきありがとうございます。私のことをもっと知っていただければ幸いです！",
+      ],
+      postcrossingLabel: "Postcrossingのプロフィールを見る",
+    },
+    education: {
+      title: "学歴",
+      items: [
+        {
+          period: "2025 - 現在",
+          school: "香港科技大学（広州）",
+        },
+        {
+          period: "2022 - 2025",
+          school: "深セン外国語学校（グループ）高等部",
+        },
+        {
+          period: "2019 - 2022",
+          school: "深セン中学（中学部）",
+        },
+        {
+          period: "2013 - 2019",
+          school: "香港中文大学（深セン）付属天健小学校",
+        },
+        {
+          period: "2009 - 2013",
+          school: "深セン市第八幼稚園",
+        },
+      ],
+    },
+    contact: {
+      title: "お問い合わせ",
+      description: "学習経験や趣味についての議論、学術交流など、いつでも歓迎します。",
+      emailLabel: "メールを送る",
+      footerText: "© 2025 Liang Zhu. All Rights Reserved.",
     },
   },
 };

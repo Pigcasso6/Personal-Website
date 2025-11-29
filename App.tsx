@@ -1,16 +1,37 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { LanguageProvider, useLanguage } from './contexts/LanguageContext';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import BackgroundDecor from './components/BackgroundDecor';
 import { Mail, Stamp } from 'lucide-react';
+import { Language } from './types';
 
 const MainContent: React.FC = () => {
-  const { content } = useLanguage();
+  const { content, language } = useLanguage();
+
+  // Update HTML lang attribute and apply specific font families
+  useEffect(() => {
+    const root = document.documentElement;
+    root.lang = language;
+  }, [language]);
+
+  const getFontClass = (lang: Language) => {
+    switch (lang) {
+      case 'zh-CN':
+        return 'font-sans-sc';
+      case 'zh-TW':
+        return 'font-sans-tc';
+      case 'ja':
+        return 'font-sans-jp';
+      case 'en':
+      default:
+        return 'font-sans';
+    }
+  };
 
   return (
-    <div className="min-h-screen flex flex-col font-sans selection:bg-indigo-100 dark:selection:bg-indigo-900/50">
+    <div className={`min-h-screen flex flex-col selection:bg-indigo-100 dark:selection:bg-indigo-900/50 ${getFontClass(language)}`}>
       <BackgroundDecor />
       <Navbar />
       
