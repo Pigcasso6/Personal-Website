@@ -3,7 +3,7 @@ import { Moon, Sun, Languages, Menu, X, ChevronDown } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Language } from '../types';
-import avatar from "./avatar.png";
+import { avatar } from './avatar.png';
 
 const Navbar: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
