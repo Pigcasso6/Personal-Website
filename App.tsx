@@ -4,7 +4,7 @@ import { LanguageProvider, useLanguage } from './contexts/LanguageContext';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import BackgroundDecor from './components/BackgroundDecor';
-import { Mail, Stamp } from 'lucide-react';
+import { Mail, Stamp, ExternalLink } from 'lucide-react';
 import { Language } from './types';
 
 const MainContent: React.FC = () => {
@@ -93,9 +93,28 @@ const MainContent: React.FC = () => {
                   <div className="absolute left-[-9px] top-1.5 w-4 h-4 rounded-full bg-white dark:bg-slate-950 border-4 border-indigo-500 shadow-sm z-10"></div>
                   
                   <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-2 md:gap-8 group">
-                    <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
-                      {item.school}
-                    </h3>
+                    {item.url ? (
+                      <a 
+                        href={item.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xl font-bold text-slate-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2 w-fit"
+                      >
+                        {item.school}
+                        <ExternalLink size={16} className="opacity-50" />
+                      </a>
+                    ) : (
+                      <div className="relative group/tooltip w-fit cursor-help">
+                        <h3 className="text-xl font-bold text-slate-900 dark:text-white border-b border-dotted border-slate-400 dark:border-slate-600">
+                          {item.school}
+                        </h3>
+                        {/* Tooltip */}
+                        <div className="absolute bottom-full left-0 mb-2 w-max max-w-[280px] px-3 py-2 bg-slate-800 text-white text-xs rounded shadow-lg opacity-0 group-hover/tooltip:opacity-100 group-active/tooltip:opacity-100 transition-opacity pointer-events-none z-20 whitespace-normal">
+                          {item.noUrlTooltip}
+                          <div className="absolute top-full left-4 border-4 border-transparent border-t-slate-800"></div>
+                        </div>
+                      </div>
+                    )}
                     <span className="shrink-0 font-mono text-sm font-semibold text-slate-500 dark:text-slate-400 bg-slate-100/80 dark:bg-slate-900/80 px-3 py-1 rounded-full border border-slate-200 dark:border-slate-800">
                       {item.period}
                     </span>

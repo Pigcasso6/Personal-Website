@@ -10,6 +10,8 @@ export interface NavItem {
 export interface EducationItem {
   school: string;
   period: string;
+  url?: string;
+  noUrlTooltip?: string;
 }
 
 export interface ContentData {

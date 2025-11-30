@@ -28,22 +28,27 @@ export const CONTENT: Record<Language, ContentData> = {
         {
           period: "2025 - Present",
           school: "The Hong Kong University of Science and Technology (Guangzhou)",
+          url: "https://hkust-gz.edu.cn",
         },
         {
           period: "2022 - 2025",
           school: "Shenzhen Foreign Languages School (Group) Senior High School",
+          url: "https://www.sfls.net.cn",
         },
         {
           period: "2019 - 2022",
           school: "Shenzhen Middle School (Junior High)",
+          url: "https://www.shenzhong.net",
         },
         {
           period: "2013 - 2019",
           school: "The Affiliated Tianjian Primary School of CUHK-Shenzhen",
+          url: "http://tjxx.szftedu.cn",
         },
         {
           period: "2009 - 2013",
           school: "Shenzhen No.8 Kindergarten",
+          noUrlTooltip: "Shenzhen No.8 Kindergarten does not have an official website.",
         },
       ],
     },
@@ -81,22 +86,27 @@ export const CONTENT: Record<Language, ContentData> = {
         {
           period: "2025 - 至今",
           school: "香港科技大学（广州）",
+          url: "https://hkust-gz.edu.cn",
         },
         {
           period: "2022 - 2025",
           school: "深圳外国语学校（集团）高中部",
+          url: "https://www.sfls.net.cn",
         },
         {
           period: "2019 - 2022",
           school: "深圳中学初中部",
+          url: "https://www.shenzhong.net",
         },
         {
           period: "2013 - 2019",
           school: "香港中文大学（深圳）附属天健小学",
+          url: "http://tjxx.szftedu.cn",
         },
         {
           period: "2009 - 2013",
           school: "深圳市第八幼儿园",
+          noUrlTooltip: "深圳市第八幼儿园暂无官网。",
         },
       ],
     },
@@ -134,22 +144,27 @@ export const CONTENT: Record<Language, ContentData> = {
         {
           period: "2025 - 至今",
           school: "香港科技大學（廣州）",
+          url: "https://hkust-gz.edu.cn",
         },
         {
           period: "2022 - 2025",
           school: "深圳外國語學校（集團）高中部",
+          url: "https://www.sfls.net.cn",
         },
         {
           period: "2019 - 2022",
           school: "深圳中學初中部",
+          url: "https://www.shenzhong.net",
         },
         {
           period: "2013 - 2019",
           school: "香港中文大學（深圳）附屬天健小學",
+          url: "http://tjxx.szftedu.cn",
         },
         {
           period: "2009 - 2013",
           school: "深圳市第八幼兒園",
+          noUrlTooltip: "深圳市第八幼兒園暫無官網。",
         },
       ],
     },
@@ -187,22 +202,27 @@ export const CONTENT: Record<Language, ContentData> = {
         {
           period: "2025 - 現在",
           school: "香港科技大学（広州）",
+          url: "https://hkust-gz.edu.cn",
         },
         {
           period: "2022 - 2025",
           school: "深セン外国語学校（グループ）高等部",
+          url: "https://www.sfls.net.cn",
         },
         {
           period: "2019 - 2022",
           school: "深セン中学（中学部）",
+          url: "https://www.shenzhong.net",
         },
         {
           period: "2013 - 2019",
           school: "香港中文大学（深セン）付属天健小学校",
+          url: "http://tjxx.szftedu.cn",
         },
         {
           period: "2009 - 2013",
           school: "深セン市第八幼稚園",
+          noUrlTooltip: "深セン市第八幼稚園の公式サイトはありません。",
         },
       ],
     },
