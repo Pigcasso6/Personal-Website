@@ -55,11 +55,6 @@ const Navbar: React.FC = () => {
     }
   };
 
-  const getLanguageLabel = (code: Language) => {
-    const lang = languages.find(l => l.code === code);
-    return lang ? lang.label : code;
-  };
-
   const getShortLanguageLabel = (code: Language) => {
     if (code === 'zh-CN') return '简';
     if (code === 'zh-TW') return '繁';
@@ -77,22 +72,25 @@ const Navbar: React.FC = () => {
       }`}
     >
       <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
-        {/* Logo */}
+        
+        {/* ✅✅✅ 已修复 BUG 的 Logo 区域 */}
         <a 
           href="#home" 
           onClick={(e) => handleNavClick(e, '#home')}
-          className="flex items-center gap-2 group"
+          className="flex items-center gap-2 group relative"
           aria-label="Back to top"
         >
-          {!imgError ? (
-            <img 
-              src="avatar.png" 
-              alt="Liang Zhu" 
-              className="h-12 w-auto dark:invert transition-transform group-hover:scale-105" 
-              onError={() => setImgError(true)}
-            />
-          ) : (
-            <span className="font-serif font-bold text-2xl tracking-tight text-slate-900 dark:text-white group-hover:opacity-80 transition-opacity">
+          {/* ✅ 图片永远存在，不再被条件销毁 */}
+          <img 
+            src="avatar.png"
+            alt="Liang Zhu" 
+            className="h-12 w-auto dark:invert transition-transform group-hover:scale-105"
+            onError={() => setImgError(true)}
+          />
+
+          {/* ✅ 仅叠加兜底文字，而不是替换渲染 */}
+          {imgError && (
+            <span className="absolute left-0 font-serif font-bold text-2xl tracking-tight text-slate-900 dark:text-white group-hover:opacity-80 transition-opacity">
               Liang Zhu
             </span>
           )}
@@ -122,8 +120,15 @@ const Navbar: React.FC = () => {
                 aria-label="Select Language"
               >
                 <Languages size={18} />
-                <span className="text-xs font-bold uppercase">{getShortLanguageLabel(language)}</span>
-                <ChevronDown size={14} className={`transition-transform duration-200 ${isLangMenuOpen ? 'rotate-180' : ''}`} />
+                <span className="text-xs font-bold uppercase">
+                  {getShortLanguageLabel(language)}
+                </span>
+                <ChevronDown
+                  size={14}
+                  className={`transition-transform duration-200 ${
+                    isLangMenuOpen ? 'rotate-180' : ''
+                  }`}
+                />
               </button>
               
               {isLangMenuOpen && (
@@ -182,14 +187,13 @@ const Navbar: React.FC = () => {
               {link.label}
             </a>
           ))}
+
           <div className="flex flex-col gap-4 pt-4 border-t border-slate-100 dark:border-slate-800 mt-2">
             <div className="flex flex-wrap gap-2">
               {languages.map((lang) => (
                 <button
                   key={lang.code}
-                  onClick={() => {
-                    setLanguage(lang.code);
-                  }}
+                  onClick={() => setLanguage(lang.code)}
                   className={`px-3 py-1.5 rounded-md text-sm transition-colors border ${
                     language === lang.code
                       ? 'bg-indigo-50 dark:bg-indigo-900/30 border-indigo-200 dark:border-indigo-800 text-indigo-700 dark:text-indigo-300 font-medium'
@@ -200,12 +204,15 @@ const Navbar: React.FC = () => {
                 </button>
               ))}
             </div>
-             <button
+
+            <button
               onClick={toggleTheme}
               className="flex items-center gap-2 text-slate-600 dark:text-slate-300 py-2"
             >
               {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-              <span className="text-sm font-bold">{theme === 'dark' ? 'Light Mode' : 'Dark Mode'}</span>
+              <span className="text-sm font-bold">
+                {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
+              </span>
             </button>
           </div>
         </div>
