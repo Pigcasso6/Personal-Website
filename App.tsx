@@ -12,7 +12,8 @@ import { Language } from './types';
 const VerbPractice: React.FC = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white">
-      <h1 className="text-4xl font-bold">test</h1>
+      <h1 className="text-4xl font-bold">Verb Practice Tool</h1>
+      <p className="mt-4">Under Construction</p>
     </div>
   );
 };
@@ -225,6 +226,7 @@ const App: React.FC = () => {
   return (
     <ThemeProvider>
       <LanguageProvider>
+        {/* Switched to HashRouter for maximum compatibility */}
         <HashRouter>
           <Routes>
             <Route path="/" element={<PortfolioHome />} />
