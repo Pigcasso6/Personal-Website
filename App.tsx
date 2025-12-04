@@ -226,7 +226,7 @@ const App: React.FC = () => {
   return (
     <ThemeProvider>
       <LanguageProvider>
-        {/* Switched to HashRouter for maximum compatibility */}
+        {/* Reverted to HashRouter for compatibility */}
         <HashRouter>
           <Routes>
             <Route path="/" element={<PortfolioHome />} />
