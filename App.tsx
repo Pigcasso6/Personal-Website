@@ -11,9 +11,12 @@ import { Language } from './types';
 // Placeholder for the verb practice page
 const VerbPractice: React.FC = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white">
-      <h1 className="text-4xl font-bold">Verb Practice Tool</h1>
-      <p className="mt-4">Under Construction</p>
+    <div className="w-full h-screen bg-black">
+      <iframe
+        src="/jp_verb_practice/"
+        title="JP Verb Practice"
+        className="w-full h-full border-none"
+      />
     </div>
   );
 };
