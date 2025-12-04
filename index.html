@@ -5,17 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Liang Zhu | Portfolio</title>
     
-    <!-- Global Error Handler: Ensures we see an error instead of white screen -->
+    <!-- Global Error Handler -->
     <script>
       window.onerror = function(message, source, lineno, colno, error) {
+        console.error("Global Error:", message);
         const root = document.getElementById('root');
         if (root && root.innerHTML === '') {
+          // Only show backup error UI if React hasn't mounted
           document.body.innerHTML = `
-            <div style="padding: 2rem; font-family: system-ui; color: #333;">
-              <h2 style="color: #e11d48;">Startup Error</h2>
-              <p>The application failed to start.</p>
-              <pre style="background: #f1f5f9; padding: 1rem; border-radius: 0.5rem; overflow: auto;">${message}\nat ${source}:${lineno}</pre>
-              <p style="margin-top: 1rem; color: #64748b;">Try refreshing the page.</p>
+            <div style="padding: 2rem; font-family: system-ui; color: #333; max-width: 600px; margin: 0 auto;">
+              <h2 style="color: #e11d48;">Loading Error</h2>
+              <p>The application encountered an issue during startup.</p>
+              <pre style="background: #f1f5f9; padding: 1rem; border-radius: 0.5rem; overflow: auto; font-size: 0.875rem;">${message}</pre>
             </div>
           `;
         }
@@ -27,6 +28,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+JP:wght@400;700&family=Noto+Serif+SC:wght@400;700&family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
 
+    <!-- Tailwind CSS (CDN for simplicity in layout, though production usually uses build step. Keeping for compatibility with current class names) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -76,15 +78,15 @@
       .dark ::-webkit-scrollbar-thumb { background: #475569; }
       ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
     </style>
-    <script type="importmap">
+<script type="importmap">
 {
   "imports": {
-    "react": "https://esm.sh/react@18.2.0",
-    "react/": "https://esm.sh/react@18.2.0/",
-    "react-dom": "https://esm.sh/react-dom@18.2.0",
-    "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
-    "react-router-dom": "https://esm.sh/react-router-dom@6.22.3?deps=react@18.2.0,react-dom@18.2.0",
-    "lucide-react": "https://esm.sh/lucide-react@0.344.0?deps=react@18.2.0",
+    "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.1.1",
+    "react-router-dom": "https://aistudiocdn.com/react-router-dom@^7.10.0",
+    "vite": "https://aistudiocdn.com/vite@^7.2.6",
+    "react/": "https://aistudiocdn.com/react@^19.2.1/",
+    "react": "https://aistudiocdn.com/react@^19.2.1",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
     "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/"
   }
 }
