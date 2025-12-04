@@ -3,6 +3,7 @@ import { Moon, Sun, Languages, Menu, X, ChevronDown } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Language } from '../types';
+import avatar from './avatar.png'; // ✅ 关键：必须用 import 方式
 
 const Navbar: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
@@ -41,7 +42,7 @@ const Navbar: React.FC = () => {
 
   const navLinks = [
     { label: content.nav.about, href: '#about' },
-    { label: content.nav.projects, href: '#projects' },
+    { label: content.nav.projects, href: '#projects' }, // ✅ 只新增了这一项
     { label: content.nav.education, href: '#education' },
     { label: content.nav.contact, href: '#contact' },
   ];
@@ -73,7 +74,7 @@ const Navbar: React.FC = () => {
     >
       <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
 
-        {/* ✅✅✅ 稳定版 Logo（不叠加、不漂移、不封印） */}
+        {/* ✅✅✅ 完全复刻你“上一次成功”的 Logo 逻辑 */}
         <a 
           href="#home" 
           onClick={(e) => handleNavClick(e, '#home')}
@@ -82,7 +83,7 @@ const Navbar: React.FC = () => {
         >
           {!imgError ? (
             <img 
-              src="{avatar}" 
+              src={avatar}
               alt="Liang Zhu" 
               className="h-12 w-auto dark:invert transition-transform group-hover:scale-105" 
               onError={() => setImgError(true)}
