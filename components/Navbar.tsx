@@ -72,25 +72,23 @@ const Navbar: React.FC = () => {
       }`}
     >
       <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
-        
-        {/* ✅✅✅ 已修复 BUG 的 Logo 区域 */}
+
+        {/* ✅✅✅ 稳定版 Logo（不叠加、不漂移、不封印） */}
         <a 
           href="#home" 
           onClick={(e) => handleNavClick(e, '#home')}
-          className="flex items-center gap-2 group relative"
+          className="flex items-center gap-2 group"
           aria-label="Back to top"
         >
-          {/* ✅ 图片永远存在，不再被条件销毁 */}
-          <img 
-            src="avatar.png"
-            alt="Liang Zhu" 
-            className="h-12 w-auto dark:invert transition-transform group-hover:scale-105"
-            onError={() => setImgError(true)}
-          />
-
-          {/* ✅ 仅叠加兜底文字，而不是替换渲染 */}
-          {imgError && (
-            <span className="absolute left-0 font-serif font-bold text-2xl tracking-tight text-slate-900 dark:text-white group-hover:opacity-80 transition-opacity">
+          {!imgError ? (
+            <img 
+              src="avatar.png" 
+              alt="Liang Zhu" 
+              className="h-12 w-auto dark:invert transition-transform group-hover:scale-105" 
+              onError={() => setImgError(true)}
+            />
+          ) : (
+            <span className="font-serif font-bold text-2xl tracking-tight text-slate-900 dark:text-white group-hover:opacity-80 transition-opacity">
               Liang Zhu
             </span>
           )}
@@ -112,27 +110,18 @@ const Navbar: React.FC = () => {
           <div className="w-px h-6 bg-slate-200 dark:bg-slate-700 mx-2" />
 
           <div className="flex items-center gap-4">
-            {/* Language Dropdown */}
             <div className="relative" ref={langMenuRef}>
               <button
                 onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
                 className="flex items-center gap-1 p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-300"
-                aria-label="Select Language"
               >
                 <Languages size={18} />
-                <span className="text-xs font-bold uppercase">
-                  {getShortLanguageLabel(language)}
-                </span>
-                <ChevronDown
-                  size={14}
-                  className={`transition-transform duration-200 ${
-                    isLangMenuOpen ? 'rotate-180' : ''
-                  }`}
-                />
+                <span className="text-xs font-bold uppercase">{getShortLanguageLabel(language)}</span>
+                <ChevronDown size={14} className={`transition-transform ${isLangMenuOpen ? 'rotate-180' : ''}`} />
               </button>
               
               {isLangMenuOpen && (
-                <div className="absolute right-0 top-full mt-2 w-32 bg-white dark:bg-slate-900 rounded-lg shadow-lg border border-slate-100 dark:border-slate-800 py-1 overflow-hidden animate-fade-in">
+                <div className="absolute right-0 mt-2 w-32 bg-white dark:bg-slate-900 rounded-lg shadow-lg py-1">
                   {languages.map((lang) => (
                     <button
                       key={lang.code}
@@ -140,11 +129,7 @@ const Navbar: React.FC = () => {
                         setLanguage(lang.code);
                         setIsLangMenuOpen(false);
                       }}
-                      className={`w-full text-left px-4 py-2 text-sm transition-colors ${
-                        language === lang.code
-                          ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 font-medium'
-                          : 'text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'
-                      }`}
+                      className="w-full text-left px-4 py-2 text-sm hover:bg-slate-100 dark:hover:bg-slate-800"
                     >
                       {lang.label}
                     </button>
@@ -155,68 +140,22 @@ const Navbar: React.FC = () => {
 
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-300"
-              aria-label="Toggle Theme"
+              className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800"
             >
               {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
             </button>
           </div>
         </div>
 
-        {/* Mobile Menu Button */}
         <div className="md:hidden flex items-center gap-4">
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="p-2 text-slate-900 dark:text-white"
+            className="p-2"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </div>
-
-      {/* Mobile Menu Overlay */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-20 left-0 right-0 bg-white dark:bg-slate-900 border-b border-slate-100 dark:border-slate-800 p-6 flex flex-col gap-4 shadow-xl animate-fade-in">
-          {navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              onClick={(e) => handleNavClick(e, link.href)}
-              className="text-lg font-medium text-slate-900 dark:text-slate-100 py-2"
-            >
-              {link.label}
-            </a>
-          ))}
-
-          <div className="flex flex-col gap-4 pt-4 border-t border-slate-100 dark:border-slate-800 mt-2">
-            <div className="flex flex-wrap gap-2">
-              {languages.map((lang) => (
-                <button
-                  key={lang.code}
-                  onClick={() => setLanguage(lang.code)}
-                  className={`px-3 py-1.5 rounded-md text-sm transition-colors border ${
-                    language === lang.code
-                      ? 'bg-indigo-50 dark:bg-indigo-900/30 border-indigo-200 dark:border-indigo-800 text-indigo-700 dark:text-indigo-300 font-medium'
-                      : 'border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400'
-                  }`}
-                >
-                  {lang.label}
-                </button>
-              ))}
-            </div>
-
-            <button
-              onClick={toggleTheme}
-              className="flex items-center gap-2 text-slate-600 dark:text-slate-300 py-2"
-            >
-              {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-              <span className="text-sm font-bold">
-                {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
-              </span>
-            </button>
-          </div>
-        </div>
-      )}
     </nav>
   );
 };
