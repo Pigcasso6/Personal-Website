@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { LanguageProvider, useLanguage } from './contexts/LanguageContext';
 import Navbar from './components/Navbar';
@@ -6,6 +7,14 @@ import Hero from './components/Hero';
 import BackgroundDecor from './components/BackgroundDecor';
 import { Mail, Stamp, ExternalLink } from 'lucide-react';
 import { Language } from './types';
+
+const TestPage: React.FC = () => {
+  return (
+    <div className="min-h-screen flex items-center justify-center text-4xl">
+      ✅ 这是 /test 页面
+    </div>
+  );
+};
 
 const MainContent: React.FC = () => {
   const { content, language } = useLanguage();
@@ -157,7 +166,10 @@ const App: React.FC = () => {
   return (
     <ThemeProvider>
       <LanguageProvider>
-        <MainContent />
+        <Routes>
+          <Route path="/" element={<MainContent />} />
+          <Route path="/test" element={<TestPage />} />
+        </Routes>
       </LanguageProvider>
     </ThemeProvider>
   );
