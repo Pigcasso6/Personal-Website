@@ -1,23 +1,25 @@
 import React, { useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { LanguageProvider, useLanguage } from './contexts/LanguageContext';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import BackgroundDecor from './components/BackgroundDecor';
-import { Mail, Stamp, ExternalLink } from 'lucide-react';
+import { Mail, Stamp, ExternalLink, ArrowRight, Sparkles } from 'lucide-react';
 import { Language } from './types';
 
-const TestPage: React.FC = () => {
+// Placeholder for the verb practice page
+const VerbPractice: React.FC = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center text-4xl">
-      ✅ 这是 /test 页面
+    <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white">
+      <h1 className="text-4xl font-bold">test</h1>
     </div>
   );
 };
 
-const MainContent: React.FC = () => {
+const PortfolioHome: React.FC = () => {
   const { content, language } = useLanguage();
+  const navigate = useNavigate();
 
   // Update HTML lang attribute and apply specific font families
   useEffect(() => {
@@ -88,8 +90,65 @@ const MainContent: React.FC = () => {
           </div>
         </section>
 
+        {/* Projects Section */}
+        <section id="projects" className="py-24 bg-slate-50/60 dark:bg-slate-950/60 backdrop-blur-sm transition-colors">
+          <div className="max-w-6xl mx-auto px-6">
+            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-slate-900 dark:text-white flex items-center gap-4">
+              <span className="w-12 h-1 bg-indigo-500 rounded-full"></span>
+              {content.projects.title}
+            </h2>
+            <div className="grid md:grid-cols-2 gap-8">
+              {content.projects.items.map((project, index) => (
+                <div key={index} className="group relative bg-white dark:bg-slate-900 rounded-2xl p-8 border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 overflow-hidden">
+                   {/* Decorative gradient blob */}
+                   <div className="absolute -right-12 -top-12 w-40 h-40 bg-indigo-100 dark:bg-indigo-900/30 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+
+                  <div className="relative z-10">
+                    <div className="flex justify-between items-start mb-4">
+                      <div className="p-3 bg-indigo-50 dark:bg-indigo-900/20 rounded-xl text-indigo-600 dark:text-indigo-400">
+                        <Sparkles size={24} />
+                      </div>
+                      {project.tags && project.tags.length > 0 && (
+                        <div className="flex gap-2">
+                          {project.tags.map(tag => (
+                            <span key={tag} className="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700">
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                    
+                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                      {project.title}
+                    </h3>
+                    
+                    <p className="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
+                      {project.description}
+                    </p>
+
+                    <button 
+                      className="inline-flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-bold hover:gap-3 transition-all"
+                      onClick={() => {
+                        if (project.link?.startsWith('/')) {
+                          navigate(project.link);
+                        } else if (project.link) {
+                          window.open(project.link, '_blank');
+                        }
+                      }}
+                    >
+                      {content.projects.viewProject}
+                      <ArrowRight size={18} />
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Education Section */}
-        <section id="education" className="py-24 bg-slate-50/60 dark:bg-slate-950/60 backdrop-blur-sm transition-colors">
+        <section id="education" className="py-24 bg-white/60 dark:bg-slate-900/60 backdrop-blur-sm transition-colors border-t border-white/20 dark:border-slate-800/20">
           <div className="max-w-4xl mx-auto px-6">
             <h2 className="text-3xl md:text-4xl font-bold mb-16 text-slate-900 dark:text-white flex items-center gap-4">
               <span className="w-12 h-1 bg-indigo-500 rounded-full"></span>
@@ -135,7 +194,7 @@ const MainContent: React.FC = () => {
         </section>
 
         {/* Contact Section */}
-        <section id="contact" className="py-24 bg-white/60 dark:bg-slate-900/60 backdrop-blur-sm transition-colors border-t border-white/20 dark:border-slate-800/20">
+        <section id="contact" className="py-24 bg-slate-50/60 dark:bg-slate-950/60 backdrop-blur-sm transition-colors">
           <div className="max-w-4xl mx-auto px-6 text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-slate-900 dark:text-white">
               {content.contact.title}
@@ -166,10 +225,12 @@ const App: React.FC = () => {
   return (
     <ThemeProvider>
       <LanguageProvider>
-        <Routes>
-          <Route path="/" element={<MainContent />} />
-          <Route path="/test" element={<TestPage />} />
-        </Routes>
+        <HashRouter>
+          <Routes>
+            <Route path="/" element={<PortfolioHome />} />
+            <Route path="/jp_verb_practice" element={<VerbPractice />} />
+          </Routes>
+        </HashRouter>
       </LanguageProvider>
     </ThemeProvider>
   );

@@ -4,6 +4,7 @@ export const CONTENT: Record<Language, ContentData> = {
   en: {
     nav: {
       about: "About",
+      projects: "Projects",
       education: "Education",
       contact: "Contact",
     },
@@ -21,6 +22,17 @@ export const CONTENT: Record<Language, ContentData> = {
         "If you have any questions about my learning experience or interests, please feel free to contact me! Thank you for visiting my webpage, and I hope you can learn more about me here!",
       ],
       postcrossingLabel: "Visit My Postcrossing Profile",
+    },
+    projects: {
+      title: "Projects",
+      viewProject: "View Project",
+      items: [
+        {
+          title: "Japanese Verb Conjugation",
+          description: "An interactive tool powered by Gemini AI to practice Japanese verb conjugations. Features real-time feedback and intelligent hints.",
+          link: "/jp_verb_practice"
+        }
+      ]
     },
     education: {
       title: "Education",
@@ -62,6 +74,7 @@ export const CONTENT: Record<Language, ContentData> = {
   'zh-CN': {
     nav: {
       about: "关于我",
+      projects: "项目",
       education: "教育经历",
       contact: "联系",
     },
@@ -79,6 +92,17 @@ export const CONTENT: Record<Language, ContentData> = {
         "如果你对我的学习经历或兴趣有任何问题，欢迎随时联系我！谢谢访问我的网页，希望你能从中了解我更多！",
       ],
       postcrossingLabel: "访问我的 Postcrossing 主页",
+    },
+    projects: {
+      title: "项目展示",
+      viewProject: "查看项目",
+      items: [
+        {
+          title: "日语动词变形练习",
+          description: "基于 Gemini AI 构建的互动工具，用于练习日语动词变形。提供实时反馈和智能提示功能。",
+          link: "/jp_verb_practice"
+        }
+      ]
     },
     education: {
       title: "教育经历",
@@ -120,6 +144,7 @@ export const CONTENT: Record<Language, ContentData> = {
   'zh-TW': {
     nav: {
       about: "關於我",
+      projects: "項目",
       education: "教育經歷",
       contact: "聯絡",
     },
@@ -137,6 +162,17 @@ export const CONTENT: Record<Language, ContentData> = {
         "如果你對我的學習經歷或興趣有任何問題，歡迎隨時聯繫我！謝謝訪問我的網頁，希望你能從中了解我更多！",
       ],
       postcrossingLabel: "訪問我的 Postcrossing 主頁",
+    },
+    projects: {
+      title: "項目展示",
+      viewProject: "查看項目",
+      items: [
+        {
+          title: "日語動詞變形練習",
+          description: "基於 Gemini AI 構建的互動工具，用於練習日語動詞變形。提供即時反饋和智能提示功能。",
+          link: "/jp_verb_practice"
+        }
+      ]
     },
     education: {
       title: "教育經歷",
@@ -178,6 +214,7 @@ export const CONTENT: Record<Language, ContentData> = {
   'ja': {
     nav: {
       about: "プロフィール",
+      projects: "プロジェクト",
       education: "学歴",
       contact: "お問い合わせ",
     },
@@ -195,6 +232,17 @@ export const CONTENT: Record<Language, ContentData> = {
         "私の学習経験や興味についてご質問があれば、いつでもご連絡ください！ウェブサイトをご覧いただきありがとうございます。私のことをもっと知っていただければ幸いです！",
       ],
       postcrossingLabel: "Postcrossingのプロフィールを見る",
+    },
+    projects: {
+      title: "プロジェクト",
+      viewProject: "プロジェクトを見る",
+      items: [
+        {
+          title: "日本語動詞活用練習",
+          description: "Gemini AIを活用した、日本語の動詞活用を練習するためのインタラクティブなツールです。リアルタイムのフィードバックとヒント機能を提供します。",
+          link: "/jp_verb_practice"
+        }
+      ]
     },
     education: {
       title: "学歴",

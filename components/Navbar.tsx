@@ -3,7 +3,6 @@ import { Moon, Sun, Languages, Menu, X, ChevronDown } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Language } from '../types';
-import avatar from './avatar.png';
 
 const Navbar: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
@@ -11,10 +10,7 @@ const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
-
-  // ✅ 仍然保留 imgError，但不再阻止图片再次加载
   const [imgError, setImgError] = useState(false);
-
   const langMenuRef = useRef<HTMLDivElement>(null);
 
   const languages: { code: Language; label: string }[] = [
@@ -45,6 +41,7 @@ const Navbar: React.FC = () => {
 
   const navLinks = [
     { label: content.nav.about, href: '#about' },
+    { label: content.nav.projects, href: '#projects' },
     { label: content.nav.education, href: '#education' },
     { label: content.nav.contact, href: '#contact' },
   ];
@@ -87,16 +84,14 @@ const Navbar: React.FC = () => {
           className="flex items-center gap-2 group"
           aria-label="Back to top"
         >
-          {/* ✅ 始终渲染图片，不再被 imgError 永久封印 */}
-          <img 
-            src={avatar} 
-            alt="Liang Zhu" 
-            className="h-12 w-auto dark:invert transition-transform group-hover:scale-105" 
-            onError={() => setImgError(true)}
-          />
-
-          {/* ✅ 仅作为“叠加兜底”，而不是“替代渲染” */}
-          {imgError && (
+          {!imgError ? (
+            <img 
+              src="avatar.png" 
+              alt="Liang Zhu" 
+              className="h-12 w-auto dark:invert transition-transform group-hover:scale-105" 
+              onError={() => setImgError(true)}
+            />
+          ) : (
             <span className="font-serif font-bold text-2xl tracking-tight text-slate-900 dark:text-white group-hover:opacity-80 transition-opacity">
               Liang Zhu
             </span>

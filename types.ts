@@ -14,9 +14,18 @@ export interface EducationItem {
   noUrlTooltip?: string;
 }
 
+export interface ProjectItem {
+  title: string;
+  description: string;
+  tags?: string[];
+  link?: string; // For external links or internal routes
+  action?: string; // For internal actions like opening a modal
+}
+
 export interface ContentData {
   nav: {
     about: string;
+    projects: string;
     education: string;
     contact: string;
   };
@@ -30,6 +39,11 @@ export interface ContentData {
     title: string;
     content: string[];
     postcrossingLabel: string;
+  };
+  projects: {
+    title: string;
+    viewProject: string;
+    items: ProjectItem[];
   };
   education: {
     title: string;
