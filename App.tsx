@@ -93,12 +93,12 @@ const PortfolioHome: React.FC = () => {
 
         {/* Projects Section */}
         <section id="projects" className="py-24 bg-slate-50/60 dark:bg-slate-950/60 backdrop-blur-sm transition-colors">
-          <div className="max-w-6xl mx-auto px-6">
+          <div className="max-w-4xl mx-auto px-6">
             <h2 className="text-3xl md:text-4xl font-bold mb-12 text-slate-900 dark:text-white flex items-center gap-4">
               <span className="w-12 h-1 bg-indigo-500 rounded-full"></span>
               {content.projects.title}
             </h2>
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 gap-8">
               {content.projects.items.map((project, index) => (
                 <div key={index} className="group relative bg-white dark:bg-slate-900 rounded-2xl p-8 border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 overflow-hidden">
                    {/* Decorative gradient blob */}
@@ -226,11 +226,10 @@ const App: React.FC = () => {
   return (
     <ThemeProvider>
       <LanguageProvider>
-        {/* Reverted to HashRouter for compatibility */}
         <HashRouter>
           <Routes>
             <Route path="/" element={<PortfolioHome />} />
-            <Route path="/jp_verb_practice" element={<VerbPractice />} />
+            <Route path="/verb-practice" element={<VerbPractice />} />
           </Routes>
         </HashRouter>
       </LanguageProvider>
