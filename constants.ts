@@ -30,7 +30,7 @@ export const CONTENT: Record<Language, ContentData> = {
         {
           title: "Japanese Verb Conjugation",
           description: "An interactive tool powered by Gemini AI to practice Japanese verb conjugations. Features real-time feedback and intelligent hints.",
-          link: "/jp_verb_practice"
+          link: "https://jp-verb-practice.pigcasso6.top"
         }
       ]
     },
@@ -100,7 +100,7 @@ export const CONTENT: Record<Language, ContentData> = {
         {
           title: "日语动词变形练习",
           description: "基于 Gemini AI 构建的互动工具，用于练习日语动词变形。提供实时反馈和智能提示功能。",
-          link: "/jp_verb_practice"
+          link: "https://jp-verb-practice.pigcasso6.top"
         }
       ]
     },
@@ -170,7 +170,7 @@ export const CONTENT: Record<Language, ContentData> = {
         {
           title: "日語動詞變形練習",
           description: "基於 Gemini AI 構建的互動工具，用於練習日語動詞變形。提供即時反饋和智能提示功能。",
-          link: "/jp_verb_practice"
+          link: "https://jp-verb-practice.pigcasso6.top"
         }
       ]
     },
@@ -240,7 +240,7 @@ export const CONTENT: Record<Language, ContentData> = {
         {
           title: "日本語動詞活用練習",
           description: "Gemini AIを活用した、日本語の動詞活用を練習するためのインタラクティブなツールです。リアルタイムのフィードバックとヒント機能を提供します。",
-          link: "/jp_verb_practice"
+          link: "https://jp-verb-practice.pigcasso6.top"
         }
       ]
     },
