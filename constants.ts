@@ -74,7 +74,7 @@ export const CONTENT: Record<Language, ContentData> = {
   'zh-CN': {
     nav: {
       about: "关于我",
-      projects: "项目",
+      projects: "项目展示",
       education: "教育经历",
       contact: "联系",
     },
@@ -144,7 +144,7 @@ export const CONTENT: Record<Language, ContentData> = {
   'zh-TW': {
     nav: {
       about: "關於我",
-      projects: "項目",
+      projects: "項目展示",
       education: "教育經歷",
       contact: "聯絡",
     },
