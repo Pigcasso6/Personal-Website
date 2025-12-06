@@ -88,7 +88,7 @@ export const CONTENT: Record<Language, ContentData> = {
       about: "关于我",
       projects: "项目展示",
       education: "教育经历",
-      contact: "联系",
+      contact: "联系我",
     },
     hero: {
       greeting: "你好，我是梁著。",
