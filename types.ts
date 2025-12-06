@@ -53,6 +53,18 @@ export interface ContentData {
     title: string;
     description: string;
     emailLabel: string;
+    leaveMessageBtn: string;
     footerText: string;
+    form: {
+      title: string;
+      nameLabel: string;
+      contactLabel: string;
+      messageLabel: string;
+      submit: string;
+      submitting: string;
+      success: string;
+      error: string;
+      close: string;
+    };
   };
 }

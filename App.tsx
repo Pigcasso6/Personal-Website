@@ -1,12 +1,54 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { HashRouter, Routes, Route, useNavigate } from 'react-router-dom';
-import { ThemeProvider } from './contexts/ThemeContext';
+import { ThemeProvider, useTheme } from './contexts/ThemeContext';
 import { LanguageProvider, useLanguage } from './contexts/LanguageContext';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import BackgroundDecor from './components/BackgroundDecor';
-import { Mail, Stamp, ExternalLink, ArrowRight, Sparkles } from 'lucide-react';
+import MessageModal from './components/MessageModal';
+import { Mail, Stamp, ExternalLink, ArrowRight, Sparkles, MessageSquarePlus } from 'lucide-react';
 import { Language } from './types';
+
+// Component to handle global keyboard shortcuts
+const GlobalShortcuts: React.FC = () => {
+  const { toggleTheme } = useTheme();
+  const { setLanguage } = useLanguage();
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      // Ignore if user is typing in an input
+      const target = event.target as HTMLElement;
+      if (['INPUT', 'TEXTAREA', 'SELECT'].includes(target.tagName) || target.isContentEditable) {
+        return;
+      }
+
+      if (event.shiftKey) {
+        switch (event.code) {
+          case 'KeyM':
+            toggleTheme();
+            break;
+          case 'KeyS':
+            setLanguage('zh-CN');
+            break;
+          case 'KeyT':
+            setLanguage('zh-TW');
+            break;
+          case 'KeyE':
+            setLanguage('en');
+            break;
+          case 'KeyJ':
+            setLanguage('ja');
+            break;
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [toggleTheme, setLanguage]);
+
+  return null;
+};
 
 // Placeholder for the verb practice page
 const VerbPractice: React.FC = () => {
@@ -21,6 +63,7 @@ const VerbPractice: React.FC = () => {
 const PortfolioHome: React.FC = () => {
   const { content, language } = useLanguage();
   const navigate = useNavigate();
+  const [isMessageModalOpen, setIsMessageModalOpen] = useState(false);
 
   // Update HTML lang attribute and apply specific font families
   useEffect(() => {
@@ -204,13 +247,23 @@ const PortfolioHome: React.FC = () => {
               {content.contact.description}
             </p>
             
-            <a 
-              href="mailto:zliang723@connect.hkust-gz.edu.cn" 
-              className="inline-flex items-center gap-3 text-lg md:text-3xl font-bold text-indigo-600 dark:text-indigo-400 hover:underline decoration-2 underline-offset-8 transition-all break-all"
-            >
-              <Mail className="w-6 h-6 md:w-8 md:h-8 shrink-0" />
-              zliang723@connect.hkust-gz.edu.cn
-            </a>
+            <div className="flex flex-col items-center gap-12">
+              <a 
+                href="mailto:zliang723@connect.hkust-gz.edu.cn" 
+                className="inline-flex items-center gap-3 text-lg md:text-3xl font-bold text-indigo-600 dark:text-indigo-400 hover:underline decoration-2 underline-offset-8 transition-all break-all"
+              >
+                <Mail className="w-6 h-6 md:w-8 md:h-8 shrink-0" />
+                zliang723@connect.hkust-gz.edu.cn
+              </a>
+
+              <button
+                onClick={() => setIsMessageModalOpen(true)}
+                className="inline-flex items-center gap-2 px-8 py-3 rounded-xl bg-indigo-600 text-white hover:bg-indigo-700 hover:scale-105 active:scale-95 transition-all shadow-lg hover:shadow-indigo-500/25 font-bold"
+              >
+                <MessageSquarePlus size={20} />
+                {content.contact.leaveMessageBtn}
+              </button>
+            </div>
           </div>
         </section>
       </main>
@@ -218,6 +271,9 @@ const PortfolioHome: React.FC = () => {
       <footer className="py-8 bg-slate-50/80 dark:bg-slate-950/80 backdrop-blur-sm border-t border-slate-100 dark:border-slate-800 text-center text-slate-500 text-sm">
         <p>{content.contact.footerText}</p>
       </footer>
+
+      {/* Message Modal */}
+      <MessageModal isOpen={isMessageModalOpen} onClose={() => setIsMessageModalOpen(false)} />
     </div>
   );
 };
@@ -227,6 +283,7 @@ const App: React.FC = () => {
     <ThemeProvider>
       <LanguageProvider>
         <HashRouter>
+          <GlobalShortcuts />
           <Routes>
             <Route path="/" element={<PortfolioHome />} />
             <Route path="/verb-practice" element={<VerbPractice />} />
