@@ -12,9 +12,6 @@ const Navbar: React.FC = () => {
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
   const [imgError, setImgError] = useState(false);
   const langMenuRef = useRef<HTMLDivElement>(null);
-  
-  // Use a generated avatar as a reliable placeholder
-  const avatar = "https://ui-avatars.com/api/?name=Liang+Zhu&background=6366f1&color=fff&size=128";
 
   const languages: { code: Language; label: string }[] = [
     { code: 'zh-CN', label: '简体中文' },
@@ -58,6 +55,11 @@ const Navbar: React.FC = () => {
     }
   };
 
+  const getLanguageLabel = (code: Language) => {
+    const lang = languages.find(l => l.code === code);
+    return lang ? lang.label : code;
+  };
+
   const getShortLanguageLabel = (code: Language) => {
     if (code === 'zh-CN') return '简';
     if (code === 'zh-TW') return '繁';
@@ -75,7 +77,7 @@ const Navbar: React.FC = () => {
       }`}
     >
       <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
-        {/* Logo with safe image handling */}
+        {/* Logo */}
         <a 
           href="#home" 
           onClick={(e) => handleNavClick(e, '#home')}
@@ -84,9 +86,9 @@ const Navbar: React.FC = () => {
         >
           {!imgError ? (
             <img 
-              src={avatar} 
+              src="avatar.png" 
               alt="Liang Zhu" 
-              className="h-10 w-10 rounded-full transition-transform group-hover:scale-105" 
+              className="h-12 w-auto dark:invert transition-transform group-hover:scale-105" 
               onError={() => setImgError(true)}
             />
           ) : (
