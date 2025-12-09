@@ -57,11 +57,6 @@ export const CONTENT: Record<Language, ContentData> = {
           school: "The Affiliated Tianjian Primary School of CUHK-Shenzhen",
           url: "http://tjxx.szftedu.cn",
         },
-        {
-          period: "2009 - 2013",
-          school: "Shenzhen No.8 Kindergarten",
-          noUrlTooltip: "Shenzhen No.8 Kindergarten does not have an official website.",
-        },
       ],
     },
     contact: {
@@ -93,7 +88,7 @@ export const CONTENT: Record<Language, ContentData> = {
     hero: {
       greeting: "你好，我是梁著。",
       role: "学生 & 探索者",
-      description: "我致力于打造优雅的数字体验，将艺术与技术完美融合。\n专注于极简主义、高性能和无障碍设计。",
+      description: "我致力于打造优雅的数字体验，将艺术与技术完美融合。\n专注于极简主义和无障碍设计。",
       cta: "了解更多",
     },
     about: {
@@ -139,11 +134,6 @@ export const CONTENT: Record<Language, ContentData> = {
           school: "香港中文大学（深圳）附属天健小学",
           url: "http://tjxx.szftedu.cn",
         },
-        {
-          period: "2009 - 2013",
-          school: "深圳市第八幼儿园",
-          noUrlTooltip: "深圳市第八幼儿园暂无官网。",
-        },
       ],
     },
     contact: {
@@ -175,7 +165,7 @@ export const CONTENT: Record<Language, ContentData> = {
     hero: {
       greeting: "你好，我是梁著。",
       role: "學生 & 探索者",
-      description: "我致力於打造優雅的數位體驗，將藝術與技術完美融合。\n專注於極簡主義、高性能和無障礙設計。",
+      description: "我致力於打造優雅的數位體驗，將藝術與技術完美融合。\n專注於極簡主義和無障礙設計。",
       cta: "了解更多",
     },
     about: {
@@ -220,11 +210,6 @@ export const CONTENT: Record<Language, ContentData> = {
           period: "2013 - 2019",
           school: "香港中文大學（深圳）附屬天健小學",
           url: "http://tjxx.szftedu.cn",
-        },
-        {
-          period: "2009 - 2013",
-          school: "深圳市第八幼兒園",
-          noUrlTooltip: "深圳市第八幼兒園暫無官網。",
         },
       ],
     },
@@ -302,11 +287,6 @@ export const CONTENT: Record<Language, ContentData> = {
           period: "2013 - 2019",
           school: "香港中文大学（深セン）付属天健小学校",
           url: "http://tjxx.szftedu.cn",
-        },
-        {
-          period: "2009 - 2013",
-          school: "深セン市第八幼稚園",
-          noUrlTooltip: "深セン市第八幼稚園の公式サイトはありません。",
         },
       ],
     },

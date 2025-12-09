@@ -248,13 +248,24 @@ const PortfolioHome: React.FC = () => {
             </p>
             
             <div className="flex flex-col items-center gap-12">
-              <a 
-                href="mailto:zliang723@connect.hkust-gz.edu.cn" 
-                className="inline-flex items-center gap-3 text-lg md:text-3xl font-bold text-indigo-600 dark:text-indigo-400 hover:underline decoration-2 underline-offset-8 transition-all break-all"
-              >
-                <Mail className="w-6 h-6 md:w-8 md:h-8 shrink-0" />
-                zliang723@connect.hkust-gz.edu.cn
-              </a>
+              <div className="flex flex-col items-center gap-6">
+                <Mail className="w-10 h-10 md:w-12 md:h-12 text-indigo-600 dark:text-indigo-400" strokeWidth={1.5} />
+                <div className="flex flex-col items-center gap-3">
+                  <a 
+                    href="mailto:zliang723@connect.hkust-gz.edu.cn" 
+                    className="text-lg md:text-2xl font-bold text-indigo-600 dark:text-indigo-400 hover:underline decoration-2 underline-offset-8 transition-all break-all text-center"
+                  >
+                    zliang723@connect.hkust-gz.edu.cn
+                  </a>
+                  
+                  <a 
+                    href="mailto:liangzhu@pigcasso6.top" 
+                    className="text-lg md:text-2xl font-bold text-indigo-600 dark:text-indigo-400 hover:underline decoration-2 underline-offset-8 transition-all break-all text-center"
+                  >
+                    liangzhu@pigcasso6.top
+                  </a>
+                </div>
+              </div>
 
               <button
                 onClick={() => setIsMessageModalOpen(true)}

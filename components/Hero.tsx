@@ -14,10 +14,20 @@ const Hero: React.FC = () => {
     switch (language) {
       case 'zh-CN':
       case 'zh-TW':
+        // Visual centering for Chinese on ALL screens:
+        // Use flex-col to stack lines.
+        // Use relative/absolute positioning for punctuation to center the characters visually.
         return (
-          <>
-            你好，<br className="md:hidden" />我是梁著。
-          </>
+          <span className="flex flex-col items-center gap-3 md:gap-4">
+             <span className="relative inline-block">
+                你好
+                <span className="absolute left-full">，</span>
+             </span>
+             <span className="relative inline-block">
+                我是梁著
+                <span className="absolute left-full">。</span>
+             </span>
+          </span>
         );
       case 'ja':
         return (
@@ -35,6 +45,48 @@ const Hero: React.FC = () => {
     }
   };
 
+  const renderDescription = () => {
+    const text = content.hero.description;
+    
+    // Structured layout for Chinese with hanging punctuation
+    if (language === 'zh-CN' || language === 'zh-TW') {
+      return (
+        <div className="flex flex-col items-center gap-2 leading-relaxed">
+          {/* Mobile Layout: 3 Lines */}
+          <div className="flex flex-col items-center md:hidden gap-1">
+            <span className="relative">
+              我致力于打造优雅的数字体验
+              <span className="absolute left-full">，</span>
+            </span>
+            <span className="relative">
+              将艺术与技术完美融合
+              <span className="absolute left-full">。</span>
+            </span>
+            <span className="relative">
+              专注于极简主义和无障碍设计
+              <span className="absolute left-full">。</span>
+            </span>
+          </div>
+
+          {/* Desktop Layout: 2 Lines */}
+          <div className="hidden md:flex flex-col items-center gap-2">
+            <span className="relative">
+              我致力于打造优雅的数字体验，将艺术与技术完美融合
+              <span className="absolute left-full">。</span>
+            </span>
+            <span className="relative">
+              专注于极简主义和无障碍设计
+              <span className="absolute left-full">。</span>
+            </span>
+          </div>
+        </div>
+      );
+    }
+
+    // Default behavior for other languages
+    return text;
+  };
+
   // Adjust max-width specifically for Japanese to fit the long sentence on one line
   const descriptionMaxWidth = language === 'ja' ? 'max-w-6xl' : 'max-w-4xl';
 
@@ -44,12 +96,12 @@ const Hero: React.FC = () => {
         <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-slate-900 dark:text-white mb-6 animate-slide-up">
           {renderGreeting()}
         </h1>
-        <p 
+        <div 
           className={`text-xl md:text-2xl text-slate-600 dark:text-slate-300 mb-8 mx-auto leading-relaxed animate-slide-up whitespace-pre-wrap ${descriptionMaxWidth}`} 
           style={{ animationDelay: '0.1s' }}
         >
-          {content.hero.description}
-        </p>
+          {renderDescription()}
+        </div>
         <div className="animate-slide-up" style={{ animationDelay: '0.2s' }}>
            <button 
              onClick={handleScrollDown}
