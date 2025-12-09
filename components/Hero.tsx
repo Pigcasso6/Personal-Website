@@ -14,20 +14,26 @@ const Hero: React.FC = () => {
     switch (language) {
       case 'zh-CN':
       case 'zh-TW':
-        // Visual centering for Chinese on ALL screens:
-        // Use flex-col to stack lines.
-        // Use relative/absolute positioning for punctuation to center the characters visually.
         return (
-          <span className="flex flex-col items-center gap-3 md:gap-4">
-             <span className="relative inline-block">
-                你好
-                <span className="absolute left-full">，</span>
-             </span>
-             <span className="relative inline-block">
-                我是梁著
-                <span className="absolute left-full">。</span>
-             </span>
-          </span>
+          <>
+            {/* Mobile: Stacked with hanging punctuation */}
+            <span className="flex flex-col items-center gap-3 md:hidden">
+               <span className="relative inline-block">
+                  你好
+                  <span className="absolute left-full">，</span>
+               </span>
+               <span className="relative inline-block">
+                  我是梁著
+                  <span className="absolute left-full">。</span>
+               </span>
+            </span>
+            
+            {/* Desktop: Single line with hanging punctuation at the end */}
+            <span className="hidden md:inline-block relative">
+               你好，我是梁著
+               <span className="absolute left-full">。</span>
+            </span>
+          </>
         );
       case 'ja':
         return (
