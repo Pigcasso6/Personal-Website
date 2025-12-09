@@ -11,10 +11,7 @@ const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
-
-  // ✅ 只作为兜底标志，不控制是否渲染图片
   const [imgError, setImgError] = useState(false);
-
   const langMenuRef = useRef<HTMLDivElement>(null);
 
   const languages: { code: Language; label: string }[] = [
@@ -50,7 +47,10 @@ const Navbar: React.FC = () => {
     { label: content.nav.contact, href: '#contact' },
   ];
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
     e.preventDefault();
     setIsMobileMenuOpen(false);
     const element = document.querySelector(href);
@@ -83,7 +83,7 @@ const Navbar: React.FC = () => {
           className="flex items-center gap-2 group"
           aria-label="Back to top"
         >
-          {/* ✅ 永远渲染图片 */}
+          {/* ✅ 始终渲染头像 */}
           <img
             src={avatar}
             alt="Liang Zhu"
@@ -91,7 +91,7 @@ const Navbar: React.FC = () => {
             onError={() => setImgError(true)}
           />
 
-          {/* ✅ 叠加兜底，而不是替代 */}
+          {/* ✅ 仅作为兜底叠加 */}
           {imgError && (
             <span className="font-serif font-bold text-2xl tracking-tight text-slate-900 dark:text-white">
               Liang Zhu
@@ -115,6 +115,7 @@ const Navbar: React.FC = () => {
           <div className="w-px h-6 bg-slate-200 dark:bg-slate-700 mx-2" />
 
           <div className="flex items-center gap-4">
+            {/* Language Dropdown */}
             <div className="relative" ref={langMenuRef}>
               <button
                 onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
@@ -124,14 +125,11 @@ const Navbar: React.FC = () => {
                 <span className="text-xs font-bold uppercase">
                   {getShortLanguageLabel(language)}
                 </span>
-                <ChevronDown
-                  size={14}
-                  className={`transition-transform ${isLangMenuOpen ? 'rotate-180' : ''}`}
-                />
+                <ChevronDown size={14} />
               </button>
 
               {isLangMenuOpen && (
-                <div className="absolute right-0 mt-2 w-32 bg-white dark:bg-slate-900 rounded-lg shadow-lg border border-slate-100 dark:border-slate-800 py-1">
+                <div className="absolute right-0 top-full mt-2 w-32 bg-white dark:bg-slate-900 rounded-lg shadow-lg border py-1">
                   {languages.map((lang) => (
                     <button
                       key={lang.code}
@@ -139,7 +137,7 @@ const Navbar: React.FC = () => {
                         setLanguage(lang.code);
                         setIsLangMenuOpen(false);
                       }}
-                      className="w-full text-left px-4 py-2 text-sm hover:bg-slate-50 dark:hover:bg-slate-800"
+                      className="w-full text-left px-4 py-2 text-sm hover:bg-slate-100 dark:hover:bg-slate-800"
                     >
                       {lang.label}
                     </button>
@@ -148,10 +146,7 @@ const Navbar: React.FC = () => {
               )}
             </div>
 
-            <button
-              onClick={toggleTheme}
-              className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800"
-            >
+            <button onClick={toggleTheme} className="p-2 rounded-full">
               {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
             </button>
           </div>
@@ -159,11 +154,30 @@ const Navbar: React.FC = () => {
 
         {/* Mobile Menu Button */}
         <div className="md:hidden">
-          <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="p-2"
+          >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </div>
+
+      {/* ✅ Mobile Menu Overlay：只多了 z-[60] */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden absolute top-20 left-0 right-0 z-[60] bg-white dark:bg-slate-900 border-b p-6 shadow-xl animate-fade-in">
+          {navLinks.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              onClick={(e) => handleNavClick(e, link.href)}
+              className="block py-2 text-lg"
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+      )}
     </nav>
   );
 };
