@@ -205,7 +205,9 @@ const Navbar: React.FC = () => {
               className="flex items-center gap-2 text-slate-600 dark:text-slate-300 py-2"
             >
               {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-              <span className="text-sm font-bold">{theme === 'dark' ? 'Light Mode' : 'Dark Mode'}</span>
+              <span className="text-sm font-bold">
+                {theme === 'dark' ? content.theme.light : content.theme.dark}
+              </span>
             </button>
           </div>
         </div>

@@ -8,6 +8,10 @@ export const CONTENT: Record<Language, ContentData> = {
       education: "Education",
       contact: "Contact",
     },
+    theme: {
+      light: "Light Mode",
+      dark: "Dark Mode",
+    },
     hero: {
       greeting: "Hello, I'm Liang Zhu.",
       role: "Student & Creative Explorer",
@@ -84,6 +88,10 @@ export const CONTENT: Record<Language, ContentData> = {
       projects: "项目展示",
       education: "教育经历",
       contact: "联系我",
+    },
+    theme: {
+      light: "浅色模式",
+      dark: "深色模式",
     },
     hero: {
       greeting: "你好，我是梁著。",
@@ -162,6 +170,10 @@ export const CONTENT: Record<Language, ContentData> = {
       education: "教育經歷",
       contact: "聯絡我",
     },
+    theme: {
+      light: "淺色模式",
+      dark: "深色模式",
+    },
     hero: {
       greeting: "你好，我是梁著。",
       role: "學生 & 探索者",
@@ -238,6 +250,10 @@ export const CONTENT: Record<Language, ContentData> = {
       projects: "プロジェクト",
       education: "学歴",
       contact: "お問い合わせ",
+    },
+    theme: {
+      light: "ライトモード",
+      dark: "ダークモード",
     },
     hero: {
       greeting: "こんにちは、梁著です。",

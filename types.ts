@@ -1,3 +1,4 @@
+
 export type Language = 'en' | 'zh-CN' | 'zh-TW' | 'ja';
 
 export type Theme = 'light' | 'dark';
@@ -28,6 +29,10 @@ export interface ContentData {
     projects: string;
     education: string;
     contact: string;
+  };
+  theme: {
+    light: string;
+    dark: string;
   };
   hero: {
     greeting: string;
