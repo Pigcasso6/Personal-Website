@@ -11,7 +11,7 @@ export const CONTENT: Record<Language, ContentData> = {
     hero: {
       greeting: "Hello, I'm Liang Zhu.",
       role: "Student & Creative Explorer",
-      description: "I craft elegant digital experiences that merge art with technology.\nDedicated to simplicity, performance, and accessible design.",
+      description: "I craft elegant digital experiences that merge art with technology.\nDedicated to simplicity and accessible design.",
       cta: "View Details",
     },
     about: {
@@ -141,7 +141,7 @@ export const CONTENT: Record<Language, ContentData> = {
       description: "我随时欢迎讨论学习经历、兴趣爱好，或进行学术交流。",
       emailLabel: "发送邮件至",
       leaveMessageBtn: "给我留言",
-      footerText: "© 2025 梁著. 保留所有权利.",
+      footerText: "© 2025 Liang Zhu. 保留所有权利.",
       form: {
         title: "给我留言",
         nameLabel: "您的名字",
@@ -160,7 +160,7 @@ export const CONTENT: Record<Language, ContentData> = {
       about: "關於我",
       projects: "項目展示",
       education: "教育經歷",
-      contact: "聯絡",
+      contact: "聯絡我",
     },
     hero: {
       greeting: "你好，我是梁著。",
@@ -218,7 +218,7 @@ export const CONTENT: Record<Language, ContentData> = {
       description: "我隨時歡迎討論學習經歷、興趣愛好，或進行學術交流。",
       emailLabel: "發送郵件至",
       leaveMessageBtn: "給我留言",
-      footerText: "© 2025 梁著. 保留所有權利.",
+      footerText: "© 2025 Liang Zhu. 保留所有權利.",
       form: {
         title: "給我留言",
         nameLabel: "您的名字",
@@ -242,7 +242,7 @@ export const CONTENT: Record<Language, ContentData> = {
     hero: {
       greeting: "こんにちは、梁著です。",
       role: "学生 & 探求者",
-      description: "芸術と技術を融合させた、優雅なデジタル体験を創造することに尽力しています。\nミニマリズム、パフォーマンス、アクセシビリティを重視しています。",
+      description: "芸術と技術を融合させた、優雅なデジタル体験を創造することに尽力しています。\nミニマリズムとアクセシビリティを重視しています。",
       cta: "もっと詳しく",
     },
     about: {
@@ -295,7 +295,7 @@ export const CONTENT: Record<Language, ContentData> = {
       description: "学習経験や趣味についての議論、学術交流など、いつでも歓迎します。",
       emailLabel: "メールを送る",
       leaveMessageBtn: "メッセージを残す",
-      footerText: "© 2025 Liang Zhu. All Rights Reserved.",
+      footerText: "© 2025 Liang Zhu. 無断複写・転載を禁じます。",
       form: {
         title: "メッセージを残す",
         nameLabel: "お名前",

@@ -38,22 +38,32 @@ const Hero: React.FC = () => {
       case 'ja':
         return (
           <>
-            こんにちは、<br className="md:hidden" />梁著です。
+            <span className="flex flex-col items-center gap-3 md:hidden">
+              <span>こんにちは、</span>
+              <span>梁著です。</span>
+            </span>
+            <span className="hidden md:inline">
+              こんにちは、梁著です。
+            </span>
           </>
         );
       case 'en':
       default:
         return (
           <>
-            Hello,<br className="md:hidden" /> I'm Liang Zhu.
+            <span className="flex flex-col items-center gap-3 md:hidden">
+              <span>Hello,</span>
+              <span>I'm Liang Zhu.</span>
+            </span>
+            <span className="hidden md:inline">
+              Hello, I'm Liang Zhu.
+            </span>
           </>
         );
     }
   };
 
   const renderDescription = () => {
-    const text = content.hero.description;
-    
     // Structured layout for Chinese with hanging punctuation
     if (language === 'zh-CN' || language === 'zh-TW') {
       return (
@@ -89,15 +99,68 @@ const Hero: React.FC = () => {
       );
     }
 
-    // Default behavior for other languages
-    return text;
+    if (language === 'en') {
+      return (
+        <div className="flex flex-col items-center gap-2 leading-relaxed">
+          {/* Mobile Layout: Custom breaks */}
+          <div className="flex flex-col items-center md:hidden gap-1">
+            <span>I craft elegant digital experiences</span>
+            <span>that merge art with technology.</span>
+            <span>Dedicated to simplicity</span>
+            <span>and accessible design.</span>
+          </div>
+
+          {/* Desktop Layout: Standard flow based on constant string */}
+          <div className="hidden md:flex flex-col items-center gap-2">
+            <span>I craft elegant digital experiences that merge art with technology.</span>
+            <span>Dedicated to simplicity and accessible design.</span>
+          </div>
+        </div>
+      );
+    }
+
+    if (language === 'ja') {
+      return (
+        <div className="flex flex-col items-center gap-2 leading-relaxed">
+          {/* Mobile Layout: Specific breaks */}
+          <div className="flex flex-col items-center md:hidden gap-1">
+            <span>芸術と技術を融合させた、</span>
+            <span>優雅なデジタル体験を創造</span>
+            <span>することに尽力しています。</span>
+            <span>ミニマリズムとアクセシビリティを</span>
+            <span>重視しています。</span>
+          </div>
+
+          {/* Desktop Layout: Standard flow */}
+          <div className="hidden md:flex flex-col items-center gap-2">
+            <span>芸術と技術を融合させた、優雅なデジタル体験を創造することに尽力しています。</span>
+            <span>ミニマリズムとアクセシビリティを重視しています。</span>
+          </div>
+        </div>
+      );
+    }
+
+    // Fallback for any other future languages
+    const text = content.hero.description;
+    const lines = text.split('\n');
+    return (
+      <div className="flex flex-col items-center gap-2 leading-relaxed">
+        {lines.map((line, index) => (
+          <span key={index}>{line}</span>
+        ))}
+      </div>
+    );
   };
 
   // Adjust max-width specifically for Japanese to fit the long sentence on one line
   const descriptionMaxWidth = language === 'ja' ? 'max-w-6xl' : 'max-w-4xl';
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+    <section 
+      id="home" 
+      className="relative flex flex-col items-center justify-center pt-20 pb-20 overflow-hidden" 
+      style={{ minHeight: '100svh' }}
+    >
       <div className={`mx-auto px-6 text-center z-10 ${language === 'ja' ? 'max-w-7xl' : 'max-w-4xl'}`}>
         <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-slate-900 dark:text-white mb-6 animate-slide-up">
           {renderGreeting()}
