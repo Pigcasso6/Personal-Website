@@ -68,6 +68,9 @@ const Navbar: React.FC = () => {
     return code;
   };
 
+  // Supabase storage URL for the avatar
+  const AVATAR_URL = "https://lwwfxjiixaltbedvassi.supabase.co/storage/v1/object/public/portfolio/avatar.png";
+
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -86,9 +89,9 @@ const Navbar: React.FC = () => {
         >
           {!imgError ? (
             <img 
-              src="avatar.png" 
+              src={AVATAR_URL}
               alt="Liang Zhu" 
-              className="h-12 w-auto dark:invert transition-transform group-hover:scale-105" 
+              className="h-10 w-10 md:h-12 md:w-12 rounded-full object-cover dark:invert" 
               onError={() => setImgError(true)}
             />
           ) : (
