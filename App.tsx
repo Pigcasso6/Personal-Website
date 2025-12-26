@@ -279,8 +279,16 @@ const PortfolioHome: React.FC = () => {
         </section>
       </main>
 
-      <footer className="py-8 bg-slate-50/80 dark:bg-slate-950/80 backdrop-blur-sm border-t border-slate-100 dark:border-slate-800 text-center text-slate-500 text-sm">
-        <p>{content.contact.footerText}</p>
+      <footer className="py-10 bg-slate-50/80 dark:bg-slate-950/80 backdrop-blur-sm border-t border-slate-100 dark:border-slate-800 text-center flex flex-col items-center gap-1">
+        <p className="text-slate-500 text-sm font-medium">{content.contact.footerText}</p>
+        <a 
+          href="https://beian.miit.gov.cn" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="text-sm text-slate-500 font-medium hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+        >
+          {content.contact.icpText}
+        </a>
       </footer>
 
       {/* Message Modal */}

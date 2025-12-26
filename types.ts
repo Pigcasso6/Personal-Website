@@ -60,6 +60,7 @@ export interface ContentData {
     emailLabel: string;
     leaveMessageBtn: string;
     footerText: string;
+    icpText: string;
     form: {
       title: string;
       nameLabel: string;

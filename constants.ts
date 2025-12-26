@@ -69,6 +69,7 @@ export const CONTENT: Record<Language, ContentData> = {
       emailLabel: "Email me at",
       leaveMessageBtn: "Leave a Message",
       footerText: "© 2025 Liang Zhu. All Rights Reserved.",
+      icpText: "粤ICP备2025513331号",
       form: {
         title: "Leave a Message",
         nameLabel: "Your Name",
@@ -150,6 +151,7 @@ export const CONTENT: Record<Language, ContentData> = {
       emailLabel: "发送邮件至",
       leaveMessageBtn: "给我留言",
       footerText: "© 2025 Liang Zhu. 保留所有权利.",
+      icpText: "粤ICP备2025513331号",
       form: {
         title: "给我留言",
         nameLabel: "您的名字",
@@ -231,6 +233,7 @@ export const CONTENT: Record<Language, ContentData> = {
       emailLabel: "發送郵件至",
       leaveMessageBtn: "給我留言",
       footerText: "© 2025 Liang Zhu. 保留所有權利.",
+      icpText: "粤ICP备2025513331号",
       form: {
         title: "給我留言",
         nameLabel: "您的名字",
@@ -258,7 +261,7 @@ export const CONTENT: Record<Language, ContentData> = {
     hero: {
       greeting: "こんにちは、梁著です。",
       role: "学生 & 探求者",
-      description: "芸術と技術を融合させた、優雅なデジタル体験を創造することに尽力しています。\nミニマリズムとアクセシビリティを重視しています。",
+      description: "芸術と技術を融合させた、優雅なデジタル体験を創造することに尽力しています。\nミニマリズム and アクセシビリティを重視しています。",
       cta: "もっと詳しく",
     },
     about: {
@@ -266,7 +269,7 @@ export const CONTENT: Record<Language, ContentData> = {
       content: [
         "梁著（Liang Zhu）と申します。現在、香港科技大学（広州）の1年生です。まだ研究経験は浅いですが、大学での努力と探求を通じて、興味のある分野で経験を積み、ブレイクスルーを達成できると信じています。",
         "個人の成長を非常に重視しており、学術的な向上だけでなく、多方面での実践を通じて視野を広げたいと考えています。趣味は外国語、タイポグラフィ、そしてポストレター交換（Postcrossing）です。これらは世界をより深く理解し、視野を広げる助けとなっています。",
-        "私の学習経験や興味についてご質問があれば、いつでもご連絡ください！ウェブサイトをご覧いただきありがとうございます。私のことをもっと知っていただければ幸いです！",
+        "私の学習経験や興味についてご質問があれば、いつでもご連絡ください！ウェブサイトをご覧いただきありがとうございます。私のことをもっと知いただければ幸いです！",
       ],
       postcrossingLabel: "Postcrossingのプロフィールを見る",
     },
@@ -312,6 +315,7 @@ export const CONTENT: Record<Language, ContentData> = {
       emailLabel: "メールを送る",
       leaveMessageBtn: "メッセージを残す",
       footerText: "© 2025 Liang Zhu. 無断複写・転載を禁じます。",
+      icpText: "粤ICP备2025513331号",
       form: {
         title: "メッセージを残す",
         nameLabel: "お名前",
