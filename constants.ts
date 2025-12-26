@@ -1,3 +1,4 @@
+
 import { ContentData, Language } from './types';
 
 export const CONTENT: Record<Language, ContentData> = {
@@ -69,7 +70,7 @@ export const CONTENT: Record<Language, ContentData> = {
       emailLabel: "Email me at",
       leaveMessageBtn: "Leave a Message",
       footerText: "© 2025 Liang Zhu. All Rights Reserved.",
-      icpText: "粤ICP备2025513331号",
+      icpText: "ICP Filing: 粤ICP备2025513331号-1",
       form: {
         title: "Leave a Message",
         nameLabel: "Your Name",
@@ -95,7 +96,7 @@ export const CONTENT: Record<Language, ContentData> = {
       dark: "深色模式",
     },
     hero: {
-      greeting: "你好，我是梁著。",
+      greeting: "你好，我是亮著。",
       role: "学生 & 探索者",
       description: "我致力于打造优雅的数字体验，将艺术与技术完美融合。\n专注于极简主义和无障碍设计。",
       cta: "了解更多",
@@ -103,7 +104,7 @@ export const CONTENT: Record<Language, ContentData> = {
     about: {
       title: "关于我",
       content: [
-        "我是梁著，目前是香港科技大学（广州）的大一学生。虽然现在我还没有太多科研经历，但我相信通过大学期间的不断努力和探索，我会逐渐在自己感兴趣的领域积累经验并有所突破。",
+        "我是亮著，目前是香港科技大学（广州）的大一学生。虽然现在我还没有太多科研经历，但我相信通过大学期间的不断努力和探索，我会逐渐在自己感兴趣的领域积累经验并有所突破。",
         "我非常注重个人成长，不仅仅在学术上追求进步，也希望通过多方面的实践，拓宽自己的视野。我最大的兴趣爱好是外语、排版和明信片交换（Postcrossing），这些都让我更深入地了解世界，开阔思维。",
         "如果你对我的学习经历或兴趣有任何问题，欢迎随时联系我！谢谢访问我的网页，希望你能从中了解我更多！",
       ],
@@ -151,7 +152,7 @@ export const CONTENT: Record<Language, ContentData> = {
       emailLabel: "发送邮件至",
       leaveMessageBtn: "给我留言",
       footerText: "© 2025 Liang Zhu. 保留所有权利.",
-      icpText: "粤ICP备2025513331号",
+      icpText: "备案号：粤ICP备2025513331号-1",
       form: {
         title: "给我留言",
         nameLabel: "您的名字",
@@ -177,7 +178,7 @@ export const CONTENT: Record<Language, ContentData> = {
       dark: "深色模式",
     },
     hero: {
-      greeting: "你好，我是梁著。",
+      greeting: "你好，我是亮著。",
       role: "學生 & 探索者",
       description: "我致力於打造優雅的數位體驗，將藝術與技術完美融合。\n專注於極簡主義和無障礙設計。",
       cta: "了解更多",
@@ -185,7 +186,7 @@ export const CONTENT: Record<Language, ContentData> = {
     about: {
       title: "關於我",
       content: [
-        "我是梁著，目前是香港科技大學（廣州）的大一學生。雖然現在我還沒有太多科研經歷，但我相信通過大學期間的不斷努力和探索，我會逐漸在自己感興趣的領域積累經驗並有所突破。",
+        "我是亮著，目前是香港科技大學（廣州）的大一學生。雖然現在我還沒有太多科研經歷，但我相信通過大學期間的不斷努力和探索，我會逐漸在自己感興趣的領域積累經驗並有所突破。",
         "我非常注重個人成長，不僅僅在學術上追求進步，也希望通過多方面的實踐，拓寬自己的視野。我最大的興趣愛好是外語、排版和明信片交換（Postcrossing），這些都讓我更深入地了解世界，開闊思維。",
         "如果你對我的學習經歷或興趣有任何問題，歡迎隨時聯繫我！謝謝訪問我的網頁，希望你能從中了解我更多！",
       ],
@@ -233,7 +234,7 @@ export const CONTENT: Record<Language, ContentData> = {
       emailLabel: "發送郵件至",
       leaveMessageBtn: "給我留言",
       footerText: "© 2025 Liang Zhu. 保留所有權利.",
-      icpText: "粤ICP备2025513331号",
+      icpText: "備案號：粤ICP备2025513331号-1",
       form: {
         title: "給我留言",
         nameLabel: "您的名字",
@@ -259,7 +260,7 @@ export const CONTENT: Record<Language, ContentData> = {
       dark: "ダークモード",
     },
     hero: {
-      greeting: "こんにちは、梁著です。",
+      greeting: "こんにちは、亮著です。",
       role: "学生 & 探求者",
       description: "芸術と技術を融合させた、優雅なデジタル体験を創造することに尽力しています。\nミニマリズム and アクセシビリティを重視しています。",
       cta: "もっと詳しく",
@@ -267,7 +268,7 @@ export const CONTENT: Record<Language, ContentData> = {
     about: {
       title: "プロフィール",
       content: [
-        "梁著（Liang Zhu）と申します。現在、香港科技大学（広州）の1年生です。まだ研究経験は浅いですが、大学での努力と探求を通じて、興味のある分野で経験を積み、ブレイクスルーを達成できると信じています。",
+        "亮著（Liang Zhu）と申します。現在、香港科技大学（広州）の1年生です。まだ研究経験は浅いですが、大学での努力と探求を通じて、興味のある分野で経験を積み、ブレイクスルーを達成できると信じています。",
         "個人の成長を非常に重視しており、学術的な向上だけでなく、多方面での実践を通じて視野を広げたいと考えています。趣味は外国語、タイポグラフィ、そしてポストレター交換（Postcrossing）です。これらは世界をより深く理解し、視野を広げる助けとなっています。",
         "私の学習経験や興味についてご質問があれば、いつでもご連絡ください！ウェブサイトをご覧いただきありがとうございます。私のことをもっと知いただければ幸いです！",
       ],
@@ -315,7 +316,7 @@ export const CONTENT: Record<Language, ContentData> = {
       emailLabel: "メールを送る",
       leaveMessageBtn: "メッセージを残す",
       footerText: "© 2025 Liang Zhu. 無断複写・転載を禁じます。",
-      icpText: "粤ICP备2025513331号",
+      icpText: "届出番号：粤ICP备2025513331号-1",
       form: {
         title: "メッセージを残す",
         nameLabel: "お名前",
