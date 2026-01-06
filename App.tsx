@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { HashRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import { ThemeProvider, useTheme } from './contexts/ThemeContext';
 import { LanguageProvider, useLanguage } from './contexts/LanguageContext';
 import Navbar from './components/Navbar';
@@ -51,18 +50,23 @@ const GlobalShortcuts: React.FC = () => {
 };
 
 // Placeholder for the verb practice page
-const VerbPractice: React.FC = () => {
+const VerbPractice: React.FC<{ onBack: () => void }> = ({ onBack }) => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white p-6">
       <h1 className="text-4xl font-bold">Verb Practice Tool</h1>
       <p className="mt-4">Under Construction</p>
+      <button 
+        onClick={onBack}
+        className="mt-8 px-6 py-2 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition-colors font-bold"
+      >
+        Back to Portfolio
+      </button>
     </div>
   );
 };
 
-const PortfolioHome: React.FC = () => {
+const PortfolioHome: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ onNavigateToVerbPractice }) => {
   const { content, language } = useLanguage();
-  const navigate = useNavigate();
   const [isMessageModalOpen, setIsMessageModalOpen] = useState(false);
 
   // Update HTML lang attribute and apply specific font families
@@ -144,7 +148,6 @@ const PortfolioHome: React.FC = () => {
             <div className="grid grid-cols-1 gap-8">
               {content.projects.items.map((project, index) => (
                 <div key={index} className="group relative bg-white dark:bg-slate-900 rounded-2xl p-8 border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 overflow-hidden">
-                   {/* Decorative gradient blob */}
                    <div className="absolute -right-12 -top-12 w-40 h-40 bg-indigo-100 dark:bg-indigo-900/30 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
 
                   <div className="relative z-10">
@@ -152,15 +155,6 @@ const PortfolioHome: React.FC = () => {
                       <div className="p-3 bg-indigo-50 dark:bg-indigo-900/20 rounded-xl text-indigo-600 dark:text-indigo-400">
                         <Sparkles size={24} />
                       </div>
-                      {project.tags && project.tags.length > 0 && (
-                        <div className="flex gap-2">
-                          {project.tags.map(tag => (
-                            <span key={tag} className="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700">
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                      )}
                     </div>
                     
                     <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
@@ -174,8 +168,8 @@ const PortfolioHome: React.FC = () => {
                     <button 
                       className="inline-flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-bold hover:gap-3 transition-all"
                       onClick={() => {
-                        if (project.link?.startsWith('/')) {
-                          navigate(project.link);
+                        if (project.link === '/verb-practice') {
+                          onNavigateToVerbPractice();
                         } else if (project.link) {
                           window.open(project.link, '_blank');
                         }
@@ -201,7 +195,6 @@ const PortfolioHome: React.FC = () => {
             <div className="relative border-l-2 border-slate-200 dark:border-slate-800 ml-3 md:ml-6 space-y-12 pb-2">
               {content.education.items.map((item, index) => (
                 <div key={index} className="relative pl-8 md:pl-12">
-                  {/* Timeline Dot */}
                   <div className="absolute left-[-9px] top-1.5 w-4 h-4 rounded-full bg-white dark:bg-slate-950 border-4 border-indigo-500 shadow-sm z-10"></div>
                   
                   <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-2 md:gap-8 group">
@@ -216,16 +209,9 @@ const PortfolioHome: React.FC = () => {
                         <ExternalLink size={16} className="opacity-50" />
                       </a>
                     ) : (
-                      <div className="relative group/tooltip w-fit cursor-help">
-                        <h3 className="text-xl font-bold text-slate-900 dark:text-white border-b border-dotted border-slate-400 dark:border-slate-600">
-                          {item.school}
-                        </h3>
-                        {/* Tooltip */}
-                        <div className="absolute bottom-full left-0 mb-2 w-max max-w-[280px] px-3 py-2 bg-slate-800 text-white text-xs rounded shadow-lg opacity-0 group-hover/tooltip:opacity-100 group-active/tooltip:opacity-100 transition-opacity pointer-events-none z-20 whitespace-normal">
-                          {item.noUrlTooltip}
-                          <div className="absolute top-full left-4 border-4 border-transparent border-t-slate-800"></div>
-                        </div>
-                      </div>
+                      <h3 className="text-xl font-bold text-slate-900 dark:text-white">
+                        {item.school}
+                      </h3>
                     )}
                     <span className="shrink-0 font-mono text-sm font-semibold text-slate-500 dark:text-slate-400 bg-slate-100/80 dark:bg-slate-900/80 px-3 py-1 rounded-full border border-slate-200 dark:border-slate-800">
                       {item.period}
@@ -248,25 +234,20 @@ const PortfolioHome: React.FC = () => {
             </p>
             
             <div className="flex flex-col items-center gap-12">
+              {/* Top Group: Icon + Emails */}
               <div className="flex flex-col items-center gap-6">
                 <Mail className="w-10 h-10 md:w-12 md:h-12 text-indigo-600 dark:text-indigo-400" strokeWidth={1.5} />
                 <div className="flex flex-col items-center gap-3">
-                  <a 
-                    href="mailto:zliang723@connect.hkust-gz.edu.cn" 
-                    className="text-lg md:text-2xl font-bold text-indigo-600 dark:text-indigo-400 hover:underline decoration-2 underline-offset-8 transition-all break-all text-center"
-                  >
+                  <a href="mailto:zliang723@connect.hkust-gz.edu.cn" className="text-lg md:text-2xl font-bold text-indigo-600 dark:text-indigo-400 hover:underline decoration-2 underline-offset-8 transition-all break-all text-center">
                     zliang723@connect.hkust-gz.edu.cn
                   </a>
-                  
-                  <a 
-                    href="mailto:liangzhu@pigcasso6.top" 
-                    className="text-lg md:text-2xl font-bold text-indigo-600 dark:text-indigo-400 hover:underline decoration-2 underline-offset-8 transition-all break-all text-center"
-                  >
+                  <a href="mailto:liangzhu@pigcasso6.top" className="text-lg md:text-2xl font-bold text-indigo-600 dark:text-indigo-400 hover:underline decoration-2 underline-offset-8 transition-all break-all text-center">
                     liangzhu@pigcasso6.top
                   </a>
                 </div>
               </div>
 
+              {/* Leave Message Button - direct child of parent flex to ensure gap consistency */}
               <button
                 onClick={() => setIsMessageModalOpen(true)}
                 className="inline-flex items-center gap-2 px-8 py-3 rounded-xl bg-indigo-600 text-white hover:bg-indigo-700 hover:scale-105 active:scale-95 transition-all shadow-lg hover:shadow-indigo-500/25 font-bold"
@@ -274,6 +255,19 @@ const PortfolioHome: React.FC = () => {
                 <MessageSquarePlus size={20} />
                 {content.contact.leaveMessageBtn}
               </button>
+
+              {/* X Social Link - direct child of parent flex to ensure gap consistency */}
+              <a 
+                href="https://x.com/Pigcasso66"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all hover:scale-110 active:scale-95 border border-slate-200 dark:border-slate-700 shadow-sm"
+                aria-label="Visit my X profile"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true" className="w-5 h-5 fill-current">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+                </svg>
+              </a>
             </div>
           </div>
         </section>
@@ -281,33 +275,28 @@ const PortfolioHome: React.FC = () => {
 
       <footer className="py-10 bg-slate-50/80 dark:bg-slate-950/80 backdrop-blur-sm border-t border-slate-100 dark:border-slate-800 text-center flex flex-col items-center gap-1">
         <p className="text-slate-500 text-sm font-medium">{content.contact.footerText}</p>
-        <a 
-          href="https://beian.miit.gov.cn" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="text-sm text-slate-500 font-medium hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
-        >
+        <a href="https://beian.miit.gov.cn" target="_blank" rel="noopener noreferrer" className="text-sm text-slate-500 font-medium hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
           {content.contact.icpText}
         </a>
       </footer>
 
-      {/* Message Modal */}
       <MessageModal isOpen={isMessageModalOpen} onClose={() => setIsMessageModalOpen(false)} />
     </div>
   );
 };
 
 const App: React.FC = () => {
+  const [currentView, setCurrentView] = useState<'portfolio' | 'verb-practice'>('portfolio');
+
   return (
     <ThemeProvider>
       <LanguageProvider>
-        <HashRouter>
-          <GlobalShortcuts />
-          <Routes>
-            <Route path="/" element={<PortfolioHome />} />
-            <Route path="/verb-practice" element={<VerbPractice />} />
-          </Routes>
-        </HashRouter>
+        <GlobalShortcuts />
+        {currentView === 'portfolio' ? (
+          <PortfolioHome onNavigateToVerbPractice={() => setCurrentView('verb-practice')} />
+        ) : (
+          <VerbPractice onBack={() => setCurrentView('portfolio')} />
+        )}
       </LanguageProvider>
     </ThemeProvider>
   );
