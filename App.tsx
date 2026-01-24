@@ -5,7 +5,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import BackgroundDecor from './components/BackgroundDecor';
 import MessageModal from './components/MessageModal';
-import { Mail, Stamp, ExternalLink, ArrowRight, Sparkles, MessageSquarePlus } from 'lucide-react';
+import { Mail, Stamp, ExternalLink, ArrowRight, Sparkles, MessageSquarePlus, Languages, CalendarDays } from 'lucide-react';
 import { Language } from './types';
 
 // Component to handle global keyboard shortcuts
@@ -89,6 +89,17 @@ const PortfolioHome: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ onN
     }
   };
 
+  const getProjectIcon = (key?: string) => {
+    switch (key) {
+      case 'verb':
+        return <Languages size={24} />;
+      case 'timetable':
+        return <CalendarDays size={24} />;
+      default:
+        return <Sparkles size={24} />;
+    }
+  };
+
   return (
     <div className={`min-h-screen flex flex-col selection:bg-indigo-100 dark:selection:bg-indigo-900/50 ${getFontClass(language)}`}>
       <BackgroundDecor />
@@ -145,39 +156,43 @@ const PortfolioHome: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ onN
               <span className="w-12 h-1 bg-indigo-500 rounded-full"></span>
               {content.projects.title}
             </h2>
-            <div className="grid grid-cols-1 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {content.projects.items.map((project, index) => (
-                <div key={index} className="group relative bg-white dark:bg-slate-900 rounded-2xl p-8 border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 overflow-hidden">
+                <div key={index} className="group relative bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 overflow-hidden flex flex-col h-full">
                    <div className="absolute -right-12 -top-12 w-40 h-40 bg-indigo-100 dark:bg-indigo-900/30 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
 
-                  <div className="relative z-10">
-                    <div className="flex justify-between items-start mb-4">
+                  <div className="relative z-10 flex flex-col flex-grow">
+                    <div className="flex justify-between items-start mb-3">
                       <div className="p-3 bg-indigo-50 dark:bg-indigo-900/20 rounded-xl text-indigo-600 dark:text-indigo-400">
-                        <Sparkles size={24} />
+                        {getProjectIcon(project.iconKey)}
                       </div>
                     </div>
                     
-                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
                       {project.title}
                     </h3>
                     
-                    <p className="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
-                      {project.description}
-                    </p>
+                    {project.description && (
+                      <p className="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed flex-grow">
+                        {project.description}
+                      </p>
+                    )}
 
-                    <button 
-                      className="inline-flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-bold hover:gap-3 transition-all"
-                      onClick={() => {
-                        if (project.link === '/verb-practice') {
-                          onNavigateToVerbPractice();
-                        } else if (project.link) {
-                          window.open(project.link, '_blank');
-                        }
-                      }}
-                    >
-                      {content.projects.viewProject}
-                      <ArrowRight size={18} />
-                    </button>
+                    <div className={project.description ? "" : "mt-auto"}>
+                      <button 
+                        className="inline-flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-bold hover:gap-3 transition-all pt-2"
+                        onClick={() => {
+                          if (project.link === '/verb-practice') {
+                            onNavigateToVerbPractice();
+                          } else if (project.link) {
+                            window.open(project.link, '_blank');
+                          }
+                        }}
+                      >
+                        {content.projects.viewProject}
+                        <ArrowRight size={18} />
+                      </button>
+                    </div>
                   </div>
                 </div>
               ))}

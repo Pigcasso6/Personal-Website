@@ -21,6 +21,7 @@ export interface ProjectItem {
   tags?: string[];
   link?: string; // For external links or internal routes
   action?: string; // For internal actions like opening a modal
+  iconKey?: 'verb' | 'timetable' | 'default';
 }
 
 export interface ContentData {

@@ -33,8 +33,15 @@ export const CONTENT: Record<Language, ContentData> = {
       items: [
         {
           title: "Japanese Verb Conjugation",
-          description: "An interactive tool powered by Gemini AI to practice Japanese verb conjugations.",
-          link: "https://jp-verb-practice.pigcasso6.top"
+          description: "",
+          link: "https://jp-verb-practice.pigcasso6.top",
+          iconKey: "verb"
+        },
+        {
+          title: "Timetable",
+          description: "",
+          link: "https://timetable.pigcasso6.top",
+          iconKey: "timetable"
         }
       ]
     },
@@ -115,8 +122,15 @@ export const CONTENT: Record<Language, ContentData> = {
       items: [
         {
           title: "日语动词变形练习",
-          description: "基于 Gemini AI 构建的互动工具，用于练习日语动词变形。",
-          link: "https://jp-verb-practice.pigcasso6.top"
+          description: "",
+          link: "https://jp-verb-practice.pigcasso6.top",
+          iconKey: "verb"
+        },
+        {
+          title: "课程表",
+          description: "",
+          link: "https://timetable.pigcasso6.top",
+          iconKey: "timetable"
         }
       ]
     },
@@ -197,8 +211,15 @@ export const CONTENT: Record<Language, ContentData> = {
       items: [
         {
           title: "日語動詞變形練習",
-          description: "基於 Gemini AI 構建的互動工具，用於練習日語動詞變形。",
-          link: "https://jp-verb-practice.pigcasso6.top"
+          description: "",
+          link: "https://jp-verb-practice.pigcasso6.top",
+          iconKey: "verb"
+        },
+        {
+          title: "課程表",
+          description: "",
+          link: "https://timetable.pigcasso6.top",
+          iconKey: "timetable"
         }
       ]
     },
@@ -279,8 +300,15 @@ export const CONTENT: Record<Language, ContentData> = {
       items: [
         {
           title: "日本語動詞活用練習",
-          description: "Gemini AIを活用した、日本語の動詞活用を練習するためのインタラクティブなツールです。",
-          link: "https://jp-verb-practice.pigcasso6.top"
+          description: "",
+          link: "https://jp-verb-practice.pigcasso6.top",
+          iconKey: "verb"
+        },
+        {
+          title: "時間割",
+          description: "",
+          link: "https://timetable.pigcasso6.top",
+          iconKey: "timetable"
         }
       ]
     },
