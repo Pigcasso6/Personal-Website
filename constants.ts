@@ -76,7 +76,7 @@ export const CONTENT: Record<Language, ContentData> = {
       emailLabel: "Email me at",
       leaveMessageBtn: "Leave a Message",
       footerText: "© 2026 Liang Zhu. All Rights Reserved.",
-      icpText: "ICP Filing: 粤ICP备2025513331号-1",
+      icpText: "ICP Filing: 粤 ICP 备 2025513331 号",
       form: {
         title: "Leave a Message",
         nameLabel: "Your Name",
@@ -164,8 +164,8 @@ export const CONTENT: Record<Language, ContentData> = {
       description: "我随时欢迎讨论学习经历、兴趣爱好，或进行学术交流。",
       emailLabel: "发送邮件至",
       leaveMessageBtn: "给我留言",
-      footerText: "© 2026 Liang Zhu. 保留所有权利.",
-      icpText: "备案号：粤ICP备2025513331号-1",
+      footerText: "© 2026 Liang Zhu. 保留所有权利。",
+      icpText: "备案号：粤 ICP 备 2025513331 号",
       form: {
         title: "给我留言",
         nameLabel: "您的名字",
@@ -253,8 +253,8 @@ export const CONTENT: Record<Language, ContentData> = {
       description: "我隨時歡迎討論學習經歷、興趣愛好，或進行學術交流。",
       emailLabel: "發送郵件至",
       leaveMessageBtn: "給我留言",
-      footerText: "© 2026 Liang Zhu. 保留所有權利.",
-      icpText: "備案號：粤ICP备2025513331号-1",
+      footerText: "© 2026 Liang Zhu. 保留所有權利。",
+      icpText: "備案號：粤 ICP 备 2025513331 号",
       form: {
         title: "給我留言",
         nameLabel: "您的名字",
@@ -343,7 +343,7 @@ export const CONTENT: Record<Language, ContentData> = {
       emailLabel: "メールを送る",
       leaveMessageBtn: "メッセージを残す",
       footerText: "© 2026 Liang Zhu. 無断複写・転載を禁じます。",
-      icpText: "届出番号：粤ICP备2025513331号-1",
+      icpText: "届出番号：粤 ICP 备 2025513331 号",
       form: {
         title: "メッセージを残す",
         nameLabel: "お名前",

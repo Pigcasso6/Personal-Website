@@ -277,16 +277,30 @@ const PortfolioHome: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ onN
                 href="https://x.com/Pigcasso66"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all hover:scale-110 active:scale-95 border border-slate-200 dark:border-slate-700 shadow-sm"
+                className="inline-flex items-center justify-center p-3 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all hover:scale-110 active:scale-95 border border-slate-200 dark:border-slate-700 shadow-sm group"
                 aria-label="Visit my X profile"
               >
-                <svg viewBox="0 0 24 24" aria-hidden="true" className="w-5 h-5 fill-current">
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 11.182h-2.96l5.159 6.669zM2.938 4.08h2.954L19.195 20.48h-2.946L2.938 4.08z" />
-                </svg>
+                <img 
+                  src="https://lwwfxjiixaltbedvassi.supabase.co/storage/v1/object/public/portfolio/x_icon.png" 
+                  alt="X" 
+                  className="w-5 h-5 object-contain dark:invert opacity-80 group-hover:opacity-100 transition-opacity"
+                />
               </a>
             </div>
           </div>
         </section>
+
+        {/* Footer Bar */}
+        <footer className="py-8 bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 transition-colors">
+          <div className="max-w-6xl mx-auto px-6 text-center space-y-2">
+            <p className="text-sm text-slate-500 dark:text-slate-400">
+              {content.contact.footerText}
+            </p>
+            <p className="text-sm text-slate-500 dark:text-slate-400 font-sans-sc">
+              {content.contact.icpText}
+            </p>
+          </div>
+        </footer>
       </main>
 
       <MessageModal 
