@@ -7,6 +7,8 @@ export const CONTENT: Record<Language, ContentData> = {
       projects: "Projects",
       education: "Education",
       contact: "Contact",
+      switchToModern: "Switch to Modern Version",
+      switchToClassic: "Switch to Classic Version",
     },
     theme: {
       light: "Light Mode",
@@ -17,6 +19,11 @@ export const CONTENT: Record<Language, ContentData> = {
       role: "Student & Creative Explorer",
       description: "I craft elegant digital experiences that merge art with technology.\nDedicated to simplicity and accessible design.",
       cta: "View Details",
+      typewriterStrings: [
+        "Dedicated to crafting elegant digital experiences.",
+        "Merging art with technology perfectly.",
+        "Focusing on minimalism and accessible design."
+      ]
     },
     about: {
       title: "About Me",
@@ -96,6 +103,8 @@ export const CONTENT: Record<Language, ContentData> = {
       projects: "项目展示",
       education: "教育经历",
       contact: "联系我",
+      switchToModern: "切换至新版页面",
+      switchToClassic: "切换至旧版页面",
     },
     theme: {
       light: "浅色模式",
@@ -106,6 +115,11 @@ export const CONTENT: Record<Language, ContentData> = {
       role: "学生 & 探索者",
       description: "我致力于打造优雅的数字体验，将艺术与技术完美融合。\n专注于极简主义和无障碍设计。",
       cta: "了解更多",
+      typewriterStrings: [
+        "我致力于打造优雅的数字体验。",
+        "将艺术与技术完美融合。",
+        "专注于极简主义和无障碍设计。"
+      ]
     },
     about: {
       title: "关于我",
@@ -185,6 +199,8 @@ export const CONTENT: Record<Language, ContentData> = {
       projects: "項目展示",
       education: "教育經歷",
       contact: "聯絡我",
+      switchToModern: "切換至新版頁面",
+      switchToClassic: "切換至舊版頁面",
     },
     theme: {
       light: "淺色模式",
@@ -195,13 +211,18 @@ export const CONTENT: Record<Language, ContentData> = {
       role: "學生 & 探索者",
       description: "我致力於打造優雅的數位體驗，將藝術與技術完美融合。\n專注於極簡主義和無障礙設計。",
       cta: "了解更多",
+      typewriterStrings: [
+        "我致力於打造優雅的數位體驗。",
+        "將藝術與技術完美融合。",
+        "專注於極簡主義和無障礙設計。"
+      ]
     },
     about: {
       title: "關於我",
       content: [
         "我是梁著，目前是香港科技大學（廣州）的大一學生。雖然現在我還沒有太多科研經歷，但我相信通過大學期間的不斷努力和探索，我會逐漸在自己感興趣的領域積累經驗並有所突破。",
         "我非常注重個人成長，不僅僅在學術上追求進步，也希望通過多方面的實踐，拓寬自己的視野。我最大的興趣愛好是外語、排版和明信片交換（Postcrossing），這些都讓我更深入地瞭解世界，開闊思維。",
-        "如果你對我的學習經歷或興趣有任何問題，歡迎隨時聯繫我！謝謝訪問我的網頁，希望你能從中瞭解我更多！",
+        "如果你對我的學習經歷或興趣有任何問題，歡迎隨時聯絡我！謝謝訪問我的網頁，希望你能從中瞭解我更多！",
       ],
       postcrossingLabel: "訪問我的 Postcrossing 主頁",
     },
@@ -274,6 +295,8 @@ export const CONTENT: Record<Language, ContentData> = {
       projects: "プロジェクト",
       education: "学歴",
       contact: "お問い合わせ",
+      switchToModern: "新バージョンへ",
+      switchToClassic: "旧バージョンへ",
     },
     theme: {
       light: "ライトモード",
@@ -282,13 +305,20 @@ export const CONTENT: Record<Language, ContentData> = {
     hero: {
       greeting: "こんにちは、梁著です。",
       role: "学生 & 探求者",
-      description: "芸術と技術を融合させた、優雅なデジタル体験を創造することに尽力しています。\nミニマリズム and アクセシビリティを重視しています。",
+      description: "芸術と技術を融合させた、優雅なデジタル体験を創造することに尽力しています。\nミニマリズムとアクセシビリティを重視しています。",
       cta: "もっと詳しく",
+      typewriterStrings: [
+        "芸術と技術を融合させる。",
+        "優雅なデジタル体験を創造する。",
+        "ミニマリズムとアクセシビリティを重視している。"
+      ]
     },
     about: {
       title: "プロフィール",
       content: [
-        "梁著（Liang Zhu）と申します。現在、香港科技大学（広州）の1年生です。まだ研究経験は浅いですが、大学での努力と探求を通じて、興味のある分野で経験を積み、ブレイクスルーを達成できると信じています。",
+        <>
+          <ruby>梁著<rt>リョウチョ</rt></ruby>と申します。現在、香港科技大学（広州）の1年生です。まだ研究経験は浅いですが、大学での努力と探求を通じて、興味のある分野で経験を積み、ブレイクスルーを達成できると信じています。
+        </>,
         "個人の成長を非常に重視しており、学術的な向上だけでなく、多方面での実践を通じて視野を広げたいと考えています。趣味は外国語、タイポグラフィ、そしてポストレター交換（Postcrossing）です。これらは世界をより深く理解し、視野を広げる助けとなっています。",
         "私の学習経験や興味についてご質問があれば、いつでもご連絡ください！ウェブサイトをご覧いただきありがとうございます。私のことをもっと知いただければ幸いです！",
       ],

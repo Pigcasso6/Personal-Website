@@ -15,35 +15,51 @@ const Hero: React.FC = () => {
       case 'zh-CN':
       case 'zh-TW':
         return (
-          <>
-            {/* Mobile: Stacked with hanging punctuation */}
-            <span className="flex flex-col items-center gap-3 md:hidden">
-               <span className="relative inline-block">
-                  你好
-                  <span className="absolute left-full">，</span>
-               </span>
-               <span className="relative inline-block">
-                  我是梁著
-                  <span className="absolute left-full">。</span>
-               </span>
-            </span>
-            
-            {/* Desktop: Single line with hanging punctuation at the end */}
-            <span className="hidden md:inline-block relative">
-               你好，我是梁著
-               <span className="absolute left-full">。</span>
-            </span>
-          </>
+          <span className="flex flex-wrap justify-center gap-x-8 gap-y-2">
+             <span className="relative inline-block whitespace-nowrap">
+                你好
+                <span className="absolute left-full">，</span>
+             </span>
+             <span className="relative inline-block whitespace-nowrap">
+                我是梁著
+                <span className="absolute left-full">。</span>
+             </span>
+          </span>
         );
       case 'ja':
+        const now = new Date();
+        const hour = now.getHours();
+        const minute = now.getMinutes();
+        const currentMinutes = hour * 60 + minute;
+        
+        const startMorning = 5 * 60; // 05:00
+        const startEvening = 17 * 60 + 30; // 17:30
+        
+        let greeting = "こんにちは、梁著です。";
+        let part1 = "こんにちは";
+        let part2 = "梁著です";
+
+        // If it's evening (17:30 - 04:59 next day)
+        if (currentMinutes >= startEvening || currentMinutes < startMorning) {
+          greeting = "こんばんは、梁著です。";
+          part1 = "こんばんは";
+        }
+
         return (
           <>
             <span className="flex flex-col items-center gap-3 md:hidden">
-              <span>こんにちは、</span>
-              <span>梁著です。</span>
+              <span className="relative inline-block">
+                {part1}
+                <span className="absolute left-full">、</span>
+              </span>
+              <span className="relative inline-block">
+                {part2}
+                <span className="absolute left-full">。</span>
+              </span>
             </span>
-            <span className="hidden md:inline">
-              こんにちは、梁著です。
+            <span className="hidden md:inline-block relative">
+              {part1}、{part2}
+              <span className="absolute left-full">。</span>
             </span>
           </>
         );

@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 
 export type Language = 'en' | 'zh-CN' | 'zh-TW' | 'ja';
 
@@ -30,6 +31,8 @@ export interface ContentData {
     projects: string;
     education: string;
     contact: string;
+    switchToModern: string;
+    switchToClassic: string;
   };
   theme: {
     light: string;
@@ -40,10 +43,11 @@ export interface ContentData {
     role: string;
     description: string;
     cta: string;
+    typewriterStrings?: string[];
   };
   about: {
     title: string;
-    content: string[];
+    content: (string | ReactNode)[];
     postcrossingLabel: string;
   };
   projects: {
