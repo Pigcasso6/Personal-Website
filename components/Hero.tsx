@@ -15,7 +15,7 @@ const Hero: React.FC = () => {
       case 'zh-CN':
       case 'zh-TW':
         return (
-          <span className="flex flex-wrap justify-center gap-x-8 gap-y-2">
+          <span className="flex flex-wrap justify-center gap-x-[1em] gap-y-2">
              <span className="relative inline-block whitespace-nowrap">
                 你好
                 <span className="absolute left-full">，</span>

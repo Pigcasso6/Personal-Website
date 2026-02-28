@@ -6,9 +6,10 @@ import { supabase } from '../utils/supabaseClient';
 interface MessageModalProps {
   isOpen: boolean;
   onClose: () => void;
+  version?: 'v1' | 'v2';
 }
 
-const MessageModal: React.FC<MessageModalProps> = ({ isOpen, onClose }) => {
+const MessageModal: React.FC<MessageModalProps> = ({ isOpen, onClose, version = 'v1' }) => {
   const { content } = useLanguage();
   const formText = content.contact.form;
 
@@ -17,6 +18,12 @@ const MessageModal: React.FC<MessageModalProps> = ({ isOpen, onClose }) => {
   const [message, setMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+  const isV2 = version === 'v2';
+  const focusRingClass = isV2 ? 'focus:ring-cyan-500' : 'focus:ring-indigo-500';
+  const buttonClass = isV2 
+    ? 'bg-cyan-600 hover:bg-cyan-500 shadow-cyan-500/20' 
+    : 'bg-indigo-600 hover:bg-indigo-700';
 
   useEffect(() => {
     if (isOpen) {
@@ -113,7 +120,7 @@ const MessageModal: React.FC<MessageModalProps> = ({ isOpen, onClose }) => {
                 required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="w-full px-4 py-2.5 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all text-slate-900 dark:text-white placeholder:text-slate-400"
+                className={`w-full px-4 py-2.5 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:ring-2 ${focusRingClass} focus:border-transparent outline-none transition-all text-slate-900 dark:text-white placeholder:text-slate-400`}
               />
             </div>
 
@@ -126,7 +133,7 @@ const MessageModal: React.FC<MessageModalProps> = ({ isOpen, onClose }) => {
                 id="contact"
                 value={contactInfo}
                 onChange={(e) => setContactInfo(e.target.value)}
-                className="w-full px-4 py-2.5 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all text-slate-900 dark:text-white placeholder:text-slate-400"
+                className={`w-full px-4 py-2.5 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:ring-2 ${focusRingClass} focus:border-transparent outline-none transition-all text-slate-900 dark:text-white placeholder:text-slate-400`}
               />
             </div>
 
@@ -140,7 +147,7 @@ const MessageModal: React.FC<MessageModalProps> = ({ isOpen, onClose }) => {
                 rows={4}
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-                className="w-full px-4 py-2.5 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all text-slate-900 dark:text-white placeholder:text-slate-400 resize-none"
+                className={`w-full px-4 py-2.5 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:ring-2 ${focusRingClass} focus:border-transparent outline-none transition-all text-slate-900 dark:text-white placeholder:text-slate-400 resize-none`}
               />
             </div>
 
@@ -154,7 +161,7 @@ const MessageModal: React.FC<MessageModalProps> = ({ isOpen, onClose }) => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded-xl transition-all disabled:opacity-70 disabled:cursor-not-allowed hover:shadow-lg hover:-translate-y-0.5"
+              className={`w-full flex items-center justify-center gap-2 ${buttonClass} text-white font-bold py-3 rounded-xl transition-all disabled:opacity-70 disabled:cursor-not-allowed hover:shadow-lg hover:-translate-y-0.5`}
             >
               {isSubmitting ? (
                 <>
