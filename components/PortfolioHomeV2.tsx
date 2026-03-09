@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import Navbar from './Navbar';
 import MessageModal from './MessageModal';
-import { Mail, Stamp, ExternalLink, ArrowRight, Sparkles, MessageSquarePlus, Languages, CalendarDays, Terminal, Code2, Cpu } from 'lucide-react';
+import { Mail, Stamp, ExternalLink, ArrowRight, Sparkles, MessageSquarePlus, Languages, CalendarDays, Terminal, Code2, Cpu, CircleDashed } from 'lucide-react';
 import { Language } from '../types';
 
 const Typewriter: React.FC<{ strings: string[], language: Language }> = ({ strings, language }) => {
@@ -82,6 +82,7 @@ const PortfolioHomeV2: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ o
     switch (key) {
       case 'verb': return <Languages size={24} />;
       case 'timetable': return <CalendarDays size={24} />;
+      case 'circle': return <CircleDashed size={24} />;
       default: return <Sparkles size={24} />;
     }
   };

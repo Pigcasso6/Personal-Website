@@ -45,10 +45,10 @@ export const CONTENT: Record<Language, ContentData> = {
           iconKey: "verb"
         },
         {
-          title: "Timetable",
+          title: "Minecraft Circle Generator",
           description: "",
-          link: "https://timetable.pigcasso6.top",
-          iconKey: "timetable"
+          link: "https://mccircle.pigcasso6.top/",
+          iconKey: "circle"
         }
       ]
     },
@@ -141,10 +141,10 @@ export const CONTENT: Record<Language, ContentData> = {
           iconKey: "verb"
         },
         {
-          title: "课程表",
+          title: "我的世界圆形生成器",
           description: "",
-          link: "https://timetable.pigcasso6.top",
-          iconKey: "timetable"
+          link: "https://mccircle.pigcasso6.top/",
+          iconKey: "circle"
         }
       ]
     },
@@ -237,10 +237,10 @@ export const CONTENT: Record<Language, ContentData> = {
           iconKey: "verb"
         },
         {
-          title: "課程表",
+          title: "我的世界圓形生成器",
           description: "",
-          link: "https://timetable.pigcasso6.top",
-          iconKey: "timetable"
+          link: "https://mccircle.pigcasso6.top/",
+          iconKey: "circle"
         }
       ]
     },
@@ -335,10 +335,10 @@ export const CONTENT: Record<Language, ContentData> = {
           iconKey: "verb"
         },
         {
-          title: "時間割",
+          title: "マインクラフト円ジェネレーター",
           description: "",
-          link: "https://timetable.pigcasso6.top",
-          iconKey: "timetable"
+          link: "https://mccircle.pigcasso6.top/",
+          iconKey: "circle"
         }
       ]
     },

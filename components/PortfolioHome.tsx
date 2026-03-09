@@ -4,7 +4,7 @@ import Navbar from './Navbar';
 import Hero from './Hero';
 import BackgroundDecor from './BackgroundDecor';
 import MessageModal from './MessageModal';
-import { Mail, Stamp, ExternalLink, ArrowRight, Sparkles, MessageSquarePlus, Languages, CalendarDays } from 'lucide-react';
+import { Mail, Stamp, ExternalLink, ArrowRight, Sparkles, MessageSquarePlus, Languages, CalendarDays, CircleDashed } from 'lucide-react';
 import { Language } from '../types';
 
 const PortfolioHome: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ onNavigateToVerbPractice }) => {
@@ -37,6 +37,8 @@ const PortfolioHome: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ onN
         return <Languages size={24} />;
       case 'timetable':
         return <CalendarDays size={24} />;
+      case 'circle':
+        return <CircleDashed size={24} />;
       default:
         return <Sparkles size={24} />;
     }
