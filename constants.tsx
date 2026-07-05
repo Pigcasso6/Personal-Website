@@ -45,6 +45,18 @@ export const CONTENT: Record<Language, ContentData> = {
           iconKey: "verb"
         },
         {
+          title: "Futures Calculator",
+          description: "",
+          link: "https://futures.pigcasso6.top",
+          iconKey: "futures"
+        },
+        {
+          title: "Gambler Simulator",
+          description: "",
+          link: "https://gamble.pigcasso6.top",
+          iconKey: "gamble"
+        },
+        {
           title: "Minecraft Circle Generator",
           description: "",
           link: "https://mccircle.pigcasso6.top/",
@@ -141,6 +153,18 @@ export const CONTENT: Record<Language, ContentData> = {
           iconKey: "verb"
         },
         {
+          title: "合约计算器",
+          description: "",
+          link: "https://futures.pigcasso6.top",
+          iconKey: "futures"
+        },
+        {
+          title: "赌徒模拟器",
+          description: "",
+          link: "https://gamble.pigcasso6.top",
+          iconKey: "gamble"
+        },
+        {
           title: "我的世界圆形生成器",
           description: "",
           link: "https://mccircle.pigcasso6.top/",
@@ -235,6 +259,18 @@ export const CONTENT: Record<Language, ContentData> = {
           description: "",
           link: "https://jp-verb-practice.pigcasso6.top",
           iconKey: "verb"
+        },
+        {
+          title: "合約計算器",
+          description: "",
+          link: "https://futures.pigcasso6.top",
+          iconKey: "futures"
+        },
+        {
+          title: "賭徒模擬器",
+          description: "",
+          link: "https://gamble.pigcasso6.top",
+          iconKey: "gamble"
         },
         {
           title: "我的世界圓形生成器",
@@ -335,7 +371,19 @@ export const CONTENT: Record<Language, ContentData> = {
           iconKey: "verb"
         },
         {
-          title: "マインクラフト円ジェネレーター",
+          title: "先物計算機",
+          description: "",
+          link: "https://futures.pigcasso6.top",
+          iconKey: "futures"
+        },
+        {
+          title: "ギャンブラーシミュレーター",
+          description: "",
+          link: "https://gamble.pigcasso6.top",
+          iconKey: "gamble"
+        },
+        {
+          title: "マイクラ円ジェネレーター",
           description: "",
           link: "https://mccircle.pigcasso6.top/",
           iconKey: "circle"

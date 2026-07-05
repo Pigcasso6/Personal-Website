@@ -15,7 +15,7 @@ const Hero: React.FC = () => {
       case 'zh-CN':
       case 'zh-TW':
         return (
-          <span className="flex flex-wrap justify-center gap-x-[1em] gap-y-2">
+          <span className="flex flex-col lg:flex-row items-center justify-center gap-x-[1em] gap-y-2">
              <span className="relative inline-block whitespace-nowrap">
                 你好
                 <span className="absolute left-full">，</span>
@@ -47,7 +47,7 @@ const Hero: React.FC = () => {
 
         return (
           <>
-            <span className="flex flex-col items-center gap-3 md:hidden">
+            <span className="flex flex-col items-center gap-3 lg:hidden">
               <span className="relative inline-block">
                 {part1}
                 <span className="absolute left-full">、</span>
@@ -57,7 +57,7 @@ const Hero: React.FC = () => {
                 <span className="absolute left-full">。</span>
               </span>
             </span>
-            <span className="hidden md:inline-block relative">
+            <span className="hidden lg:inline-block relative">
               {part1}、{part2}
               <span className="absolute left-full">。</span>
             </span>
@@ -67,11 +67,11 @@ const Hero: React.FC = () => {
       default:
         return (
           <>
-            <span className="flex flex-col items-center gap-3 md:hidden">
+            <span className="flex flex-col items-center gap-3 lg:hidden">
               <span>Hello,</span>
               <span>I'm Liang Zhu.</span>
             </span>
-            <span className="hidden md:inline">
+            <span className="hidden lg:inline">
               Hello, I'm Liang Zhu.
             </span>
           </>

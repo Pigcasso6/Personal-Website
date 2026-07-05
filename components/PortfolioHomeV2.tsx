@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import Navbar from './Navbar';
 import MessageModal from './MessageModal';
-import { Mail, Stamp, ExternalLink, ArrowRight, Sparkles, MessageSquarePlus, Languages, CalendarDays, Terminal, Code2, Cpu, CircleDashed } from 'lucide-react';
+import { Mail, Stamp, ExternalLink, ArrowRight, Sparkles, MessageSquarePlus, Languages, CalendarDays, Terminal, Code2, Cpu, CircleDashed, Dices, TrendingUp } from 'lucide-react';
 import { Language } from '../types';
 
 const Typewriter: React.FC<{ strings: string[], language: Language }> = ({ strings, language }) => {
@@ -83,6 +83,8 @@ const PortfolioHomeV2: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ o
       case 'verb': return <Languages size={24} />;
       case 'timetable': return <CalendarDays size={24} />;
       case 'circle': return <CircleDashed size={24} />;
+      case 'gamble': return <Dices size={24} />;
+      case 'futures': return <TrendingUp size={24} />;
       default: return <Sparkles size={24} />;
     }
   };
@@ -114,8 +116,8 @@ const PortfolioHomeV2: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ o
       if (parts.length === 2) {
         return (
           <>
-            <span className="inline-block">{parts[0]}, </span>
-            <span className="inline-block">{parts[1]}</span>
+            <span className="block lg:inline-block">{parts[0]}, </span>
+            <span className="block lg:inline-block">{parts[1]}</span>
           </>
         );
       }
@@ -125,8 +127,8 @@ const PortfolioHomeV2: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ o
         if (parts.length === 2) {
             return (
                 <>
-                    <span className="inline-block">{parts[0]}、</span>
-                    <span className="inline-block">{parts[1]}</span>
+                    <span className="block lg:inline-block">{parts[0]}、</span>
+                    <span className="block lg:inline-block">{parts[1]}</span>
                 </>
             );
         }
@@ -136,8 +138,8 @@ const PortfolioHomeV2: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ o
         if (parts.length === 2) {
             return (
                 <>
-                    <span className="inline-block whitespace-nowrap">{parts[0]}，</span>
-                    <span className="inline-block whitespace-nowrap">{parts[1]}</span>
+                    <span className="block lg:inline-block whitespace-nowrap">{parts[0]}，</span>
+                    <span className="block lg:inline-block whitespace-nowrap">{parts[1]}</span>
                 </>
             );
         }
