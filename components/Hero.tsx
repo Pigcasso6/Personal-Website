@@ -140,17 +140,17 @@ const Hero: React.FC = () => {
         <div className="flex flex-col items-center gap-2 leading-relaxed">
           {/* Mobile Layout: Specific breaks */}
           <div className="flex flex-col items-center md:hidden gap-1">
-            <span>芸術と技術を融合させた、</span>
-            <span>優雅なデジタル体験を創造</span>
-            <span>することに尽力しています。</span>
+            <span>芸術と技術を融合し、洗練された</span>
+            <span>デジタル体験づくりに</span>
+            <span>取り組んでいます。</span>
             <span>ミニマリズムとアクセシビリティを</span>
-            <span>重視しています。</span>
+            <span>大切にしています。</span>
           </div>
 
           {/* Desktop Layout: Standard flow */}
           <div className="hidden md:flex flex-col items-center gap-2">
-            <span>芸術と技術を融合させた、優雅なデジタル体験を創造することに尽力しています。</span>
-            <span>ミニマリズムとアクセシビリティを重視しています。</span>
+            <span>芸術と技術を融合し、洗練されたデジタル体験づくりに取り組んでいます。</span>
+            <span>ミニマリズムとアクセシビリティを大切にしています。</span>
           </div>
         </div>
       );

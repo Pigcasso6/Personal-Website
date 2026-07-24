@@ -28,7 +28,7 @@ export const CONTENT: Record<Language, ContentData> = {
     about: {
       title: "About Me",
       content: [
-        "I am Liang Zhu, currently a freshman at The Hong Kong University of Science and Technology (Guangzhou). Although I don't have much research experience yet, I believe that through continuous effort and exploration during my university years, I will gradually accumulate experience and make breakthroughs in the fields I am interested in.",
+        "I am Liang Zhu, currently a sophomore at The Hong Kong University of Science and Technology (Guangzhou). Although I don't have much research experience yet, I believe that through continuous effort and exploration during my university years, I will gradually accumulate experience and make breakthroughs in the fields I am interested in.",
         "I pay great attention to personal growth, pursuing progress not only academically but also hoping to broaden my horizons through various practices. My biggest hobbies are foreign languages, typography, and postcard exchange (Postcrossing), all of which allow me to understand the world more deeply and broaden my thinking.",
         "If you have any questions about my learning experience or interests, please feel free to contact me! Thank you for visiting my webpage, and I hope you can learn more about me here!",
       ],
@@ -136,7 +136,7 @@ export const CONTENT: Record<Language, ContentData> = {
     about: {
       title: "关于我",
       content: [
-        "我是梁著，目前是香港科技大学（广州）的大一学生。虽然现在我还没有太多科研经历，但我相信通过大学期间的不断努力和探索，我会逐渐在自己感兴趣的领域积累经验并有所突破。",
+        "我是梁著，目前是香港科技大学（广州）的大二学生。虽然现在我还没有太多科研经历，但我相信通过大学期间的不断努力和探索，我会逐渐在自己感兴趣的领域积累经验并有所突破。",
         "我非常注重个人成长，不仅仅在学术上追求进步，也希望通过多方面的实践，拓宽自己的视野。我最大的兴趣爱好是外语、排版和明信片交换（Postcrossing），这些都让我更深入地了解世界，开阔思维。",
         "如果你对我的学习经历或兴趣有任何问题，欢迎随时联系我！谢谢访问我的网页，希望你能从中了解我更多！",
       ],
@@ -244,7 +244,7 @@ export const CONTENT: Record<Language, ContentData> = {
     about: {
       title: "關於我",
       content: [
-        "我是梁著，目前是香港科技大學（廣州）的大一學生。雖然現在我還沒有太多科研經歷，但我相信通過大學期間的不斷努力和探索，我會逐漸在自己感興趣的領域積累經驗並有所突破。",
+        "我是梁著，目前是香港科技大學（廣州）的大二學生。雖然現在我還沒有太多科研經歷，但我相信通過大學期間的不斷努力和探索，我會逐漸在自己感興趣的領域積累經驗並有所突破。",
         "我非常注重個人成長，不僅僅在學術上追求進步，也希望通過多方面的實踐，拓寬自己的視野。我最大的興趣愛好是外語、排版和明信片交換（Postcrossing），這些都讓我更深入地瞭解世界，開闊思維。",
         "如果你對我的學習經歷或興趣有任何問題，歡迎隨時聯絡我！謝謝訪問我的網頁，希望你能從中瞭解我更多！",
       ],
@@ -341,22 +341,22 @@ export const CONTENT: Record<Language, ContentData> = {
     hero: {
       greeting: "こんにちは、梁著です。",
       role: "学生 & 探求者",
-      description: "芸術と技術を融合させた、優雅なデジタル体験を創造することに尽力しています。\nミニマリズムとアクセシビリティを重視しています。",
+      description: "芸術と技術を融合し、洗練されたデジタル体験づくりに取り組んでいます。\nミニマリズムとアクセシビリティを大切にしています。",
       cta: "もっと詳しく",
       typewriterStrings: [
         "芸術と技術を融合させる。",
-        "優雅なデジタル体験を創造する。",
-        "ミニマリズムとアクセシビリティを重視している。"
+        "洗練されたデジタル体験をつくる。",
+        "ミニマリズムとアクセシビリティを大切にする。"
       ]
     },
     about: {
       title: "プロフィール",
       content: [
         <>
-          <ruby>梁著<rt>リョウチョ</rt></ruby>と申します。現在、香港科技大学（広州）の1年生です。まだ研究経験は浅いですが、大学での努力と探求を通じて、興味のある分野で経験を積み、ブレイクスルーを達成できると信じています。
+          <ruby>梁著<rt>リョウチョ</rt></ruby>と申します。現在、香港科技大学（広州）に在学している2年生です。研究経験はまだ多くありませんが、大学での学びや挑戦を通じて興味のある分野で経験を積み、将来は社会に価値をもたらす研究や成果につなげられるよう努力しています。
         </>,
-        "個人の成長を非常に重視しており、学術的な向上だけでなく、多方面での実践を通じて視野を広げたいと考えています。趣味は外国語、タイポグラフィ、そしてポストレター交換（Postcrossing）です。これらは世界をより深く理解し、視野を広げる助けとなっています。",
-        "私の学習経験や興味についてご質問があれば、いつでもご連絡ください！ウェブサイトをご覧いただきありがとうございます。私のことをもっと知いただければ幸いです！",
+        "自己成長を大切にしており、学術的な知識を深めるだけでなく、さまざまな経験を通じて視野を広げたいと考えています。趣味は外国語の学習、タイポグラフィ、そしてPostcrossing（ポストカード交換）です。異なる文化や価値観に触れることが、自分自身の成長につながると考えています。",
+        "学習や興味のある分野についてご質問などがございましたら、どうぞお気軽にご連絡ください。最後までご覧いただき、ありがとうございます。このウェブサイトを通じて、私のことを少しでも知っていただければ幸いです。",
       ],
       postcrossingLabel: "Postcrossingのプロフィールを見る",
     },
@@ -417,19 +417,19 @@ export const CONTENT: Record<Language, ContentData> = {
     },
     contact: {
       title: "お問い合わせ",
-      description: "学習経験や趣味についての議論、学術交流など、いつでも歓迎します。",
+      description: "学習や趣味、研究に関するご質問や交流は、いつでもお気軽にお寄せください。",
       emailLabel: "メールを送る",
-      leaveMessageBtn: "メッセージを残す",
+      leaveMessageBtn: "メッセージを送る",
       footerText: "© 2025—2026 Liang Zhu. 無断複写・転載を禁じます。",
       icpText: "届出番号：粤 ICP 备 2025513331 号",
       form: {
-        title: "メッセージを残す",
+        title: "メッセージを送る",
         nameLabel: "お名前",
         contactLabel: "連絡先",
         messageLabel: "メッセージ内容",
         submit: "送信",
         submitting: "送信中...",
-        success: "メッセージを送信しました！",
+        success: "送信が完了しました。",
         error: "送信に失敗しました。再試行してください。",
         close: "閉じる",
       },
