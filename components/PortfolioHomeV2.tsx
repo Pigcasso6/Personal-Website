@@ -334,7 +334,7 @@ const PortfolioHomeV2: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ o
                       className="p-3 rounded-lg bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-700 transition-all border border-slate-200 dark:border-slate-700 group shadow-sm"
                     >
                       <img 
-                        src="https://lwwfxjiixaltbedvassi.supabase.co/storage/v1/object/public/portfolio/x_icon.png" 
+                        src="/images/x_icon.png" 
                         alt="X" 
                         className="w-6 h-6 object-contain dark:invert opacity-80 group-hover:opacity-100 transition-opacity"
                       />

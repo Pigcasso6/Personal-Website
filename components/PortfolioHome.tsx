@@ -228,7 +228,7 @@ const PortfolioHome: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ onN
                 aria-label="Visit my X profile"
               >
                 <img 
-                  src="https://lwwfxjiixaltbedvassi.supabase.co/storage/v1/object/public/portfolio/x_icon.png" 
+                  src="/images/x_icon.png" 
                   alt="X" 
                   className="w-5 h-5 object-contain dark:invert opacity-80 group-hover:opacity-100 transition-opacity"
                 />

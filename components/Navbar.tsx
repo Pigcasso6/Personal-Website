@@ -71,8 +71,8 @@ const Navbar: React.FC = () => {
     return code;
   };
 
-  // Supabase storage URL for the avatar
-  const AVATAR_URL = "https://lwwfxjiixaltbedvassi.supabase.co/storage/v1/object/public/portfolio/avatar.png";
+  // Local path for the avatar logo
+  const AVATAR_URL = "/images/avatar.png";
 
   return (
     <nav
