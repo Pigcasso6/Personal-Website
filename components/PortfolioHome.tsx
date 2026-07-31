@@ -136,29 +136,37 @@ const PortfolioHome: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ onN
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
                 {/* N1 Card */}
-                <div className="p-6 rounded-xl bg-slate-50/80 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-700/80 flex flex-col justify-between gap-5 hover:border-indigo-200 dark:hover:border-indigo-800/50 transition-all">
+                <div className="p-6 rounded-xl bg-slate-50/80 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-700/80 flex flex-col justify-between gap-4 hover:border-indigo-200 dark:hover:border-indigo-800/50 transition-all">
                   <div>
-                    <div className="flex items-center justify-between gap-2 mb-2">
-                      <span className="text-lg font-bold text-slate-900 dark:text-white">
-                        {content.skills.n1Title}
-                      </span>
-                      <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 shrink-0">
+                    <h4 className="text-lg font-bold text-slate-900 dark:text-white whitespace-nowrap overflow-hidden text-ellipsis">
+                      {content.skills.n1Title}
+                    </h4>
+
+                    {/* Score Progress Bar */}
+                    <div className="flex items-center gap-3 my-3">
+                      <div className="flex-1 bg-slate-200 dark:bg-slate-700/80 h-2.5 rounded-full overflow-hidden">
+                        <div 
+                          className="bg-indigo-600 dark:bg-indigo-500 h-full rounded-full transition-all duration-1000"
+                          style={{ width: '80%' }}
+                        />
+                      </div>
+                      <span className="text-sm font-mono font-bold text-slate-700 dark:text-slate-300 shrink-0">
                         {content.skills.n1Score}
                       </span>
                     </div>
                   </div>
 
-                  <div className="flex flex-wrap gap-2.5 pt-2">
+                  <div className="grid grid-cols-2 gap-3 w-full pt-1">
                     <button
                       onClick={() => openCertModal({
                         title: `${content.skills.n1Title} - ${content.skills.viewCertificateBtn}`,
                         frontImg: '/images/N1_C_F.jpg',
                         backImg: '/images/N1_C_B.jpg',
                       })}
-                      className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-lg bg-indigo-600 text-white hover:bg-indigo-500 transition-all shadow-sm hover:shadow-indigo-500/25 active:scale-95"
+                      className="w-full inline-flex items-center justify-center gap-2 px-3 py-2.5 text-sm font-semibold rounded-lg bg-indigo-600 text-white hover:bg-indigo-500 transition-all shadow-sm hover:shadow-indigo-500/25 active:scale-95 text-center whitespace-nowrap"
                     >
-                      <Award size={16} />
-                      {content.skills.viewCertificateBtn}
+                      <Award size={16} className="shrink-0" />
+                      <span>{content.skills.viewCertificateBtn}</span>
                     </button>
 
                     <button
@@ -167,38 +175,46 @@ const PortfolioHome: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ onN
                         frontImg: '/images/N1_S_F.jpg',
                         backImg: '/images/N1_S_B.jpg',
                       })}
-                      className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-lg bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 transition-colors active:scale-95"
+                      className="w-full inline-flex items-center justify-center gap-2 px-3 py-2.5 text-sm font-semibold rounded-lg bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 transition-colors active:scale-95 text-center whitespace-nowrap"
                     >
-                      <FileText size={16} />
-                      {content.skills.viewReportBtn}
+                      <FileText size={16} className="shrink-0" />
+                      <span>{content.skills.viewReportBtn}</span>
                     </button>
                   </div>
                 </div>
 
                 {/* N2 Card */}
-                <div className="p-6 rounded-xl bg-slate-50/80 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-700/80 flex flex-col justify-between gap-5 hover:border-indigo-200 dark:hover:border-indigo-800/50 transition-all">
+                <div className="p-6 rounded-xl bg-slate-50/80 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-700/80 flex flex-col justify-between gap-4 hover:border-indigo-200 dark:hover:border-indigo-800/50 transition-all">
                   <div>
-                    <div className="flex items-center justify-between gap-2 mb-2">
-                      <span className="text-lg font-bold text-slate-900 dark:text-white">
-                        {content.skills.n2Title}
-                      </span>
-                      <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 shrink-0">
+                    <h4 className="text-lg font-bold text-slate-900 dark:text-white whitespace-nowrap overflow-hidden text-ellipsis">
+                      {content.skills.n2Title}
+                    </h4>
+
+                    {/* Score Progress Bar */}
+                    <div className="flex items-center gap-3 my-3">
+                      <div className="flex-1 bg-slate-200 dark:bg-slate-700/80 h-2.5 rounded-full overflow-hidden">
+                        <div 
+                          className="bg-indigo-600 dark:bg-indigo-500 h-full rounded-full transition-all duration-1000"
+                          style={{ width: '98.33%' }}
+                        />
+                      </div>
+                      <span className="text-sm font-mono font-bold text-slate-700 dark:text-slate-300 shrink-0">
                         {content.skills.n2Score}
                       </span>
                     </div>
                   </div>
 
-                  <div className="flex flex-wrap gap-2.5 pt-2">
+                  <div className="grid grid-cols-2 gap-3 w-full pt-1">
                     <button
                       onClick={() => openCertModal({
                         title: `${content.skills.n2Title} - ${content.skills.viewCertificateBtn}`,
                         frontImg: '/images/N2_C_F.jpg',
                         backImg: '/images/N2_C_B.jpg',
                       })}
-                      className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-lg bg-indigo-600 text-white hover:bg-indigo-500 transition-all shadow-sm hover:shadow-indigo-500/25 active:scale-95"
+                      className="w-full inline-flex items-center justify-center gap-2 px-3 py-2.5 text-sm font-semibold rounded-lg bg-indigo-600 text-white hover:bg-indigo-500 transition-all shadow-sm hover:shadow-indigo-500/25 active:scale-95 text-center whitespace-nowrap"
                     >
-                      <Award size={16} />
-                      {content.skills.viewCertificateBtn}
+                      <Award size={16} className="shrink-0" />
+                      <span>{content.skills.viewCertificateBtn}</span>
                     </button>
 
                     <button
@@ -207,10 +223,10 @@ const PortfolioHome: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ onN
                         frontImg: '/images/N2_S_F.jpg',
                         backImg: '/images/N2_S_B.jpg',
                       })}
-                      className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-lg bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 transition-colors active:scale-95"
+                      className="w-full inline-flex items-center justify-center gap-2 px-3 py-2.5 text-sm font-semibold rounded-lg bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 transition-colors active:scale-95 text-center whitespace-nowrap"
                     >
-                      <FileText size={16} />
-                      {content.skills.viewReportBtn}
+                      <FileText size={16} className="shrink-0" />
+                      <span>{content.skills.viewReportBtn}</span>
                     </button>
                   </div>
                 </div>
