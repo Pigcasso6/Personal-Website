@@ -113,13 +113,20 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
               className="w-full h-full relative transition-transform duration-700 ease-in-out rounded-lg overflow-hidden bg-slate-100 dark:bg-slate-950"
               style={{
                 transformStyle: 'preserve-3d',
+                WebkitTransformStyle: 'preserve-3d',
                 transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
               }}
             >
-              {/* Front Image Side */}
+              {/* Front Image Side (F image) */}
               <div 
-                className="absolute inset-0 w-full h-full flex items-center justify-center bg-slate-100 dark:bg-slate-950 rounded-lg overflow-hidden"
-                style={{ backfaceVisibility: 'hidden' }}
+                className={`absolute inset-0 w-full h-full flex items-center justify-center bg-slate-100 dark:bg-slate-950 rounded-lg overflow-hidden transition-opacity duration-300 ${
+                  isFlipped ? 'opacity-0 pointer-events-none' : 'opacity-100'
+                }`}
+                style={{ 
+                  backfaceVisibility: 'hidden',
+                  WebkitBackfaceVisibility: 'hidden',
+                  transform: 'rotateY(0deg)',
+                }}
               >
                 {!imgErrorFront ? (
                   <img
@@ -136,11 +143,14 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
                 )}
               </div>
 
-              {/* Back Image Side */}
+              {/* Back Image Side (B image) */}
               <div 
-                className="absolute inset-0 w-full h-full flex items-center justify-center bg-slate-100 dark:bg-slate-950 rounded-lg overflow-hidden"
+                className={`absolute inset-0 w-full h-full flex items-center justify-center bg-slate-100 dark:bg-slate-950 rounded-lg overflow-hidden transition-opacity duration-300 ${
+                  isFlipped ? 'opacity-100' : 'opacity-0 pointer-events-none'
+                }`}
                 style={{ 
                   backfaceVisibility: 'hidden',
+                  WebkitBackfaceVisibility: 'hidden',
                   transform: 'rotateY(180deg)',
                 }}
               >
