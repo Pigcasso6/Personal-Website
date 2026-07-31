@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import Navbar from './Navbar';
 import MessageModal from './MessageModal';
-import { Mail, Stamp, ExternalLink, ArrowRight, Sparkles, MessageSquarePlus, Languages, CalendarDays, Terminal, Code2, Cpu, CircleDashed, Dices, TrendingUp } from 'lucide-react';
+import CertificateModal from './CertificateModal';
+import { Mail, Stamp, ExternalLink, ArrowRight, Sparkles, MessageSquarePlus, Languages, CalendarDays, Terminal, Code2, Cpu, CircleDashed, Dices, TrendingUp, Award, FileText } from 'lucide-react';
 import { Language } from '../types';
 
 const Typewriter: React.FC<{ strings: string[], language: Language }> = ({ strings, language }) => {
@@ -62,6 +63,24 @@ const FadingTitle: React.FC<{ children: React.ReactNode; className?: string }> =
 const PortfolioHomeV2: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ onNavigateToVerbPractice }) => {
   const { content, language } = useLanguage();
   const [isMessageModalOpen, setIsMessageModalOpen] = useState(false);
+  const [certModal, setCertModal] = useState<{
+    isOpen: boolean;
+    title: string;
+    frontImg: string;
+    backImg: string;
+  }>({
+    isOpen: false,
+    title: '',
+    frontImg: '',
+    backImg: '',
+  });
+
+  const openCertModal = (data: { title: string; frontImg: string; backImg: string }) => {
+    setCertModal({
+      isOpen: true,
+      ...data,
+    });
+  };
 
   // Update HTML lang attribute
   useEffect(() => {
@@ -215,8 +234,139 @@ const PortfolioHomeV2: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ o
               </div>
             </div>
 
+            {/* Education Section */}
+            <div id="education" className="relative order-2 md:order-2 md:col-span-1 pt-12 md:pt-0 scroll-mt-48">
+              <FadingTitle className="text-7xl md:text-6xl">{content.education.title}</FadingTitle>
+              
+              <div className="pt-12 md:pt-20 relative z-10">
+                <div className="space-y-12 border-l-2 border-slate-200 dark:border-slate-800 ml-3 pl-8">
+                  {content.education.items.map((item, index) => (
+                    <div key={index} className="relative">
+                      <div className="absolute -left-[41px] top-1.5 w-5 h-5 rounded-full bg-slate-50 dark:bg-slate-950 border-4 border-cyan-500"></div>
+                      <div className="flex flex-col gap-2">
+                        <span className="text-sm font-mono text-cyan-600 dark:text-cyan-400 font-bold bg-cyan-50 dark:bg-cyan-900/20 px-3 py-1 rounded-full w-fit">
+                          {item.period}
+                        </span>
+                        {item.url ? (
+                          <a 
+                            href={item.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-xl font-bold text-slate-900 dark:text-white hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors inline-flex items-center gap-2"
+                          >
+                            {item.school}
+                            <ExternalLink size={16} className="opacity-50" />
+                          </a>
+                        ) : (
+                          <h3 className="text-xl font-bold text-slate-900 dark:text-white">
+                            {item.school}
+                          </h3>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Skills & Achievements Section V2 */}
+            <div id="skills" className="relative order-3 md:col-span-2 pt-12 md:pt-0 scroll-mt-48">
+              <FadingTitle>{content.skills.title}</FadingTitle>
+
+              <div className="pt-12 md:pt-20 relative z-10">
+                <div className="bg-white/60 dark:bg-slate-900/50 rounded-3xl p-8 border border-slate-200 dark:border-white/5 backdrop-blur-sm shadow-sm space-y-8">
+                  <div className="flex items-center gap-3 border-b border-slate-200 dark:border-slate-800 pb-4">
+                    <div className="p-3 bg-slate-100 dark:bg-slate-800 rounded-2xl text-cyan-600 dark:text-cyan-400">
+                      <Languages size={24} />
+                    </div>
+                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
+                      {content.skills.japaneseCategoryTitle}
+                    </h3>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {/* N1 Card */}
+                    <div className="p-6 rounded-2xl bg-slate-100/70 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 flex flex-col justify-between gap-6 hover:border-cyan-500/40 transition-all">
+                      <div className="flex items-center justify-between gap-3">
+                        <span className="text-xl font-bold text-slate-900 dark:text-white">
+                          {content.skills.n1Title}
+                        </span>
+                        <span className="px-3.5 py-1 rounded-full text-xs font-mono font-bold bg-cyan-50 dark:bg-cyan-900/30 text-cyan-600 dark:text-cyan-400 border border-cyan-200 dark:border-cyan-800/50">
+                          {content.skills.n1Score}
+                        </span>
+                      </div>
+
+                      <div className="flex flex-wrap gap-3">
+                        <button
+                          onClick={() => openCertModal({
+                            title: `${content.skills.n1Title} - ${content.skills.viewCertificateBtn}`,
+                            frontImg: '/images/N1_C_F.jpg',
+                            backImg: '/images/N1_C_B.jpg',
+                          })}
+                          className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-bold rounded-lg bg-slate-900 text-white dark:bg-cyan-600 dark:hover:bg-cyan-500 hover:bg-slate-800 transition-all shadow-md active:scale-95"
+                        >
+                          <Award size={16} />
+                          {content.skills.viewCertificateBtn}
+                        </button>
+
+                        <button
+                          onClick={() => openCertModal({
+                            title: `${content.skills.n1Title} - ${content.skills.viewReportBtn}`,
+                            frontImg: '/images/N1_S_F.jpg',
+                            backImg: '/images/N1_S_B.jpg',
+                          })}
+                          className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-bold rounded-lg bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 transition-colors active:scale-95"
+                        >
+                          <FileText size={16} />
+                          {content.skills.viewReportBtn}
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* N2 Card */}
+                    <div className="p-6 rounded-2xl bg-slate-100/70 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 flex flex-col justify-between gap-6 hover:border-cyan-500/40 transition-all">
+                      <div className="flex items-center justify-between gap-3">
+                        <span className="text-xl font-bold text-slate-900 dark:text-white">
+                          {content.skills.n2Title}
+                        </span>
+                        <span className="px-3.5 py-1 rounded-full text-xs font-mono font-bold bg-cyan-50 dark:bg-cyan-900/30 text-cyan-600 dark:text-cyan-400 border border-cyan-200 dark:border-cyan-800/50">
+                          {content.skills.n2Score}
+                        </span>
+                      </div>
+
+                      <div className="flex flex-wrap gap-3">
+                        <button
+                          onClick={() => openCertModal({
+                            title: `${content.skills.n2Title} - ${content.skills.viewCertificateBtn}`,
+                            frontImg: '/images/N2_C_F.jpg',
+                            backImg: '/images/N2_C_B.jpg',
+                          })}
+                          className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-bold rounded-lg bg-slate-900 text-white dark:bg-cyan-600 dark:hover:bg-cyan-500 hover:bg-slate-800 transition-all shadow-md active:scale-95"
+                        >
+                          <Award size={16} />
+                          {content.skills.viewCertificateBtn}
+                        </button>
+
+                        <button
+                          onClick={() => openCertModal({
+                            title: `${content.skills.n2Title} - ${content.skills.viewReportBtn}`,
+                            frontImg: '/images/N2_S_F.jpg',
+                            backImg: '/images/N2_S_B.jpg',
+                          })}
+                          className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-bold rounded-lg bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 transition-colors active:scale-95"
+                        >
+                          <FileText size={16} />
+                          {content.skills.viewReportBtn}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             {/* Projects Section */}
-            <div id="projects" className="relative order-2 md:order-3 md:col-span-2 pt-12 md:pt-0 scroll-mt-48">
+            <div id="projects" className="relative order-4 md:col-span-2 pt-12 md:pt-0 scroll-mt-48">
               <FadingTitle>{content.projects.title}</FadingTitle>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-12 md:pt-20 relative z-10">
@@ -257,41 +407,6 @@ const PortfolioHomeV2: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ o
                     </div>
                   </div>
                 ))}
-              </div>
-            </div>
-
-            {/* Education Section */}
-            <div id="education" className="relative order-3 md:order-2 md:col-span-1 pt-12 md:pt-0 scroll-mt-48">
-              <FadingTitle className="text-7xl md:text-6xl">{content.education.title}</FadingTitle>
-              
-              <div className="pt-12 md:pt-20 relative z-10">
-                <div className="space-y-12 border-l-2 border-slate-200 dark:border-slate-800 ml-3 pl-8">
-                  {content.education.items.map((item, index) => (
-                    <div key={index} className="relative">
-                      <div className="absolute -left-[41px] top-1.5 w-5 h-5 rounded-full bg-slate-50 dark:bg-slate-950 border-4 border-cyan-500"></div>
-                      <div className="flex flex-col gap-2">
-                        <span className="text-sm font-mono text-cyan-600 dark:text-cyan-400 font-bold bg-cyan-50 dark:bg-cyan-900/20 px-3 py-1 rounded-full w-fit">
-                          {item.period}
-                        </span>
-                        {item.url ? (
-                          <a 
-                            href={item.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-xl font-bold text-slate-900 dark:text-white hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors inline-flex items-center gap-2"
-                          >
-                            {item.school}
-                            <ExternalLink size={16} className="opacity-50" />
-                          </a>
-                        ) : (
-                          <h3 className="text-xl font-bold text-slate-900 dark:text-white">
-                            {item.school}
-                          </h3>
-                        )}
-                      </div>
-                    </div>
-                  ))}
-                </div>
               </div>
             </div>
 
@@ -367,6 +482,17 @@ const PortfolioHomeV2: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ o
       <MessageModal 
         isOpen={isMessageModalOpen} 
         onClose={() => setIsMessageModalOpen(false)} 
+        version="v2"
+      />
+
+      <CertificateModal
+        isOpen={certModal.isOpen}
+        onClose={() => setCertModal(prev => ({ ...prev, isOpen: false }))}
+        title={certModal.title}
+        frontImg={certModal.frontImg}
+        backImg={certModal.backImg}
+        flipBtnText={content.skills.flipBtn}
+        closeBtnText={content.skills.closeBtn}
         version="v2"
       />
     </div>

@@ -28,6 +28,7 @@ export interface ProjectItem {
 export interface ContentData {
   nav: {
     about: string;
+    skills: string;
     projects: string;
     education: string;
     contact: string;
@@ -49,6 +50,18 @@ export interface ContentData {
     title: string;
     content: (string | ReactNode)[];
     postcrossingLabel: string;
+  };
+  skills: {
+    title: string;
+    japaneseCategoryTitle: string;
+    n1Title: string;
+    n1Score: string;
+    n2Title: string;
+    n2Score: string;
+    viewCertificateBtn: string;
+    viewReportBtn: string;
+    flipBtn: string;
+    closeBtn: string;
   };
   projects: {
     title: string;

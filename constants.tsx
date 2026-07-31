@@ -4,6 +4,7 @@ export const CONTENT: Record<Language, ContentData> = {
   en: {
     nav: {
       about: "About",
+      skills: "Skills & Achievements",
       projects: "Projects",
       education: "Education",
       contact: "Contact",
@@ -33,6 +34,18 @@ export const CONTENT: Record<Language, ContentData> = {
         "If you have any questions about my learning experience or interests, please feel free to contact me! Thank you for visiting my webpage, and I hope you can learn more about me here!",
       ],
       postcrossingLabel: "Visit My Postcrossing Profile",
+    },
+    skills: {
+      title: "Skills & Achievements",
+      japaneseCategoryTitle: "Japanese Proficiency",
+      n1Title: "JLPT N1",
+      n1Score: "144 / 180",
+      n2Title: "JLPT N2",
+      n2Score: "177 / 180",
+      viewCertificateBtn: "View Certificate",
+      viewReportBtn: "View Score Report",
+      flipBtn: "Flip",
+      closeBtn: "Close",
     },
     projects: {
       title: "Projects",
@@ -112,6 +125,7 @@ export const CONTENT: Record<Language, ContentData> = {
   'zh-CN': {
     nav: {
       about: "关于我",
+      skills: "能力与成果",
       projects: "项目展示",
       education: "教育经历",
       contact: "联系我",
@@ -141,6 +155,18 @@ export const CONTENT: Record<Language, ContentData> = {
         "如果你对我的学习经历或兴趣有任何问题，欢迎随时联系我！谢谢访问我的网页，希望你能从中了解我更多！",
       ],
       postcrossingLabel: "访问我的 Postcrossing 主页",
+    },
+    skills: {
+      title: "能力与成果",
+      japaneseCategoryTitle: "日语能力",
+      n1Title: "日本语能力测试 (JLPT) N1",
+      n1Score: "144 / 180 分",
+      n2Title: "日本语能力测试 (JLPT) N2",
+      n2Score: "177 / 180 分",
+      viewCertificateBtn: "查看证书",
+      viewReportBtn: "查看成绩单",
+      flipBtn: "翻面",
+      closeBtn: "关闭",
     },
     projects: {
       title: "项目展示",
@@ -220,6 +246,7 @@ export const CONTENT: Record<Language, ContentData> = {
   'zh-TW': {
     nav: {
       about: "關於我",
+      skills: "能力與成果",
       projects: "項目展示",
       education: "教育經歷",
       contact: "聯絡我",
@@ -249,6 +276,18 @@ export const CONTENT: Record<Language, ContentData> = {
         "如果你對我的學習經歷或興趣有任何問題，歡迎隨時聯絡我！謝謝訪問我的網頁，希望你能從中瞭解我更多！",
       ],
       postcrossingLabel: "訪問我的 Postcrossing 主頁",
+    },
+    skills: {
+      title: "能力與成果",
+      japaneseCategoryTitle: "日語能力",
+      n1Title: "日本語能力試驗 (JLPT) N1",
+      n1Score: "144 / 180 分",
+      n2Title: "日本語能力試驗 (JLPT) N2",
+      n2Score: "177 / 180 分",
+      viewCertificateBtn: "查看證書",
+      viewReportBtn: "查看成績單",
+      flipBtn: "翻面",
+      closeBtn: "關閉",
     },
     projects: {
       title: "項目展示",
@@ -328,6 +367,7 @@ export const CONTENT: Record<Language, ContentData> = {
   'ja': {
     nav: {
       about: "プロフィール",
+      skills: "スキル・実績",
       projects: "プロジェクト",
       education: "学歴",
       contact: "お問い合わせ",
@@ -359,6 +399,18 @@ export const CONTENT: Record<Language, ContentData> = {
         "学習や興味のある分野についてご質問などがございましたら、どうぞお気軽にご連絡ください。最後までご覧いただき、ありがとうございます。このウェブサイトを通じて、私のことを少しでも知っていただければ幸いです。",
       ],
       postcrossingLabel: "Postcrossingのプロフィールを見る",
+    },
+    skills: {
+      title: "スキル・実績",
+      japaneseCategoryTitle: "日本語能力",
+      n1Title: "日本語能力試験 (JLPT) N1",
+      n1Score: "144 / 180点",
+      n2Title: "日本語能力試験 (JLPT) N2",
+      n2Score: "177 / 180点",
+      viewCertificateBtn: "認定書を見る",
+      viewReportBtn: "成績証明書を見る",
+      flipBtn: "裏返す",
+      closeBtn: "閉じる",
     },
     projects: {
       title: "プロジェクト",
