@@ -23,9 +23,13 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
   const [imgErrorFront, setImgErrorFront] = useState(false);
   const [imgErrorBack, setImgErrorBack] = useState(false);
 
-  // Reset flip state instantly on open without transition animation
+  // Reset flip state instantly on open without transition animation & lock body scroll
   useEffect(() => {
     if (isOpen) {
+      // Lock body scroll when modal is open
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+
       setIsFlipped(false);
       setEnableTransition(false);
       setImgErrorFront(false);
@@ -36,7 +40,10 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
         setEnableTransition(true);
       }, 60);
 
-      return () => clearTimeout(timer);
+      return () => {
+        document.body.style.overflow = originalOverflow;
+        clearTimeout(timer);
+      };
     } else {
       setIsFlipped(false);
       setEnableTransition(false);
@@ -58,12 +65,14 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
 
   return (
     <div 
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md animate-fade-in select-none"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md animate-fade-in select-none touch-none"
       onClick={onClose}
+      onWheel={(e) => e.stopPropagation()}
+      onTouchMove={(e) => e.stopPropagation()}
     >
       {/* Outer Wrapper for frame + outside buttons, centered relative to screen */}
       <div 
-        className="relative h-[75vh] max-h-[75vh] max-w-[88vw] sm:h-[88vh] sm:max-h-[88vh] sm:max-w-[80vw] flex items-center justify-center"
+        className="relative w-[86vw] max-w-[400px] max-h-[72vh] h-auto sm:w-auto sm:h-[88vh] sm:max-h-[88vh] sm:max-w-[80vw] flex items-center justify-center"
         style={{ aspectRatio: '210 / 297', perspective: '1200px' }}
         onClick={(e) => e.stopPropagation()}
       >
