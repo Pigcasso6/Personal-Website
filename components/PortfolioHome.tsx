@@ -76,7 +76,7 @@ const PortfolioHome: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ onN
         <Hero />
 
         {/* About Section */}
-        <section id="about" className="py-24 bg-white/60 dark:bg-slate-900/60 backdrop-blur-sm transition-colors border-y border-white/20 dark:border-slate-800/20">
+        <section id="about" className="pt-8 pb-16 md:py-24 bg-white/60 dark:bg-slate-900/60 backdrop-blur-sm transition-colors border-y border-white/20 dark:border-slate-800/20 scroll-mt-20">
           <div className="max-w-6xl mx-auto px-6">
             <h2 className="text-3xl md:text-4xl font-bold mb-12 text-slate-900 dark:text-white flex items-center gap-4">
               <span className="w-12 h-1 bg-indigo-500 rounded-full"></span>
@@ -117,7 +117,7 @@ const PortfolioHome: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ onN
         </section>
 
         {/* Skills & Achievements Section */}
-        <section id="skills" className="py-24 bg-slate-50/60 dark:bg-slate-950/60 backdrop-blur-sm transition-colors scroll-mt-20">
+        <section id="skills" className="pt-8 pb-16 md:py-24 bg-slate-50/60 dark:bg-slate-950/60 backdrop-blur-sm transition-colors scroll-mt-20">
           <div className="max-w-4xl mx-auto px-6">
             <h2 className="text-3xl md:text-4xl font-bold mb-12 text-slate-900 dark:text-white flex items-center gap-4">
               <span className="w-12 h-1 bg-indigo-500 rounded-full"></span>
@@ -236,7 +236,7 @@ const PortfolioHome: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ onN
         </section>
 
         {/* Projects Section */}
-        <section id="projects" className="py-24 bg-slate-50/60 dark:bg-slate-950/60 backdrop-blur-sm transition-colors">
+        <section id="projects" className="pt-8 pb-16 md:py-24 bg-slate-50/60 dark:bg-slate-950/60 backdrop-blur-sm transition-colors scroll-mt-20">
           <div className="max-w-4xl mx-auto px-6">
             <h2 className="text-3xl md:text-4xl font-bold mb-12 text-slate-900 dark:text-white flex items-center gap-4">
               <span className="w-12 h-1 bg-indigo-500 rounded-full"></span>
@@ -287,7 +287,7 @@ const PortfolioHome: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ onN
         </section>
 
         {/* Education Section */}
-        <section id="education" className="py-24 bg-white/60 dark:bg-slate-900/60 backdrop-blur-sm transition-colors border-t border-white/20 dark:border-slate-800/20">
+        <section id="education" className="pt-8 pb-16 md:py-24 bg-white/60 dark:bg-slate-900/60 backdrop-blur-sm transition-colors border-t border-white/20 dark:border-slate-800/20 scroll-mt-20">
           <div className="max-w-4xl mx-auto px-6">
             <h2 className="text-3xl md:text-4xl font-bold mb-16 text-slate-900 dark:text-white flex items-center gap-4">
               <span className="w-12 h-1 bg-indigo-500 rounded-full"></span>
@@ -325,7 +325,7 @@ const PortfolioHome: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ onN
         </section>
 
         {/* Contact Section */}
-        <section id="contact" className="py-24 bg-slate-50/60 dark:bg-slate-950/60 backdrop-blur-sm transition-colors">
+        <section id="contact" className="pt-8 pb-16 md:py-24 bg-slate-50/60 dark:bg-slate-950/60 backdrop-blur-sm transition-colors scroll-mt-20">
           <div className="max-w-4xl mx-auto px-6 text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-slate-900 dark:text-white">
               {content.contact.title}

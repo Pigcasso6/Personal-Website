@@ -19,15 +19,27 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
   backImg,
 }) => {
   const [isFlipped, setIsFlipped] = useState(false);
+  const [enableTransition, setEnableTransition] = useState(false);
   const [imgErrorFront, setImgErrorFront] = useState(false);
   const [imgErrorBack, setImgErrorBack] = useState(false);
 
-  // Reset flip state when modal opens or images change
+  // Reset flip state instantly on open without transition animation
   useEffect(() => {
     if (isOpen) {
       setIsFlipped(false);
+      setEnableTransition(false);
       setImgErrorFront(false);
       setImgErrorBack(false);
+
+      // Enable smooth transition AFTER initial front side render
+      const timer = setTimeout(() => {
+        setEnableTransition(true);
+      }, 60);
+
+      return () => clearTimeout(timer);
+    } else {
+      setIsFlipped(false);
+      setEnableTransition(false);
     }
   }, [isOpen, frontImg, backImg]);
 
@@ -51,16 +63,15 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
     >
       {/* Outer Wrapper for frame + outside buttons, centered relative to screen */}
       <div 
-        className="relative max-h-[88vh] max-w-[90vw] sm:max-w-[80vw] h-[88vh] flex items-center justify-center"
-        style={{ aspectRatio: '210 / 297' }}
+        className="relative h-[75vh] max-h-[75vh] max-w-[88vw] sm:h-[88vh] sm:max-h-[88vh] sm:max-w-[80vw] flex items-center justify-center"
+        style={{ aspectRatio: '210 / 297', perspective: '1200px' }}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Desktop Action Buttons: Floating outside top-right corner */}
         <div className="hidden sm:flex absolute left-[calc(100%+14px)] top-0 flex-col gap-3 z-30">
           <button
             onClick={onClose}
-            className="w-11 h-11 rounded-full bg-slate-900/80 hover:bg-slate-900 text-white flex items-center justify-center backdrop-blur-md transition-all shadow-xl border border-white/20 hover:scale-110 active:scale-95"
-            title="Close"
+            className="w-11 h-11 rounded-full bg-slate-900/80 hover:bg-slate-900 text-white flex items-center justify-center backdrop-blur-md transition-all shadow-xl border border-white/20 hover:scale-110 active:scale-95 cursor-pointer"
             aria-label="Close"
           >
             <X size={20} />
@@ -68,8 +79,7 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
 
           <button
             onClick={() => setIsFlipped(!isFlipped)}
-            className="w-11 h-11 rounded-full bg-slate-900/80 hover:bg-slate-900 text-white flex items-center justify-center backdrop-blur-md transition-all shadow-xl border border-white/20 hover:scale-110 active:scale-95"
-            title="Flip"
+            className="w-11 h-11 rounded-full bg-slate-900/80 hover:bg-slate-900 text-white flex items-center justify-center backdrop-blur-md transition-all shadow-xl border border-white/20 hover:scale-110 active:scale-95 cursor-pointer"
             aria-label="Flip"
           >
             <RefreshCw 
@@ -83,16 +93,14 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
         <div className="flex sm:hidden absolute top-2.5 right-2.5 flex-col gap-2 z-30">
           <button
             onClick={onClose}
-            className="w-8 h-8 rounded-full bg-slate-900/60 text-white flex items-center justify-center backdrop-blur-md transition-all active:scale-95"
-            title="Close"
+            className="w-8 h-8 rounded-full bg-slate-900/60 text-white flex items-center justify-center backdrop-blur-md transition-all active:scale-95 cursor-pointer"
             aria-label="Close"
           >
             <X size={16} />
           </button>
           <button
             onClick={() => setIsFlipped(!isFlipped)}
-            className="w-8 h-8 rounded-full bg-slate-900/60 text-white flex items-center justify-center backdrop-blur-md transition-all active:scale-95"
-            title="Flip"
+            className="w-8 h-8 rounded-full bg-slate-900/60 text-white flex items-center justify-center backdrop-blur-md transition-all active:scale-95 cursor-pointer"
             aria-label="Flip"
           >
             <RefreshCw 
@@ -103,71 +111,70 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
         </div>
 
         {/* Certificate Frame Box with Narrow Border */}
-        <div className="w-full h-full bg-white dark:bg-slate-900 p-1 sm:p-1.5 rounded-xl shadow-2xl border border-slate-200/30 dark:border-slate-800/80 overflow-hidden">
+        <div className="w-full h-full bg-white dark:bg-slate-900 p-1 sm:p-1.5 rounded-xl shadow-2xl border border-slate-200/30 dark:border-slate-800/80">
           {/* 3D Flipping Card Container */}
           <div 
-            className="w-full h-full relative"
-            style={{ perspective: '1200px' }}
+            className={`w-full h-full relative ${
+              enableTransition ? 'transition-transform duration-700 ease-in-out' : ''
+            }`}
+            style={{
+              transformStyle: 'preserve-3d',
+              WebkitTransformStyle: 'preserve-3d',
+              transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
+            }}
           >
+            {/* Front Image Side (F image - rotateY 0deg) */}
             <div 
-              className="w-full h-full relative transition-transform duration-700 ease-in-out rounded-lg overflow-hidden bg-slate-100 dark:bg-slate-950"
-              style={{
-                transformStyle: 'preserve-3d',
-                WebkitTransformStyle: 'preserve-3d',
-                transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
+              className="absolute inset-0 w-full h-full flex items-center justify-center bg-slate-100 dark:bg-slate-950 rounded-lg overflow-hidden"
+              style={{ 
+                backfaceVisibility: 'hidden',
+                WebkitBackfaceVisibility: 'hidden',
+                transform: 'rotateY(0deg)',
               }}
             >
-              {/* Front Image Side (F image) */}
-              <div 
-                className={`absolute inset-0 w-full h-full flex items-center justify-center bg-slate-100 dark:bg-slate-950 rounded-lg overflow-hidden transition-opacity duration-300 ${
-                  isFlipped ? 'opacity-0 pointer-events-none' : 'opacity-100'
-                }`}
-                style={{ 
-                  backfaceVisibility: 'hidden',
-                  WebkitBackfaceVisibility: 'hidden',
-                  transform: 'rotateY(0deg)',
-                }}
-              >
-                {!imgErrorFront ? (
-                  <img
-                    src={frontImg}
-                    alt="Certificate Front"
-                    className="w-full h-full object-contain rounded-lg select-none"
-                    onError={() => setImgErrorFront(true)}
-                  />
-                ) : (
-                  <div className="w-full h-full flex flex-col items-center justify-center p-6 text-slate-400">
-                    <FileText size={48} className="opacity-40 mb-2" />
-                    <span className="text-xs font-mono text-slate-500">{frontImg}</span>
-                  </div>
-                )}
-              </div>
+              {!imgErrorFront ? (
+                <img
+                  src={frontImg}
+                  alt="Certificate Front"
+                  className="w-full h-full object-contain rounded-lg select-none"
+                  onError={() => setImgErrorFront(true)}
+                  onLoad={(e) => {
+                    if (e.currentTarget.naturalWidth === 0) setImgErrorFront(true);
+                  }}
+                />
+              ) : (
+                <div className="w-full h-full flex flex-col items-center justify-center p-6 text-slate-400">
+                  <FileText size={48} className="opacity-40 mb-2" />
+                  <span className="text-xs font-mono text-slate-500">{frontImg}</span>
+                </div>
+              )}
+            </div>
 
-              {/* Back Image Side (B image) */}
-              <div 
-                className={`absolute inset-0 w-full h-full flex items-center justify-center bg-slate-100 dark:bg-slate-950 rounded-lg overflow-hidden transition-opacity duration-300 ${
-                  isFlipped ? 'opacity-100' : 'opacity-0 pointer-events-none'
-                }`}
-                style={{ 
-                  backfaceVisibility: 'hidden',
-                  WebkitBackfaceVisibility: 'hidden',
-                  transform: 'rotateY(180deg)',
-                }}
-              >
-                {!imgErrorBack ? (
-                  <img
-                    src={backImg}
-                    alt="Certificate Back"
-                    className="w-full h-full object-contain rounded-lg select-none"
-                    onError={() => setImgErrorBack(true)}
-                  />
-                ) : (
-                  <div className="w-full h-full flex flex-col items-center justify-center p-6 text-slate-400">
-                    <FileText size={48} className="opacity-40 mb-2" />
-                    <span className="text-xs font-mono text-slate-500">{backImg}</span>
-                  </div>
-                )}
-              </div>
+            {/* Back Image Side (B image - rotateY 180deg) */}
+            <div 
+              className="absolute inset-0 w-full h-full flex items-center justify-center bg-slate-100 dark:bg-slate-950 rounded-lg overflow-hidden"
+              style={{ 
+                backfaceVisibility: 'hidden',
+                WebkitBackfaceVisibility: 'hidden',
+                transform: 'rotateY(180deg)',
+              }}
+            >
+              {!imgErrorBack ? (
+                <img
+                  src={backImg}
+                  alt="Certificate Back"
+                  className="w-full h-full object-contain rounded-lg select-none"
+                  onError={() => setImgErrorBack(true)}
+                  onLoad={(e) => {
+                    if (e.currentTarget.naturalWidth === 0) setImgErrorBack(true);
+                  }}
+                />
+              ) : (
+                <div className="w-full h-full flex flex-col items-center justify-center p-6 text-slate-400">
+                  <FileText size={48} className="opacity-40 mb-2" />
+                  <span className="text-xs font-mono text-slate-500">{backImg}</span>
+                </div>
+              )}
             </div>
           </div>
         </div>

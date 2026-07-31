@@ -211,7 +211,7 @@ const PortfolioHomeV2: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ o
           <div className="max-w-7xl mx-auto px-6 py-32 grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-64">
             
             {/* About Section */}
-            <div id="about" className="relative order-1 md:order-1 md:col-span-1 scroll-mt-48">
+            <div id="about" className="relative order-1 md:order-1 md:col-span-1 pt-8 md:pt-0 scroll-mt-20">
               <FadingTitle className="text-7xl md:text-6xl">{content.about.title}</FadingTitle>
               
               <div className="pt-12 md:pt-20 relative z-10">
@@ -235,7 +235,7 @@ const PortfolioHomeV2: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ o
             </div>
 
             {/* Education Section */}
-            <div id="education" className="relative order-2 md:order-2 md:col-span-1 pt-12 md:pt-0 scroll-mt-48">
+            <div id="education" className="relative order-2 md:order-2 md:col-span-1 pt-8 md:pt-0 scroll-mt-20">
               <FadingTitle className="text-7xl md:text-6xl">{content.education.title}</FadingTitle>
               
               <div className="pt-12 md:pt-20 relative z-10">
@@ -270,7 +270,7 @@ const PortfolioHomeV2: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ o
             </div>
 
             {/* Skills & Achievements Section V2 */}
-            <div id="skills" className="relative order-3 md:col-span-2 pt-12 md:pt-0 scroll-mt-48">
+            <div id="skills" className="relative order-3 md:col-span-2 pt-8 md:pt-0 scroll-mt-20">
               <FadingTitle>{content.skills.title}</FadingTitle>
 
               <div className="pt-12 md:pt-20 relative z-10">
@@ -386,7 +386,7 @@ const PortfolioHomeV2: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ o
             </div>
 
             {/* Projects Section */}
-            <div id="projects" className="relative order-4 md:col-span-2 pt-12 md:pt-0 scroll-mt-48">
+            <div id="projects" className="relative order-4 md:col-span-2 pt-8 md:pt-0 scroll-mt-20">
               <FadingTitle>{content.projects.title}</FadingTitle>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-12 md:pt-20 relative z-10">
@@ -433,7 +433,7 @@ const PortfolioHomeV2: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ o
           </div>
 
           {/* Contact V2 */}
-          <section id="contact" className="py-32 relative border-t border-slate-200 dark:border-white/5 scroll-mt-48">
+          <section id="contact" className="pt-24 pb-32 md:py-32 relative border-t border-slate-200 dark:border-white/5 scroll-mt-20">
             <div className="max-w-4xl mx-auto px-6 text-center relative">
               <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-full flex justify-center pointer-events-none">
                  <FadingTitle className="!static !text-center">{content.contact.title}</FadingTitle>
