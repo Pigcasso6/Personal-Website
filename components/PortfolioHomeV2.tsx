@@ -274,15 +274,23 @@ const PortfolioHomeV2: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ o
               <FadingTitle>{content.skills.title}</FadingTitle>
 
               <div className="pt-12 md:pt-20 relative z-10">
-                <div className="bg-white/60 dark:bg-slate-900/50 rounded-3xl p-8 border border-slate-200 dark:border-white/5 backdrop-blur-sm shadow-sm space-y-8">
-                  <div className="flex items-center gap-3 border-b border-slate-200 dark:border-slate-800 pb-4">
-                    <div className="p-3 bg-slate-100 dark:bg-slate-800 rounded-2xl text-cyan-600 dark:text-cyan-400">
-                      <Languages size={24} />
+                <div className="bg-white/60 dark:bg-slate-900/50 rounded-3xl p-8 border border-slate-200 dark:border-white/5 backdrop-blur-sm shadow-sm space-y-5 md:space-y-6">
+                  <div className="flex items-center gap-3">
+                    <div className="w-11 h-11 bg-slate-100 dark:bg-slate-800 rounded-2xl text-cyan-600 dark:text-cyan-400 flex items-center justify-center font-bold text-xl leading-none select-none">
+                      あ
                     </div>
                     <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
                       {content.skills.japaneseCategoryTitle}
                     </h3>
                   </div>
+
+                  {content.skills.japaneseIntro && (
+                    <div className="text-slate-600 dark:text-slate-300 text-sm md:text-base leading-relaxed space-y-3">
+                      {content.skills.japaneseIntro.map((paragraph, index) => (
+                        <p key={index}>{paragraph}</p>
+                      ))}
+                    </div>
+                  )}
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {/* N1 Card */}
@@ -292,7 +300,7 @@ const PortfolioHomeV2: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ o
                           {content.skills.n1Title}
                         </h4>
 
-                        {/* Score Progress Bar */}
+                        {/* Total Score Progress Bar */}
                         <div className="flex items-center gap-3 my-3">
                           <div className="flex-1 bg-slate-200 dark:bg-slate-700/80 h-2.5 rounded-full overflow-hidden">
                             <div 
@@ -304,16 +312,49 @@ const PortfolioHomeV2: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ o
                             {content.skills.n1Score}
                           </span>
                         </div>
+
+                        {/* Breakdown Progress Bars */}
+                        {content.skills.n1Breakdown && (
+                          <div className="mt-4 pt-3.5 border-t border-slate-200 dark:border-slate-700/60 grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-3">
+                            {[
+                              content.skills.n1Breakdown.languageKnowledge,
+                              content.skills.n1Breakdown.reading,
+                              content.skills.n1Breakdown.listening,
+                              content.skills.n1Breakdown.percentileRank,
+                            ].map((item, idx) => (
+                              <div key={idx} className="space-y-1">
+                                <div className="flex items-center justify-between text-xs">
+                                  <span className="font-medium text-slate-600 dark:text-slate-400">
+                                    {item.label}
+                                  </span>
+                                  <span className="font-mono font-semibold text-slate-700 dark:text-slate-300">
+                                    {item.value}
+                                  </span>
+                                </div>
+                                <div className="w-full bg-slate-200/70 dark:bg-slate-700/60 h-1.5 rounded-full overflow-hidden">
+                                  <div
+                                    className={`h-full rounded-full transition-all duration-1000 ${
+                                      idx === 3
+                                        ? 'bg-amber-500 dark:bg-amber-400'
+                                        : 'bg-teal-500 dark:bg-teal-400'
+                                    }`}
+                                    style={{ width: `${item.percentage}%` }}
+                                  />
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        )}
                       </div>
 
-                      <div className="grid grid-cols-2 gap-3 w-full pt-1">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 w-full pt-1">
                         <button
                           onClick={() => openCertModal({
                             title: `${content.skills.n1Title} - ${content.skills.viewCertificateBtn}`,
                             frontImg: '/images/N1_C_F.jpg',
                             backImg: '/images/N1_C_B.jpg',
                           })}
-                          className="w-full inline-flex items-center justify-center gap-2 px-3 py-2.5 text-sm font-bold rounded-lg bg-slate-900 text-white dark:bg-cyan-600 dark:hover:bg-cyan-500 hover:bg-slate-800 transition-all shadow-md active:scale-95 text-center whitespace-nowrap"
+                          className="w-full inline-flex items-center justify-center gap-2 px-3 py-2.5 text-xs sm:text-sm font-bold rounded-lg bg-slate-900 text-white dark:bg-cyan-600 dark:hover:bg-cyan-500 hover:bg-slate-800 transition-all shadow-md active:scale-95 text-center whitespace-nowrap"
                         >
                           <Award size={16} className="shrink-0" />
                           <span>{content.skills.viewCertificateBtn}</span>
@@ -325,7 +366,7 @@ const PortfolioHomeV2: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ o
                             frontImg: '/images/N1_S_F.jpg',
                             backImg: '/images/N1_S_B.jpg',
                           })}
-                          className="w-full inline-flex items-center justify-center gap-2 px-3 py-2.5 text-sm font-bold rounded-lg bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 transition-colors active:scale-95 text-center whitespace-nowrap"
+                          className="w-full inline-flex items-center justify-center gap-2 px-3 py-2.5 text-xs sm:text-sm font-bold rounded-lg bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 transition-colors active:scale-95 text-center whitespace-nowrap"
                         >
                           <FileText size={16} className="shrink-0" />
                           <span>{content.skills.viewReportBtn}</span>
@@ -340,7 +381,7 @@ const PortfolioHomeV2: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ o
                           {content.skills.n2Title}
                         </h4>
 
-                        {/* Score Progress Bar */}
+                        {/* Total Score Progress Bar */}
                         <div className="flex items-center gap-3 my-3">
                           <div className="flex-1 bg-slate-200 dark:bg-slate-700/80 h-2.5 rounded-full overflow-hidden">
                             <div 
@@ -352,16 +393,49 @@ const PortfolioHomeV2: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ o
                             {content.skills.n2Score}
                           </span>
                         </div>
+
+                        {/* Breakdown Progress Bars */}
+                        {content.skills.n2Breakdown && (
+                          <div className="mt-4 pt-3.5 border-t border-slate-200 dark:border-slate-700/60 grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-3">
+                            {[
+                              content.skills.n2Breakdown.languageKnowledge,
+                              content.skills.n2Breakdown.reading,
+                              content.skills.n2Breakdown.listening,
+                              content.skills.n2Breakdown.percentileRank,
+                            ].map((item, idx) => (
+                              <div key={idx} className="space-y-1">
+                                <div className="flex items-center justify-between text-xs">
+                                  <span className="font-medium text-slate-600 dark:text-slate-400">
+                                    {item.label}
+                                  </span>
+                                  <span className="font-mono font-semibold text-slate-700 dark:text-slate-300">
+                                    {item.value}
+                                  </span>
+                                </div>
+                                <div className="w-full bg-slate-200/70 dark:bg-slate-700/60 h-1.5 rounded-full overflow-hidden">
+                                  <div
+                                    className={`h-full rounded-full transition-all duration-1000 ${
+                                      idx === 3
+                                        ? 'bg-amber-500 dark:bg-amber-400'
+                                        : 'bg-teal-500 dark:bg-teal-400'
+                                    }`}
+                                    style={{ width: `${item.percentage}%` }}
+                                  />
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        )}
                       </div>
 
-                      <div className="grid grid-cols-2 gap-3 w-full pt-1">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 w-full pt-1">
                         <button
                           onClick={() => openCertModal({
                             title: `${content.skills.n2Title} - ${content.skills.viewCertificateBtn}`,
                             frontImg: '/images/N2_C_F.jpg',
                             backImg: '/images/N2_C_B.jpg',
                           })}
-                          className="w-full inline-flex items-center justify-center gap-2 px-3 py-2.5 text-sm font-bold rounded-lg bg-slate-900 text-white dark:bg-cyan-600 dark:hover:bg-cyan-500 hover:bg-slate-800 transition-all shadow-md active:scale-95 text-center whitespace-nowrap"
+                          className="w-full inline-flex items-center justify-center gap-2 px-3 py-2.5 text-xs sm:text-sm font-bold rounded-lg bg-slate-900 text-white dark:bg-cyan-600 dark:hover:bg-cyan-500 hover:bg-slate-800 transition-all shadow-md active:scale-95 text-center whitespace-nowrap"
                         >
                           <Award size={16} className="shrink-0" />
                           <span>{content.skills.viewCertificateBtn}</span>
@@ -373,7 +447,7 @@ const PortfolioHomeV2: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ o
                             frontImg: '/images/N2_S_F.jpg',
                             backImg: '/images/N2_S_B.jpg',
                           })}
-                          className="w-full inline-flex items-center justify-center gap-2 px-3 py-2.5 text-sm font-bold rounded-lg bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 transition-colors active:scale-95 text-center whitespace-nowrap"
+                          className="w-full inline-flex items-center justify-center gap-2 px-3 py-2.5 text-xs sm:text-sm font-bold rounded-lg bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 transition-colors active:scale-95 text-center whitespace-nowrap"
                         >
                           <FileText size={16} className="shrink-0" />
                           <span>{content.skills.viewReportBtn}</span>

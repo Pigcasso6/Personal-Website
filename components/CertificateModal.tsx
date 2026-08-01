@@ -69,6 +69,7 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
       onClick={onClose}
       onWheel={(e) => e.stopPropagation()}
       onTouchMove={(e) => e.stopPropagation()}
+      onContextMenu={(e) => e.preventDefault()}
     >
       {/* Outer Wrapper for frame + outside buttons, centered relative to screen */}
       <div 
@@ -134,21 +135,35 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
           >
             {/* Front Image Side (F image - rotateY 0deg) */}
             <div 
-              className="absolute inset-0 w-full h-full flex items-center justify-center bg-slate-100 dark:bg-slate-950 rounded-lg overflow-hidden"
+              className="absolute inset-0 w-full h-full flex items-center justify-center bg-slate-100 dark:bg-slate-950 rounded-lg overflow-hidden relative"
               style={{ 
                 backfaceVisibility: 'hidden',
                 WebkitBackfaceVisibility: 'hidden',
                 transform: 'rotateY(0deg)',
               }}
             >
+              {/* Transparent protective overlay blocking right-click and long-press image popup */}
+              <div 
+                className="absolute inset-0 z-10 bg-transparent select-none"
+                onContextMenu={(e) => e.preventDefault()}
+                onDragStart={(e) => e.preventDefault()}
+              />
+
               {!imgErrorFront ? (
                 <img
                   src={frontImg}
                   alt="Certificate Front"
-                  className="w-full h-full object-contain rounded-lg select-none"
+                  className="w-full h-full object-contain rounded-lg select-none pointer-events-none"
+                  draggable={false}
+                  onContextMenu={(e) => e.preventDefault()}
                   onError={() => setImgErrorFront(true)}
                   onLoad={(e) => {
                     if (e.currentTarget.naturalWidth === 0) setImgErrorFront(true);
+                  }}
+                  style={{
+                    WebkitTouchCallout: 'none',
+                    WebkitUserSelect: 'none',
+                    userSelect: 'none',
                   }}
                 />
               ) : (
@@ -161,21 +176,35 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
 
             {/* Back Image Side (B image - rotateY 180deg) */}
             <div 
-              className="absolute inset-0 w-full h-full flex items-center justify-center bg-slate-100 dark:bg-slate-950 rounded-lg overflow-hidden"
+              className="absolute inset-0 w-full h-full flex items-center justify-center bg-slate-100 dark:bg-slate-950 rounded-lg overflow-hidden relative"
               style={{ 
                 backfaceVisibility: 'hidden',
                 WebkitBackfaceVisibility: 'hidden',
                 transform: 'rotateY(180deg)',
               }}
             >
+              {/* Transparent protective overlay blocking right-click and long-press image popup */}
+              <div 
+                className="absolute inset-0 z-10 bg-transparent select-none"
+                onContextMenu={(e) => e.preventDefault()}
+                onDragStart={(e) => e.preventDefault()}
+              />
+
               {!imgErrorBack ? (
                 <img
                   src={backImg}
                   alt="Certificate Back"
-                  className="w-full h-full object-contain rounded-lg select-none"
+                  className="w-full h-full object-contain rounded-lg select-none pointer-events-none"
+                  draggable={false}
+                  onContextMenu={(e) => e.preventDefault()}
                   onError={() => setImgErrorBack(true)}
                   onLoad={(e) => {
                     if (e.currentTarget.naturalWidth === 0) setImgErrorBack(true);
+                  }}
+                  style={{
+                    WebkitTouchCallout: 'none',
+                    WebkitUserSelect: 'none',
+                    userSelect: 'none',
                   }}
                 />
               ) : (

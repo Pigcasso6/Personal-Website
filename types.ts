@@ -25,6 +25,19 @@ export interface ProjectItem {
   iconKey?: 'verb' | 'timetable' | 'circle' | 'gamble' | 'futures' | 'default';
 }
 
+export interface SectionScoreItem {
+  label: string;
+  value: string;
+  percentage: number;
+}
+
+export interface SkillScoreBreakdown {
+  languageKnowledge: SectionScoreItem;
+  reading: SectionScoreItem;
+  listening: SectionScoreItem;
+  percentileRank: SectionScoreItem;
+}
+
 export interface ContentData {
   nav: {
     about: string;
@@ -54,10 +67,13 @@ export interface ContentData {
   skills: {
     title: string;
     japaneseCategoryTitle: string;
+    japaneseIntro?: (string | ReactNode)[];
     n1Title: string;
     n1Score: string;
+    n1Breakdown: SkillScoreBreakdown;
     n2Title: string;
     n2Score: string;
+    n2Breakdown: SkillScoreBreakdown;
     viewCertificateBtn: string;
     viewReportBtn: string;
     flipBtn: string;
