@@ -135,7 +135,7 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
           >
             {/* Front Image Side (F image - rotateY 0deg) */}
             <div 
-              className="absolute inset-0 w-full h-full flex items-center justify-center bg-slate-100 dark:bg-slate-950 rounded-lg overflow-hidden relative"
+              className="absolute inset-0 w-full h-full flex items-center justify-center bg-slate-100 dark:bg-slate-950 rounded-lg overflow-hidden"
               style={{ 
                 backfaceVisibility: 'hidden',
                 WebkitBackfaceVisibility: 'hidden',
@@ -176,7 +176,7 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
 
             {/* Back Image Side (B image - rotateY 180deg) */}
             <div 
-              className="absolute inset-0 w-full h-full flex items-center justify-center bg-slate-100 dark:bg-slate-950 rounded-lg overflow-hidden relative"
+              className="absolute inset-0 w-full h-full flex items-center justify-center bg-slate-100 dark:bg-slate-950 rounded-lg overflow-hidden"
               style={{ 
                 backfaceVisibility: 'hidden',
                 WebkitBackfaceVisibility: 'hidden',

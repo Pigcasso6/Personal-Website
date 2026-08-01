@@ -50,6 +50,19 @@ const PortfolioHome: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ onN
     }
   };
 
+  const renderSkillTitle = (title: string) => {
+    if (title.includes('（')) {
+      const parts = title.split('（');
+      return (
+        <span>
+          <span>{parts[0]}</span>
+          <span className="inline-block whitespace-nowrap">（{parts[1]}</span>
+        </span>
+      );
+    }
+    return title;
+  };
+
   const getProjectIcon = (key?: string) => {
     switch (key) {
       case 'verb':
@@ -146,8 +159,8 @@ const PortfolioHome: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ onN
                 {/* N1 Card */}
                 <div className="p-6 rounded-xl bg-slate-50/80 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-700/80 flex flex-col justify-between gap-4 hover:border-indigo-200 dark:hover:border-indigo-800/50 transition-all">
                   <div>
-                    <h4 className="text-lg font-bold text-slate-900 dark:text-white whitespace-nowrap overflow-hidden text-ellipsis">
-                      {content.skills.n1Title}
+                    <h4 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-snug">
+                      {renderSkillTitle(content.skills.n1Title)}
                     </h4>
 
                     {/* Total Score Progress Bar */}
@@ -227,8 +240,8 @@ const PortfolioHome: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ onN
                 {/* N2 Card */}
                 <div className="p-6 rounded-xl bg-slate-50/80 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-700/80 flex flex-col justify-between gap-4 hover:border-indigo-200 dark:hover:border-indigo-800/50 transition-all">
                   <div>
-                    <h4 className="text-lg font-bold text-slate-900 dark:text-white whitespace-nowrap overflow-hidden text-ellipsis">
-                      {content.skills.n2Title}
+                    <h4 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-snug">
+                      {renderSkillTitle(content.skills.n2Title)}
                     </h4>
 
                     {/* Total Score Progress Bar */}
