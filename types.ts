@@ -26,7 +26,7 @@ export interface ProjectItem {
 }
 
 export interface SectionScoreItem {
-  label: string;
+  label: string | ReactNode;
   value: string;
   percentage: number;
 }

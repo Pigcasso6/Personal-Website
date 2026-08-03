@@ -10,6 +10,16 @@ export const JlptTooltip = () => (
   </span>
 );
 
+export const JeesTooltip = () => (
+  <span className="relative inline-block group cursor-help underline decoration-dashed underline-offset-4 decoration-slate-400 dark:decoration-slate-500 hover:decoration-indigo-500 dark:hover:decoration-cyan-400 transition-colors">
+    JEES
+    <span className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max max-w-xs px-2.5 py-1.5 text-xs font-sans font-normal text-white bg-slate-800 dark:bg-slate-200 dark:text-slate-900 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-30">
+      Japan Educational Exchanges and Services
+      <span className="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-4 border-transparent border-t-slate-800 dark:border-t-slate-200"></span>
+    </span>
+  </span>
+);
+
 export const CONTENT: Record<Language, ContentData> = {
   en: {
     nav: {
@@ -56,7 +66,16 @@ export const CONTENT: Record<Language, ContentData> = {
       n1Title: "JLPT N1",
       n1Score: "144 / 180",
       n1Breakdown: {
-        languageKnowledge: { label: "Language Knowledge", value: "45 / 60", percentage: 75 },
+        languageKnowledge: {
+          label: (
+            <>
+              <span className="hidden sm:inline">Lang. Knowledge</span>
+              <span className="inline sm:hidden">Language Knowledge</span>
+            </>
+          ),
+          value: "45 / 60",
+          percentage: 75,
+        },
         reading: { label: "Reading", value: "60 / 60", percentage: 100 },
         listening: { label: "Listening", value: "39 / 60", percentage: 65 },
         percentileRank: { label: "Percentile Rank", value: "94.1%", percentage: 94.1 },
@@ -64,7 +83,16 @@ export const CONTENT: Record<Language, ContentData> = {
       n2Title: "JLPT N2",
       n2Score: "177 / 180",
       n2Breakdown: {
-        languageKnowledge: { label: "Language Knowledge", value: "60 / 60", percentage: 100 },
+        languageKnowledge: {
+          label: (
+            <>
+              <span className="hidden sm:inline">Lang. Knowledge</span>
+              <span className="inline sm:hidden">Language Knowledge</span>
+            </>
+          ),
+          value: "60 / 60",
+          percentage: 100,
+        },
         reading: { label: "Reading", value: "60 / 60", percentage: 100 },
         listening: { label: "Listening", value: "57 / 60", percentage: 95 },
         percentileRank: { label: "Percentile Rank", value: "99.4%", percentage: 99.4 },
@@ -190,7 +218,7 @@ export const CONTENT: Record<Language, ContentData> = {
         "我的日语完全通过自学习得。自2019年第一次接触五十音图以来，至今已断断续续学习七年有余。",
         "目前，我累计拥有60小时以上线下一对一日语教学的经验，主要面向零基础至N5水平的学习者，帮助他们建立日语学习基础。",
         <>
-          日本语能力测试（<JlptTooltip />）是目前国际上最具代表性的日语水平认证考试，由日本国际交流基金会（Japan Foundation）与日本国际教育支援协会（JEES）共同举办。考试共分为N5至N1五个等级，其中N5为入门级，N1为最高级别。以下展示的是我获得的JLPT证书及成绩。
+          日本语能力测试（<JlptTooltip />）是目前国际上最具代表性的日语水平认证考试，由日本国际交流基金会（Japan Foundation）与日本国际教育支援协会（<JeesTooltip />）共同举办。考试共分为N5至N1五个等级，其中N5为入门级，N1为最高级别。以下展示的是我获得的JLPT证书及成绩。
         </>
       ],
       n1Title: "日本语能力测试（JLPT）N1",
@@ -317,8 +345,8 @@ export const CONTENT: Record<Language, ContentData> = {
     about: {
       title: "關於我",
       content: [
-        "我是梁著，目前是香港科技大學（廣州）的大二學生。雖然現在我還沒有太多科研經歷，但我相信通過大學期間的不斷努力和探索，我會逐漸在自己感興趣的領域積累經驗並有所突破。",
-        "我非常注重個人成長，不僅僅在學術上追求進步，也希望通過多方面的實踐，拓寬自己的視野。我最大的興趣愛好是外語、排版和明信片交換（Postcrossing），這些都讓我更深入地瞭解世界，開闊思維。",
+        "我是梁著，目前是香港科技大學（廣州）的大二學生。雖然現在我還沒有太多科研經歷，但我相信透過大學期間的不斷努力和探索，我會逐漸在自己感興趣的領域積累經驗並有所突破。",
+        "我非常注重個人成長，不僅僅在學術上追求進步，也希望透過多方面的實踐，拓寬自己的視野。我最大的興趣愛好是外語、排版和明信片交換（Postcrossing），這些都讓我更深入地瞭解世界，開闊思維。",
         "如果你對我的學習經歷或興趣有任何問題，歡迎隨時聯絡我！謝謝訪問我的網頁，希望你能從中瞭解我更多！",
       ],
       postcrossingLabel: "訪問我的 Postcrossing 主頁",
@@ -330,7 +358,7 @@ export const CONTENT: Record<Language, ContentData> = {
         "我的日語完全透過自學習得。自2019年第一次接觸五十音圖以來，至今已斷斷續續學習七年有餘。",
         "目前，我累計擁有60小時以上線下一對一日語教學的經驗，主要面向零基礎至N5水平的學習者，幫助他們建立日語學習基礎。",
         <>
-          日本語能力測試（<JlptTooltip />）是目前國際上最具代表性的日語水平認證考試，由日本國際交流基金會（Japan Foundation）與日本國際教育支援協會（JEES）共同舉辦。考試共分為N5至N1五個等級，其中N5為入門級，N1為最高級別。以下展示的是我獲得的JLPT證書及成績。
+          日本語能力測試（<JlptTooltip />）是目前國際上最具代表性的日語水平認證考試，由日本國際交流基金會（Japan Foundation）與日本國際教育支援協會（<JeesTooltip />）共同舉辦。考試共分為N5至N1五個等級，其中N5為入門級，N1為最高級別。以下展示的是我獲得的JLPT證書及成績。
         </>
       ],
       n1Title: "日本語能力試驗（JLPT）N1",
@@ -472,7 +500,7 @@ export const CONTENT: Record<Language, ContentData> = {
         "私の日本語は、すべて独学で身につけたものです。2019年に初めて五十音を学んで以来、7年以上にわたり、断続的に学習を続けてきました。",
         "これまでに、対面でのマンツーマン日本語指導を60時間以上行った経験があり、主に日本語初心者からJLPT N5レベルまでの学習者を対象に、基礎力の定着をサポートしてきました。",
         <>
-          日本語能力試験（<JlptTooltip />）は、日本語能力を測る国際的に最も広く認知されている資格試験です。国際交流基金（The Japan Foundation）と日本国際教育支援協会（JEES）が共同で実施しており、N5（入門レベル）からN1（最高レベル）までの5段階で構成されています。以下に、私が取得したJLPTの認定証および成績を掲載しています。
+          日本語能力試験（<JlptTooltip />）は、日本語能力を測る国際的に最も広く認知されている資格試験です。国際交流基金（Japan Foundation）と日本国際教育支援協会（<JeesTooltip />）が共同で実施しており、N5（入門レベル）からN1（最高レベル）までの5段階で構成されています。以下に、私が取得したJLPTの認定証および成績を掲載しています。
         </>
       ],
       n1Title: "日本語能力試験（JLPT）N1",

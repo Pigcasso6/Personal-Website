@@ -82,20 +82,21 @@ const Hero: React.FC = () => {
   const renderDescription = () => {
     // Structured layout for Chinese with hanging punctuation
     if (language === 'zh-CN' || language === 'zh-TW') {
+      const isTw = language === 'zh-TW';
       return (
         <div className="flex flex-col items-center gap-2 leading-relaxed">
           {/* Mobile Layout: 3 Lines */}
           <div className="flex flex-col items-center md:hidden gap-1">
             <span className="relative">
-              我致力于打造优雅的数字体验
+              {isTw ? "我致力於打造優雅的數位體驗" : "我致力于打造优雅的数字体验"}
               <span className="absolute left-full">，</span>
             </span>
             <span className="relative">
-              将艺术与技术完美融合
+              {isTw ? "將藝術與技術完美融合" : "将艺术与技术完美融合"}
               <span className="absolute left-full">。</span>
             </span>
             <span className="relative">
-              专注于极简主义和无障碍设计
+              {isTw ? "專注於極簡主義和無障礙設計" : "专注于极简主义和无障碍设计"}
               <span className="absolute left-full">。</span>
             </span>
           </div>
@@ -103,11 +104,11 @@ const Hero: React.FC = () => {
           {/* Desktop Layout: 2 Lines */}
           <div className="hidden md:flex flex-col items-center gap-2">
             <span className="relative">
-              我致力于打造优雅的数字体验，将艺术与技术完美融合
+              {isTw ? "我致力於打造優雅的數位體驗，將藝術與技術完美融合" : "我致力于打造优雅的数字体验，将艺术与技术完美融合"}
               <span className="absolute left-full">。</span>
             </span>
             <span className="relative">
-              专注于极简主义和无障碍设计
+              {isTw ? "專注於極簡主義和無障礙設計" : "专注于极简主义和无障碍设计"}
               <span className="absolute left-full">。</span>
             </span>
           </div>
