@@ -5,7 +5,7 @@ import Hero from './Hero';
 import BackgroundDecor from './BackgroundDecor';
 import MessageModal from './MessageModal';
 import CertificateModal from './CertificateModal';
-import { Mail, Stamp, ExternalLink, ArrowRight, Sparkles, MessageSquarePlus, Languages, CalendarDays, CircleDashed, Dices, TrendingUp, Award, FileText } from 'lucide-react';
+import { Mail, Stamp, ExternalLink, ArrowRight, Sparkles, MessageSquarePlus, Languages, CalendarDays, CircleDashed, Dices, TrendingUp, Award, FileText, PencilRuler } from 'lucide-react';
 import { Language } from '../types';
 
 const PortfolioHome: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ onNavigateToVerbPractice }) => {
@@ -65,6 +65,8 @@ const PortfolioHome: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ onN
 
   const getProjectIcon = (key?: string) => {
     switch (key) {
+      case 'kanbun':
+        return <PencilRuler size={24} />;
       case 'verb':
         return <Languages size={24} />;
       case 'timetable':

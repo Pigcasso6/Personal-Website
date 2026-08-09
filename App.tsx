@@ -78,7 +78,13 @@ const MainContent: React.FC = () => {
   );
 };
 
+import { recordVisitorPing } from './utils/supabaseClient';
+
 const App: React.FC = () => {
+  useEffect(() => {
+    recordVisitorPing();
+  }, []);
+
   return (
     <ThemeProvider>
       <LanguageProvider>

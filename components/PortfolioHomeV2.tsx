@@ -3,7 +3,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 import Navbar from './Navbar';
 import MessageModal from './MessageModal';
 import CertificateModal from './CertificateModal';
-import { Mail, Stamp, ExternalLink, ArrowRight, Sparkles, MessageSquarePlus, Languages, CalendarDays, Terminal, Code2, Cpu, CircleDashed, Dices, TrendingUp, Award, FileText } from 'lucide-react';
+import { Mail, Stamp, ExternalLink, ArrowRight, Sparkles, MessageSquarePlus, Languages, CalendarDays, Terminal, Code2, Cpu, CircleDashed, Dices, TrendingUp, Award, FileText, PencilRuler } from 'lucide-react';
 import { Language } from '../types';
 
 const Typewriter: React.FC<{ strings: string[], language: Language }> = ({ strings, language }) => {
@@ -112,6 +112,7 @@ const PortfolioHomeV2: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ o
 
   const getProjectIcon = (key?: string) => {
     switch (key) {
+      case 'kanbun': return <PencilRuler size={24} />;
       case 'verb': return <Languages size={24} />;
       case 'timetable': return <CalendarDays size={24} />;
       case 'circle': return <CircleDashed size={24} />;

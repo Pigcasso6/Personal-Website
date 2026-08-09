@@ -107,6 +107,12 @@ export const CONTENT: Record<Language, ContentData> = {
       viewProject: "View Project",
       items: [
         {
+          title: "Kanbun HTML Converter",
+          description: "",
+          link: "https://kanbun.pigcasso6.top",
+          iconKey: "kanbun"
+        },
+        {
           title: "Japanese Verb Conjugation",
           description: "",
           link: "https://jp-verb-practice.pigcasso6.top",
@@ -247,6 +253,12 @@ export const CONTENT: Record<Language, ContentData> = {
       viewProject: "查看项目",
       items: [
         {
+          title: "汉文HTML转换器",
+          description: "",
+          link: "https://kanbun.pigcasso6.top",
+          iconKey: "kanbun"
+        },
+        {
           title: "日语动词变形练习",
           description: "",
           link: "https://jp-verb-practice.pigcasso6.top",
@@ -386,6 +398,12 @@ export const CONTENT: Record<Language, ContentData> = {
       title: "項目展示",
       viewProject: "查看項目",
       items: [
+        {
+          title: "漢文HTML轉換器",
+          description: "",
+          link: "https://kanbun.pigcasso6.top",
+          iconKey: "kanbun"
+        },
         {
           title: "日語動詞變形練習",
           description: "",
@@ -528,6 +546,12 @@ export const CONTENT: Record<Language, ContentData> = {
       title: "プロジェクト",
       viewProject: "プロジェクトを見る",
       items: [
+        {
+          title: "漢文HTMLコンバーター",
+          description: "",
+          link: "https://kanbun.pigcasso6.top",
+          iconKey: "kanbun"
+        },
         {
           title: "日本語動詞活用練習",
           description: "",
