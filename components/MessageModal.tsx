@@ -78,17 +78,17 @@ const MessageModal: React.FC<MessageModalProps> = ({ isOpen, onClose, version = 
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
       {/* Backdrop */}
       <div 
-        className="absolute inset-0 bg-slate-900/40 dark:bg-slate-950/60 backdrop-blur-sm animate-fade-in"
+        className="absolute inset-0 bg-slate-900/50 dark:bg-black/70 backdrop-blur-xl animate-fade-in"
         onClick={onClose}
       ></div>
 
       {/* Modal Content */}
-      <div className="relative w-full max-w-lg bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-100 dark:border-slate-800 p-8 animate-slide-up">
+      <div className="relative w-full max-w-lg liquid-glass liquid-sheen rounded-3xl shadow-2xl p-8 animate-slide-up border border-white/70 dark:border-white/15">
         <button 
           onClick={onClose}
-          className="absolute top-4 right-4 p-2 rounded-full text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+          className="absolute top-5 right-5 p-2 rounded-full liquid-pill text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white transition-all active:scale-90"
         >
-          <X size={20} />
+          <X size={18} />
         </button>
 
         <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
@@ -96,14 +96,14 @@ const MessageModal: React.FC<MessageModalProps> = ({ isOpen, onClose, version = 
         </h3>
 
         {submitStatus === 'success' ? (
-          <div className="flex flex-col items-center justify-center py-12 text-center animate-fade-in">
-            <div className="w-16 h-16 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-green-600 dark:text-green-400 mb-4">
+          <div className="flex flex-col items-center justify-center py-10 text-center animate-fade-in">
+            <div className="w-16 h-16 rounded-2xl liquid-pill flex items-center justify-center text-emerald-600 dark:text-emerald-400 mb-4 shadow-md">
               <CheckCircle size={32} />
             </div>
             <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-2">{formText.success}</h4>
             <button 
               onClick={onClose}
-              className="mt-6 px-6 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+              className="mt-6 px-7 py-2.5 rounded-full liquid-btn text-slate-800 dark:text-slate-200 font-semibold transition-all active:scale-95"
             >
               {formText.close}
             </button>
@@ -111,7 +111,7 @@ const MessageModal: React.FC<MessageModalProps> = ({ isOpen, onClose, version = 
         ) : (
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
+              <label htmlFor="name" className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
                 {formText.nameLabel} <span className="text-red-500">*</span>
               </label>
               <input
@@ -120,12 +120,12 @@ const MessageModal: React.FC<MessageModalProps> = ({ isOpen, onClose, version = 
                 required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className={`w-full px-4 py-2.5 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:ring-2 ${focusRingClass} focus:border-transparent outline-none transition-all text-slate-900 dark:text-white placeholder:text-slate-400`}
+                className={`w-full px-4 py-2.5 rounded-xl liquid-pill focus:ring-2 ${focusRingClass} focus:border-transparent outline-none transition-all text-slate-900 dark:text-white placeholder:text-slate-400`}
               />
             </div>
 
             <div>
-              <label htmlFor="contact" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
+              <label htmlFor="contact" className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
                 {formText.contactLabel}
               </label>
               <input
@@ -133,12 +133,12 @@ const MessageModal: React.FC<MessageModalProps> = ({ isOpen, onClose, version = 
                 id="contact"
                 value={contactInfo}
                 onChange={(e) => setContactInfo(e.target.value)}
-                className={`w-full px-4 py-2.5 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:ring-2 ${focusRingClass} focus:border-transparent outline-none transition-all text-slate-900 dark:text-white placeholder:text-slate-400`}
+                className={`w-full px-4 py-2.5 rounded-xl liquid-pill focus:ring-2 ${focusRingClass} focus:border-transparent outline-none transition-all text-slate-900 dark:text-white placeholder:text-slate-400`}
               />
             </div>
 
             <div>
-              <label htmlFor="message" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
+              <label htmlFor="message" className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
                 {formText.messageLabel} <span className="text-red-500">*</span>
               </label>
               <textarea
@@ -147,12 +147,12 @@ const MessageModal: React.FC<MessageModalProps> = ({ isOpen, onClose, version = 
                 rows={4}
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-                className={`w-full px-4 py-2.5 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:ring-2 ${focusRingClass} focus:border-transparent outline-none transition-all text-slate-900 dark:text-white placeholder:text-slate-400 resize-none`}
+                className={`w-full px-4 py-2.5 rounded-xl liquid-pill focus:ring-2 ${focusRingClass} focus:border-transparent outline-none transition-all text-slate-900 dark:text-white placeholder:text-slate-400 resize-none`}
               />
             </div>
 
             {submitStatus === 'error' && (
-              <div className="flex items-center gap-2 text-red-600 dark:text-red-400 text-sm bg-red-50 dark:bg-red-900/20 p-3 rounded-lg">
+              <div className="flex items-center gap-2 text-red-600 dark:text-red-400 text-sm liquid-pill border-red-300 dark:border-red-800/50 p-3 rounded-xl">
                 <AlertCircle size={16} />
                 {formText.error}
               </div>
@@ -161,7 +161,7 @@ const MessageModal: React.FC<MessageModalProps> = ({ isOpen, onClose, version = 
             <button
               type="submit"
               disabled={isSubmitting}
-              className={`w-full flex items-center justify-center gap-2 ${buttonClass} text-white font-bold py-3 rounded-xl transition-all disabled:opacity-70 disabled:cursor-not-allowed hover:shadow-lg hover:-translate-y-0.5`}
+              className={`w-full flex items-center justify-center gap-2 ${isV2 ? 'bg-cyan-600 hover:bg-cyan-500 shadow-cyan-500/20' : 'liquid-btn-primary'} text-white font-bold py-3.5 rounded-2xl transition-all disabled:opacity-70 disabled:cursor-not-allowed shadow-xl active:scale-95`}
             >
               {isSubmitting ? (
                 <>

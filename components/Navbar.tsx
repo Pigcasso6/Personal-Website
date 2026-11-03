@@ -76,65 +76,65 @@ const Navbar: React.FC = () => {
   const AVATAR_URL = "/images/avatar.png";
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-sm'
-          : 'bg-transparent'
-      }`}
-    >
-      <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+    <nav className="fixed top-0 left-0 right-0 z-50 flex flex-col items-center py-3 md:py-4 pointer-events-none">
+      <div 
+        className={`pointer-events-auto liquid-nav-capsule h-16 md:h-18 flex items-center justify-between border ${
+          isScrolled
+            ? 'w-[calc(100%-2rem)] sm:w-[calc(100%-3rem)] md:w-[calc(100%-4.5rem)] max-w-5xl px-5 md:px-7 rounded-2xl md:rounded-full liquid-nav shadow-xl'
+            : 'w-full max-w-7xl px-6 md:px-10 rounded-2xl md:rounded-full bg-transparent border-transparent shadow-none'
+        }`}
+      >
         {/* Logo */}
         <a 
           href="#home" 
           onClick={(e) => handleNavClick(e, '#home')}
-          className="flex items-center gap-2 group"
+          className="flex items-center gap-2.5 cursor-pointer"
           aria-label="Back to top"
         >
           {!imgError ? (
             <img 
               src={AVATAR_URL}
               alt="Liang Zhu" 
-              className="h-10 w-10 md:h-12 md:w-12 rounded-full object-cover dark:invert" 
+              className="h-9 w-9 md:h-10 md:w-10 rounded-full object-cover dark:invert select-none" 
               onError={() => setImgError(true)}
             />
           ) : (
-            <span className="font-serif font-bold text-2xl tracking-tight text-slate-900 dark:text-white group-hover:opacity-80 transition-opacity">
+            <span className="font-serif font-bold text-2xl tracking-tight text-slate-900 dark:text-white">
               Liang Zhu
             </span>
           )}
         </a>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-7">
           {navLinks.map((link) => (
             <a
               key={link.label}
               href={link.href}
               onClick={(e) => handleNavClick(e, link.href)}
-              className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+              className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors px-2 py-1 rounded-lg hover:bg-white/40 dark:hover:bg-white/5"
             >
               {link.label}
             </a>
           ))}
           
-          <div className="w-px h-6 bg-slate-200 dark:bg-slate-700 mx-2" />
+          <div className="w-px h-5 bg-slate-300/60 dark:bg-slate-700/60 mx-1" />
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2.5">
             {/* Language Dropdown */}
-            <div className={`relative transition-transform duration-500 ease-in-out ${isScrolled ? 'translate-x-0' : ''}`} ref={langMenuRef}>
+            <div className="relative" ref={langMenuRef}>
               <button
                 onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
-                className="flex items-center gap-1 p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-300"
+                className="flex items-center gap-1 px-2.5 py-1.5 rounded-full liquid-pill hover:bg-white/80 dark:hover:bg-slate-800/80 transition-all text-slate-700 dark:text-slate-200 active:scale-95"
                 aria-label="Select Language"
               >
-                <Languages size={18} />
-                <span className="text-xs font-bold uppercase">{getShortLanguageLabel(language)}</span>
-                <ChevronDown size={14} className={`transition-transform duration-200 ${isLangMenuOpen ? 'rotate-180' : ''}`} />
+                <Languages size={16} />
+                <span className="text-xs font-bold uppercase tracking-wider">{getShortLanguageLabel(language)}</span>
+                <ChevronDown size={13} className={`transition-transform duration-300 ${isLangMenuOpen ? 'rotate-180' : ''}`} />
               </button>
               
               {isLangMenuOpen && (
-                <div className="absolute right-0 top-full mt-2 w-32 bg-white dark:bg-slate-900 rounded-lg shadow-lg border border-slate-100 dark:border-slate-800 py-1 overflow-hidden animate-fade-in">
+                <div className="absolute right-0 top-full mt-2.5 w-36 liquid-glass liquid-sheen rounded-2xl p-1.5 overflow-hidden animate-fade-in shadow-2xl z-50">
                   {languages.map((lang) => (
                     <button
                       key={lang.code}
@@ -142,10 +142,10 @@ const Navbar: React.FC = () => {
                         setLanguage(lang.code);
                         setIsLangMenuOpen(false);
                       }}
-                      className={`w-full text-left px-4 py-2 text-sm transition-colors ${
+                      className={`w-full text-left px-3.5 py-2 text-sm rounded-xl transition-all ${
                         language === lang.code
-                          ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 font-medium'
-                          : 'text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'
+                          ? 'bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 font-semibold'
+                          : 'text-slate-700 dark:text-slate-300 hover:bg-white/50 dark:hover:bg-white/10'
                       }`}
                     >
                       {lang.label}
@@ -155,53 +155,56 @@ const Navbar: React.FC = () => {
               )}
             </div>
 
-            {/* Version Toggle */}
-            <div className={`overflow-hidden transition-all duration-500 ease-in-out ${isScrolled ? 'w-0 opacity-0 scale-95' : 'w-10 opacity-100 scale-100'}`}>
+            {/* Version Toggle (only visible when at top of page) */}
+            <div className={`flex items-center justify-center overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+              isScrolled ? 'w-0 opacity-0 pointer-events-none -mr-2.5 scale-75' : 'w-9 opacity-100 scale-100'
+            }`}>
               <button
                 onClick={toggleVersion}
-                className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-300 whitespace-nowrap"
+                className="p-2 rounded-full liquid-pill hover:bg-white/80 dark:hover:bg-slate-800/80 transition-all text-slate-700 dark:text-slate-200 whitespace-nowrap active:scale-95"
                 aria-label="Toggle Version"
               >
-                {version === 'v1' ? <Zap size={20} /> : <Layout size={20} />}
+                {version === 'v1' ? <Zap size={18} /> : <Layout size={18} />}
               </button>
             </div>
 
             {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-300"
+              className="p-2 rounded-full liquid-pill hover:bg-white/80 dark:hover:bg-slate-800/80 transition-all text-slate-700 dark:text-slate-200 active:scale-95"
               aria-label="Toggle Theme"
             >
-              {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+              {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
             </button>
           </div>
         </div>
 
         {/* Mobile Menu Button */}
-        <div className="md:hidden flex items-center gap-4">
+        <div className="md:hidden flex items-center gap-3">
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="p-2 text-slate-900 dark:text-white"
+            className="p-2 rounded-xl liquid-pill text-slate-800 dark:text-slate-100 active:scale-95"
+            aria-label="Toggle menu"
           >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </div>
 
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-20 left-0 right-0 bg-white dark:bg-slate-900 border-b border-slate-100 dark:border-slate-800 p-6 flex flex-col gap-4 shadow-xl animate-fade-in">
+        <div className="md:hidden w-[calc(100%-2rem)] max-w-md mx-auto mt-2 liquid-glass liquid-sheen rounded-3xl p-6 flex flex-col gap-4 shadow-2xl animate-fade-in border border-white/40 dark:border-white/10 pointer-events-auto">
           {navLinks.map((link) => (
             <a
               key={link.label}
               href={link.href}
               onClick={(e) => handleNavClick(e, link.href)}
-              className="text-lg font-medium text-slate-900 dark:text-slate-100 py-2"
+              className="text-lg font-medium text-slate-900 dark:text-slate-100 py-2 px-3 rounded-xl hover:bg-white/40 dark:hover:bg-white/10 transition-colors"
             >
               {link.label}
             </a>
           ))}
-          <div className="flex flex-col gap-4 pt-4 border-t border-slate-100 dark:border-slate-800 mt-2">
+          <div className="flex flex-col gap-4 pt-4 border-t border-slate-200/50 dark:border-slate-700/50 mt-2">
             <div className="flex flex-wrap gap-2">
               {languages.map((lang) => (
                 <button
@@ -209,10 +212,10 @@ const Navbar: React.FC = () => {
                   onClick={() => {
                     setLanguage(lang.code);
                   }}
-                  className={`px-3 py-1.5 rounded-md text-sm transition-colors border ${
+                  className={`px-3 py-1.5 rounded-xl text-sm transition-all border ${
                     language === lang.code
-                      ? 'bg-indigo-50 dark:bg-indigo-900/30 border-indigo-200 dark:border-indigo-800 text-indigo-700 dark:text-indigo-300 font-medium'
-                      : 'border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400'
+                      ? 'bg-indigo-500/20 border-indigo-400 text-indigo-700 dark:text-indigo-300 font-semibold shadow-sm'
+                      : 'liquid-pill border-slate-200/60 dark:border-slate-700/60 text-slate-700 dark:text-slate-300'
                   }`}
                 >
                   {lang.label}
@@ -220,23 +223,25 @@ const Navbar: React.FC = () => {
               ))}
             </div>
             
-            <div className="flex items-center gap-4">
-               <button
-                onClick={toggleVersion}
-                className="flex items-center gap-2 text-slate-600 dark:text-slate-300 py-2"
-              >
-                {version === 'v1' ? <Zap size={20} /> : <Layout size={20} />}
-                <span className="text-sm font-bold">
-                  {version === 'v1' ? content.nav.switchToModern : content.nav.switchToClassic}
-                </span>
-              </button>
+            <div className="flex items-center gap-4 pt-1">
+              {!isScrolled && (
+                <button
+                  onClick={toggleVersion}
+                  className="flex items-center gap-2 px-3 py-2 rounded-xl liquid-pill text-slate-700 dark:text-slate-200"
+                >
+                  {version === 'v1' ? <Zap size={18} /> : <Layout size={18} />}
+                  <span className="text-xs font-bold">
+                    {version === 'v1' ? content.nav.switchToModern : content.nav.switchToClassic}
+                  </span>
+                </button>
+              )}
 
-               <button
+              <button
                 onClick={toggleTheme}
-                className="flex items-center gap-2 text-slate-600 dark:text-slate-300 py-2"
+                className="flex items-center gap-2 px-3 py-2 rounded-xl liquid-pill text-slate-700 dark:text-slate-200"
               >
-                {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-                <span className="text-sm font-bold">
+                {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+                <span className="text-xs font-bold">
                   {theme === 'dark' ? content.theme.light : content.theme.dark}
                 </span>
               </button>

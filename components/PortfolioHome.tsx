@@ -7,6 +7,7 @@ import MessageModal from './MessageModal';
 import CertificateModal from './CertificateModal';
 import { Mail, Stamp, ExternalLink, ArrowRight, Sparkles, MessageSquarePlus, Languages, CalendarDays, CircleDashed, Dices, TrendingUp, Award, FileText, PencilRuler } from 'lucide-react';
 import { Language } from '../types';
+import { AppleScrollSection, AppleRevealItem } from './AppleScrollSection';
 
 const PortfolioHome: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ onNavigateToVerbPractice }) => {
   const { content, language } = useLanguage();
@@ -91,60 +92,66 @@ const PortfolioHome: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ onN
         <Hero />
 
         {/* About Section */}
-        <section id="about" className="pt-8 pb-16 md:py-24 bg-white/60 dark:bg-slate-900/60 backdrop-blur-sm transition-colors border-y border-white/20 dark:border-slate-800/20 scroll-mt-20">
+        <AppleScrollSection id="about" className="pt-8 pb-16 md:py-24 bg-transparent scroll-mt-20">
           <div className="max-w-6xl mx-auto px-6">
-            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-slate-900 dark:text-white flex items-center gap-4">
-              <span className="w-12 h-1 bg-indigo-500 rounded-full"></span>
-              {content.about.title}
-            </h2>
+            <AppleRevealItem delay={0}>
+              <h2 className="text-3xl md:text-4xl font-bold mb-12 text-slate-900 dark:text-white flex items-center gap-4">
+                <span className="w-12 h-1 bg-gradient-to-r from-indigo-500 to-sky-400 rounded-full"></span>
+                {content.about.title}
+              </h2>
+            </AppleRevealItem>
             <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div className="space-y-6">
-                <div className="space-y-6 text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+              <AppleRevealItem delay={180} className="space-y-6">
+                <div className="space-y-6 text-lg text-slate-600 dark:text-slate-300 leading-relaxed liquid-glass p-7 md:p-8 rounded-3xl shadow-xl">
                   {content.about.content.map((paragraph, index) => (
                     <p key={index}>{paragraph}</p>
                   ))}
+                  
+                  {/* Postcrossing Button */}
+                  <div className="pt-2">
+                    <a 
+                      href="https://www.postcrossing.com/user/Pigcasso6" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-6 py-3 rounded-full liquid-btn text-indigo-700 dark:text-indigo-300 font-semibold shadow-md active:scale-95 transition-all"
+                    >
+                      <Stamp size={20} />
+                      {content.about.postcrossingLabel}
+                    </a>
+                  </div>
                 </div>
-                
-                {/* Postcrossing Button */}
-                <div className="pt-4">
-                  <a 
-                    href="https://www.postcrossing.com/user/Pigcasso6" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-indigo-50/80 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 hover:bg-indigo-100 dark:hover:bg-indigo-900/60 transition-colors font-medium border border-indigo-100 dark:border-indigo-800"
-                  >
-                    <Stamp size={20} />
-                    {content.about.postcrossingLabel}
-                  </a>
-                </div>
-              </div>
+              </AppleRevealItem>
               
-              <div className="relative group">
-                <div className="absolute inset-0 bg-indigo-500 rounded-2xl rotate-3 opacity-20 group-hover:rotate-6 transition-transform duration-300"></div>
-                <img 
-                  src="https://picsum.photos/600/800?grayscale" 
-                  alt="Liang Zhu" 
-                  className="relative rounded-2xl shadow-xl w-full h-[500px] object-cover filter grayscale hover:grayscale-0 transition-all duration-500"
-                />
-              </div>
+              <AppleRevealItem delay={340} scale={true} className="relative group">
+                <div className="absolute -inset-2 bg-gradient-to-r from-indigo-500/30 to-purple-500/30 rounded-3xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-500"></div>
+                <div className="relative liquid-glass p-2.5 rounded-3xl shadow-2xl overflow-hidden">
+                  <img 
+                    src="https://picsum.photos/600/800?grayscale" 
+                    alt="Liang Zhu" 
+                    className="relative rounded-2xl w-full h-[480px] object-cover filter grayscale hover:grayscale-0 transition-all duration-700"
+                  />
+                </div>
+              </AppleRevealItem>
             </div>
           </div>
-        </section>
+        </AppleScrollSection>
 
         {/* Skills & Achievements Section */}
-        <section id="skills" className="pt-8 pb-16 md:py-24 bg-slate-50/60 dark:bg-slate-950/60 backdrop-blur-sm transition-colors scroll-mt-20">
+        <AppleScrollSection id="skills" className="pt-8 pb-16 md:py-24 bg-transparent scroll-mt-20">
           <div className="max-w-4xl mx-auto px-6">
-            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-slate-900 dark:text-white flex items-center gap-4">
-              <span className="w-12 h-1 bg-indigo-500 rounded-full"></span>
-              {content.skills.title}
-            </h2>
+            <AppleRevealItem delay={0}>
+              <h2 className="text-3xl md:text-4xl font-bold mb-12 text-slate-900 dark:text-white flex items-center gap-4">
+                <span className="w-12 h-1 bg-gradient-to-r from-indigo-500 to-sky-400 rounded-full"></span>
+                {content.skills.title}
+              </h2>
+            </AppleRevealItem>
 
-            <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 md:p-8 border border-slate-100 dark:border-slate-800 shadow-sm space-y-4 md:space-y-5">
+            <AppleRevealItem delay={180} className="liquid-glass liquid-sheen rounded-3xl p-6 md:p-8 space-y-4 md:space-y-6 shadow-2xl">
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 md:w-10 md:h-10 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-xl flex items-center justify-center font-bold text-lg md:text-xl leading-none select-none">
+                <div className="w-10 h-10 liquid-pill text-indigo-600 dark:text-indigo-400 rounded-2xl flex items-center justify-center font-bold text-lg md:text-xl leading-none select-none shadow-sm">
                   あ
                 </div>
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white">
+                <h3 className="text-xl md:text-2xl font-bold text-slate-900 dark:text-white">
                   {content.skills.japaneseCategoryTitle}
                 </h3>
               </div>
@@ -159,274 +166,290 @@ const PortfolioHome: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ onN
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
                 {/* N1 Card */}
-                <div className="p-6 rounded-xl bg-slate-50/80 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-700/80 flex flex-col justify-between gap-4 hover:border-indigo-200 dark:hover:border-indigo-800/50 transition-all">
-                  <div>
-                    <h4 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-snug">
-                      {renderSkillTitle(content.skills.n1Title)}
-                    </h4>
+                <AppleRevealItem delay={340} scale={true} className="h-full">
+                  <div className="p-6 rounded-2xl liquid-glass liquid-glass-interactive flex flex-col justify-between gap-4 h-full">
+                    <div>
+                      <h4 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-snug">
+                        {renderSkillTitle(content.skills.n1Title)}
+                      </h4>
 
-                    {/* Total Score Progress Bar */}
-                    <div className="flex items-center gap-3 my-3">
-                      <div className="flex-1 bg-slate-200 dark:bg-slate-700/80 h-2.5 rounded-full overflow-hidden">
-                        <div 
-                          className="bg-indigo-600 dark:bg-indigo-500 h-full rounded-full transition-all duration-1000"
-                          style={{ width: '80%' }}
-                        />
+                      {/* Total Score Progress Bar */}
+                      <div className="flex items-center gap-3 my-3">
+                        <div className="flex-1 liquid-track h-2.5 rounded-full overflow-hidden">
+                          <div 
+                            className="bg-gradient-to-r from-indigo-500 to-indigo-600 h-full rounded-full liquid-fill transition-all duration-1000"
+                            style={{ width: '80%' }}
+                          />
+                        </div>
+                        <span className="text-sm font-mono font-bold text-slate-800 dark:text-slate-200 shrink-0">
+                          {content.skills.n1Score}
+                        </span>
                       </div>
-                      <span className="text-sm font-mono font-bold text-slate-700 dark:text-slate-300 shrink-0">
-                        {content.skills.n1Score}
-                      </span>
+
+                      {/* Breakdown Progress Bars */}
+                      {content.skills.n1Breakdown && (
+                        <div className="mt-4 pt-3.5 border-t border-slate-200/60 dark:border-slate-700/60 grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-3">
+                          {[
+                            content.skills.n1Breakdown.languageKnowledge,
+                            content.skills.n1Breakdown.reading,
+                            content.skills.n1Breakdown.listening,
+                            content.skills.n1Breakdown.percentileRank,
+                          ].map((item, idx) => (
+                            <div key={idx} className="space-y-1">
+                              <div className="flex items-center justify-between text-xs">
+                                <span className="font-medium text-slate-600 dark:text-slate-400">
+                                  {item.label}
+                                </span>
+                                <span className="font-mono font-semibold text-slate-800 dark:text-slate-200">
+                                  {item.value}
+                                </span>
+                              </div>
+                              <div className="w-full liquid-track h-1.5 rounded-full overflow-hidden">
+                                <div
+                                  className={`h-full rounded-full liquid-fill transition-all duration-1000 ${
+                                    idx === 3
+                                      ? 'bg-gradient-to-r from-amber-400 to-amber-500'
+                                      : 'bg-gradient-to-r from-teal-400 to-emerald-500'
+                                  }`}
+                                  style={{ width: `${item.percentage}%` }}
+                                />
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
                     </div>
 
-                    {/* Breakdown Progress Bars */}
-                    {content.skills.n1Breakdown && (
-                      <div className="mt-4 pt-3.5 border-t border-slate-200/80 dark:border-slate-700/60 grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-3">
-                        {[
-                          content.skills.n1Breakdown.languageKnowledge,
-                          content.skills.n1Breakdown.reading,
-                          content.skills.n1Breakdown.listening,
-                          content.skills.n1Breakdown.percentileRank,
-                        ].map((item, idx) => (
-                          <div key={idx} className="space-y-1">
-                            <div className="flex items-center justify-between text-xs">
-                              <span className="font-medium text-slate-600 dark:text-slate-400">
-                                {item.label}
-                              </span>
-                              <span className="font-mono font-semibold text-slate-700 dark:text-slate-300">
-                                {item.value}
-                              </span>
-                            </div>
-                            <div className="w-full bg-slate-200/70 dark:bg-slate-700/60 h-1.5 rounded-full overflow-hidden">
-                              <div
-                                className={`h-full rounded-full transition-all duration-1000 ${
-                                  idx === 3
-                                    ? 'bg-amber-500 dark:bg-amber-400'
-                                    : 'bg-teal-500 dark:bg-teal-400'
-                                }`}
-                                style={{ width: `${item.percentage}%` }}
-                              />
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 w-full pt-1">
-                    <button
-                      onClick={() => openCertModal({
-                        title: `${content.skills.n1Title} - ${content.skills.viewCertificateBtn}`,
-                        frontImg: '/images/N1_C_F.jpg',
-                        backImg: '/images/N1_C_B.jpg',
-                      })}
-                      className="w-full inline-flex items-center justify-center gap-2 px-3 py-2.5 text-xs sm:text-sm font-semibold rounded-lg bg-indigo-600 text-white hover:bg-indigo-500 transition-all shadow-sm hover:shadow-indigo-500/25 active:scale-95 text-center whitespace-nowrap"
-                    >
-                      <Award size={16} className="shrink-0" />
-                      <span>{content.skills.viewCertificateBtn}</span>
-                    </button>
-
-                    <button
-                      onClick={() => openCertModal({
-                        title: `${content.skills.n1Title} - ${content.skills.viewReportBtn}`,
-                        frontImg: '/images/N1_S_F.jpg',
-                        backImg: '/images/N1_S_B.jpg',
-                      })}
-                      className="w-full inline-flex items-center justify-center gap-2 px-3 py-2.5 text-xs sm:text-sm font-semibold rounded-lg bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 transition-colors active:scale-95 text-center whitespace-nowrap"
-                    >
-                      <FileText size={16} className="shrink-0" />
-                      <span>{content.skills.viewReportBtn}</span>
-                    </button>
-                  </div>
-                </div>
-
-                {/* N2 Card */}
-                <div className="p-6 rounded-xl bg-slate-50/80 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-700/80 flex flex-col justify-between gap-4 hover:border-indigo-200 dark:hover:border-indigo-800/50 transition-all">
-                  <div>
-                    <h4 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-snug">
-                      {renderSkillTitle(content.skills.n2Title)}
-                    </h4>
-
-                    {/* Total Score Progress Bar */}
-                    <div className="flex items-center gap-3 my-3">
-                      <div className="flex-1 bg-slate-200 dark:bg-slate-700/80 h-2.5 rounded-full overflow-hidden">
-                        <div 
-                          className="bg-indigo-600 dark:bg-indigo-500 h-full rounded-full transition-all duration-1000"
-                          style={{ width: '98.33%' }}
-                        />
-                      </div>
-                      <span className="text-sm font-mono font-bold text-slate-700 dark:text-slate-300 shrink-0">
-                        {content.skills.n2Score}
-                      </span>
-                    </div>
-
-                    {/* Breakdown Progress Bars */}
-                    {content.skills.n2Breakdown && (
-                      <div className="mt-4 pt-3.5 border-t border-slate-200/80 dark:border-slate-700/60 grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-3">
-                        {[
-                          content.skills.n2Breakdown.languageKnowledge,
-                          content.skills.n2Breakdown.reading,
-                          content.skills.n2Breakdown.listening,
-                          content.skills.n2Breakdown.percentileRank,
-                        ].map((item, idx) => (
-                          <div key={idx} className="space-y-1">
-                            <div className="flex items-center justify-between text-xs">
-                              <span className="font-medium text-slate-600 dark:text-slate-400">
-                                {item.label}
-                              </span>
-                              <span className="font-mono font-semibold text-slate-700 dark:text-slate-300">
-                                {item.value}
-                              </span>
-                            </div>
-                            <div className="w-full bg-slate-200/70 dark:bg-slate-700/60 h-1.5 rounded-full overflow-hidden">
-                              <div
-                                className={`h-full rounded-full transition-all duration-1000 ${
-                                  idx === 3
-                                    ? 'bg-amber-500 dark:bg-amber-400'
-                                    : 'bg-teal-500 dark:bg-teal-400'
-                                }`}
-                                style={{ width: `${item.percentage}%` }}
-                              />
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 w-full pt-1">
-                    <button
-                      onClick={() => openCertModal({
-                        title: `${content.skills.n2Title} - ${content.skills.viewCertificateBtn}`,
-                        frontImg: '/images/N2_C_F.jpg',
-                        backImg: '/images/N2_C_B.jpg',
-                      })}
-                      className="w-full inline-flex items-center justify-center gap-2 px-3 py-2.5 text-xs sm:text-sm font-semibold rounded-lg bg-indigo-600 text-white hover:bg-indigo-500 transition-all shadow-sm hover:shadow-indigo-500/25 active:scale-95 text-center whitespace-nowrap"
-                    >
-                      <Award size={16} className="shrink-0" />
-                      <span>{content.skills.viewCertificateBtn}</span>
-                    </button>
-
-                    <button
-                      onClick={() => openCertModal({
-                        title: `${content.skills.n2Title} - ${content.skills.viewReportBtn}`,
-                        frontImg: '/images/N2_S_F.jpg',
-                        backImg: '/images/N2_S_B.jpg',
-                      })}
-                      className="w-full inline-flex items-center justify-center gap-2 px-3 py-2.5 text-xs sm:text-sm font-semibold rounded-lg bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 transition-colors active:scale-95 text-center whitespace-nowrap"
-                    >
-                      <FileText size={16} className="shrink-0" />
-                      <span>{content.skills.viewReportBtn}</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Projects Section */}
-        <section id="projects" className="pt-8 pb-16 md:py-24 bg-slate-50/60 dark:bg-slate-950/60 backdrop-blur-sm transition-colors scroll-mt-20">
-          <div className="max-w-4xl mx-auto px-6">
-            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-slate-900 dark:text-white flex items-center gap-4">
-              <span className="w-12 h-1 bg-indigo-500 rounded-full"></span>
-              {content.projects.title}
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {content.projects.items.map((project, index) => (
-                <div key={index} className="group relative bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 overflow-hidden flex flex-col h-full">
-                   <div className="absolute -right-12 -top-12 w-40 h-40 bg-indigo-100 dark:bg-indigo-900/30 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-
-                  <div className="relative z-10 flex flex-col flex-grow">
-                    <div className="flex justify-between items-start mb-3">
-                      <div className="p-3 bg-indigo-50 dark:bg-indigo-900/20 rounded-xl text-indigo-600 dark:text-indigo-400">
-                        {getProjectIcon(project.iconKey)}
-                      </div>
-                    </div>
-                    
-                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
-                      {project.title}
-                    </h3>
-                    
-                    {project.description && (
-                      <p className="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed flex-grow">
-                        {project.description}
-                      </p>
-                    )}
-
-                    <div className={project.description ? "" : "mt-auto"}>
-                      <button 
-                        className="inline-flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-bold hover:gap-3 transition-all pt-2"
-                        onClick={() => {
-                          if (project.link === '/verb-practice') {
-                            onNavigateToVerbPractice();
-                          } else if (project.link) {
-                            window.open(project.link, '_blank');
-                          }
-                        }}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 w-full pt-1">
+                      <button
+                        onClick={() => openCertModal({
+                          title: `${content.skills.n1Title} - ${content.skills.viewCertificateBtn}`,
+                          frontImg: '/images/N1_C_F.jpg',
+                          backImg: '/images/N1_C_B.jpg',
+                        })}
+                        className="w-full inline-flex items-center justify-center gap-2 px-3 py-2.5 text-xs sm:text-sm font-semibold rounded-xl liquid-btn-primary text-white transition-all text-center whitespace-nowrap active:scale-95"
                       >
-                        {content.projects.viewProject}
-                        <ArrowRight size={18} />
+                        <Award size={16} className="shrink-0" />
+                        <span>{content.skills.viewCertificateBtn}</span>
+                      </button>
+
+                      <button
+                        onClick={() => openCertModal({
+                          title: `${content.skills.n1Title} - ${content.skills.viewReportBtn}`,
+                          frontImg: '/images/N1_S_F.jpg',
+                          backImg: '/images/N1_S_B.jpg',
+                        })}
+                        className="w-full inline-flex items-center justify-center gap-2 px-3 py-2.5 text-xs sm:text-sm font-semibold rounded-xl liquid-btn text-slate-800 dark:text-slate-200 transition-all text-center whitespace-nowrap active:scale-95"
+                      >
+                        <FileText size={16} className="shrink-0" />
+                        <span>{content.skills.viewReportBtn}</span>
                       </button>
                     </div>
                   </div>
-                </div>
+                </AppleRevealItem>
+
+                {/* N2 Card */}
+                <AppleRevealItem delay={500} scale={true} className="h-full">
+                  <div className="p-6 rounded-2xl liquid-glass liquid-glass-interactive flex flex-col justify-between gap-4 h-full">
+                    <div>
+                      <h4 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-snug">
+                        {renderSkillTitle(content.skills.n2Title)}
+                      </h4>
+
+                      {/* Total Score Progress Bar */}
+                      <div className="flex items-center gap-3 my-3">
+                        <div className="flex-1 liquid-track h-2.5 rounded-full overflow-hidden">
+                          <div 
+                            className="bg-gradient-to-r from-indigo-500 to-indigo-600 h-full rounded-full liquid-fill transition-all duration-1000"
+                            style={{ width: '98.33%' }}
+                          />
+                        </div>
+                        <span className="text-sm font-mono font-bold text-slate-800 dark:text-slate-200 shrink-0">
+                          {content.skills.n2Score}
+                        </span>
+                      </div>
+
+                      {/* Breakdown Progress Bars */}
+                      {content.skills.n2Breakdown && (
+                        <div className="mt-4 pt-3.5 border-t border-slate-200/60 dark:border-slate-700/60 grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-3">
+                          {[
+                            content.skills.n2Breakdown.languageKnowledge,
+                            content.skills.n2Breakdown.reading,
+                            content.skills.n2Breakdown.listening,
+                            content.skills.n2Breakdown.percentileRank,
+                          ].map((item, idx) => (
+                            <div key={idx} className="space-y-1">
+                              <div className="flex items-center justify-between text-xs">
+                                <span className="font-medium text-slate-600 dark:text-slate-400">
+                                  {item.label}
+                                </span>
+                                <span className="font-mono font-semibold text-slate-800 dark:text-slate-200">
+                                  {item.value}
+                                </span>
+                              </div>
+                              <div className="w-full liquid-track h-1.5 rounded-full overflow-hidden">
+                                <div
+                                  className={`h-full rounded-full liquid-fill transition-all duration-1000 ${
+                                    idx === 3
+                                      ? 'bg-gradient-to-r from-amber-400 to-amber-500'
+                                      : 'bg-gradient-to-r from-teal-400 to-emerald-500'
+                                  }`}
+                                  style={{ width: `${item.percentage}%` }}
+                                />
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 w-full pt-1">
+                      <button
+                        onClick={() => openCertModal({
+                          title: `${content.skills.n2Title} - ${content.skills.viewCertificateBtn}`,
+                          frontImg: '/images/N2_C_F.jpg',
+                          backImg: '/images/N2_C_B.jpg',
+                        })}
+                        className="w-full inline-flex items-center justify-center gap-2 px-3 py-2.5 text-xs sm:text-sm font-semibold rounded-xl liquid-btn-primary text-white transition-all text-center whitespace-nowrap active:scale-95"
+                      >
+                        <Award size={16} className="shrink-0" />
+                        <span>{content.skills.viewCertificateBtn}</span>
+                      </button>
+
+                      <button
+                        onClick={() => openCertModal({
+                          title: `${content.skills.n2Title} - ${content.skills.viewReportBtn}`,
+                          frontImg: '/images/N2_S_F.jpg',
+                          backImg: '/images/N2_S_B.jpg',
+                        })}
+                        className="w-full inline-flex items-center justify-center gap-2 px-3 py-2.5 text-xs sm:text-sm font-semibold rounded-xl liquid-btn text-slate-800 dark:text-slate-200 transition-all text-center whitespace-nowrap active:scale-95"
+                      >
+                        <FileText size={16} className="shrink-0" />
+                        <span>{content.skills.viewReportBtn}</span>
+                      </button>
+                    </div>
+                  </div>
+                </AppleRevealItem>
+              </div>
+            </AppleRevealItem>
+          </div>
+        </AppleScrollSection>
+
+        {/* Projects Section */}
+        <AppleScrollSection id="projects" className="pt-8 pb-16 md:py-24 bg-transparent scroll-mt-20">
+          <div className="max-w-4xl mx-auto px-6">
+            <AppleRevealItem delay={0}>
+              <h2 className="text-3xl md:text-4xl font-bold mb-12 text-slate-900 dark:text-white flex items-center gap-4">
+                <span className="w-12 h-1 bg-gradient-to-r from-indigo-500 to-sky-400 rounded-full"></span>
+                {content.projects.title}
+              </h2>
+            </AppleRevealItem>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {content.projects.items.map((project, index) => (
+                <AppleRevealItem key={index} delay={180 + index * 140} scale={true} className="h-full">
+                  <div className="group relative liquid-glass liquid-glass-interactive rounded-3xl p-7 flex flex-col h-full shadow-xl">
+                    <div className="relative z-10 flex flex-col flex-grow">
+                      <div className="flex justify-between items-start mb-4">
+                        <div className="p-3 liquid-pill rounded-2xl text-indigo-600 dark:text-indigo-400 shadow-sm">
+                          {getProjectIcon(project.iconKey)}
+                        </div>
+                      </div>
+                      
+                      <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2.5 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                        {project.title}
+                      </h3>
+                      
+                      {project.description && (
+                        <p className="text-slate-600 dark:text-slate-300 mb-6 leading-relaxed flex-grow text-sm md:text-base">
+                          {project.description}
+                        </p>
+                      )}
+
+                      <div className={project.description ? "" : "mt-auto"}>
+                        <button 
+                          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl liquid-btn text-indigo-600 dark:text-indigo-400 font-bold hover:gap-3 transition-all active:scale-95 text-sm"
+                          onClick={() => {
+                            if (project.link === '/verb-practice') {
+                              onNavigateToVerbPractice();
+                            } else if (project.link) {
+                              window.open(project.link, '_blank');
+                            }
+                          }}
+                        >
+                          {content.projects.viewProject}
+                          <ArrowRight size={16} />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </AppleRevealItem>
               ))}
             </div>
           </div>
-        </section>
+        </AppleScrollSection>
 
         {/* Education Section */}
-        <section id="education" className="pt-8 pb-16 md:py-24 bg-white/60 dark:bg-slate-900/60 backdrop-blur-sm transition-colors border-t border-white/20 dark:border-slate-800/20 scroll-mt-20">
+        <AppleScrollSection id="education" className="pt-8 pb-16 md:py-24 bg-transparent scroll-mt-20">
           <div className="max-w-4xl mx-auto px-6">
-            <h2 className="text-3xl md:text-4xl font-bold mb-16 text-slate-900 dark:text-white flex items-center gap-4">
-              <span className="w-12 h-1 bg-indigo-500 rounded-full"></span>
-              {content.education.title}
-            </h2>
-            <div className="relative border-l-2 border-slate-200 dark:border-slate-800 ml-3 md:ml-6 space-y-12 pb-2">
-              {content.education.items.map((item, index) => (
-                <div key={index} className="relative pl-8 md:pl-12">
-                  <div className="absolute left-[-9px] top-1.5 w-4 h-4 rounded-full bg-white dark:bg-slate-950 border-4 border-indigo-500 shadow-sm z-10"></div>
-                  
-                  <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-2 md:gap-8 group">
-                    {item.url ? (
-                      <a 
-                        href={item.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-xl font-bold text-slate-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2 w-fit"
-                      >
-                        {item.school}
-                        <ExternalLink size={16} className="opacity-50" />
-                      </a>
-                    ) : (
-                      <h3 className="text-xl font-bold text-slate-900 dark:text-white">
-                        {item.school}
-                      </h3>
-                    )}
-                    <span className="shrink-0 font-mono text-sm font-semibold text-slate-500 dark:text-slate-400 bg-slate-100/80 dark:bg-slate-900/80 px-3 py-1 rounded-full border border-slate-200 dark:border-slate-800">
-                      {item.period}
-                    </span>
-                  </div>
-                </div>
-              ))}
+            <AppleRevealItem delay={0}>
+              <h2 className="text-3xl md:text-4xl font-bold mb-16 text-slate-900 dark:text-white flex items-center gap-4">
+                <span className="w-12 h-1 bg-gradient-to-r from-indigo-500 to-sky-400 rounded-full"></span>
+                {content.education.title}
+              </h2>
+            </AppleRevealItem>
+            <div className="liquid-glass rounded-3xl p-6 md:p-10 shadow-xl space-y-8">
+              <div className="relative border-l-2 border-indigo-400/40 dark:border-indigo-500/30 ml-2 md:ml-4 space-y-10">
+                {content.education.items.map((item, index) => (
+                  <AppleRevealItem key={index} delay={180 + index * 160} className="relative pl-8 md:pl-10">
+                    <div className="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-indigo-600 border-2 border-white dark:border-slate-900 shadow-md"></div>
+                    
+                    <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-2 md:gap-8 group">
+                      {item.url ? (
+                        <a 
+                          href={item.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xl font-bold text-slate-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2 w-fit"
+                        >
+                          {item.school}
+                          <ExternalLink size={16} className="opacity-50" />
+                        </a>
+                      ) : (
+                        <h3 className="text-xl font-bold text-slate-900 dark:text-white">
+                          {item.school}
+                        </h3>
+                      )}
+                      <span className="shrink-0 font-mono text-xs md:text-sm font-semibold text-slate-600 dark:text-slate-300 liquid-pill px-3.5 py-1 rounded-full shadow-sm">
+                        {item.period}
+                      </span>
+                    </div>
+                  </AppleRevealItem>
+                ))}
+              </div>
             </div>
           </div>
-        </section>
+        </AppleScrollSection>
 
         {/* Contact Section */}
-        <section id="contact" className="pt-8 pb-16 md:py-24 bg-slate-50/60 dark:bg-slate-950/60 backdrop-blur-sm transition-colors scroll-mt-20">
+        <AppleScrollSection id="contact" className="pt-8 pb-16 md:py-24 bg-transparent scroll-mt-20">
           <div className="max-w-4xl mx-auto px-6 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-slate-900 dark:text-white">
-              {content.contact.title}
-            </h2>
-            <p className="text-xl text-slate-600 dark:text-slate-400 mb-12 max-w-2xl mx-auto">
-              {content.contact.description}
-            </p>
+            <AppleRevealItem delay={0}>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-slate-900 dark:text-white">
+                {content.contact.title}
+              </h2>
+            </AppleRevealItem>
+            <AppleRevealItem delay={180}>
+              <p className="text-xl text-slate-600 dark:text-slate-400 mb-12 max-w-2xl mx-auto">
+                {content.contact.description}
+              </p>
+            </AppleRevealItem>
             
-            <div className="flex flex-col items-center gap-12">
+            <div className="liquid-glass rounded-3xl p-8 md:p-12 shadow-2xl flex flex-col items-center gap-10">
               {/* Top Group: Icon + Emails */}
-              <div className="flex flex-col items-center gap-6">
-                <Mail className="w-10 h-10 md:w-12 md:h-12 text-indigo-600 dark:text-indigo-400" strokeWidth={1.5} />
+              <AppleRevealItem delay={340} className="flex flex-col items-center gap-6">
+                <div className="w-16 h-16 rounded-2xl liquid-pill flex items-center justify-center text-indigo-600 dark:text-indigo-400 shadow-md">
+                  <Mail className="w-8 h-8" strokeWidth={1.5} />
+                </div>
                 <div className="flex flex-col items-center gap-3">
                   <a href="mailto:zliang723@connect.hkust-gz.edu.cn" className="text-lg md:text-2xl font-bold text-indigo-600 dark:text-indigo-400 hover:underline decoration-2 underline-offset-8 transition-all break-all text-center">
                     zliang723@connect.hkust-gz.edu.cn
@@ -435,37 +458,41 @@ const PortfolioHome: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ onN
                     liangzhu@pigcasso6.top
                   </a>
                 </div>
-              </div>
+              </AppleRevealItem>
 
-              {/* Leave Message Button - direct child of parent flex to ensure gap consistency */}
-              <button
-                onClick={() => setIsMessageModalOpen(true)}
-                className="inline-flex items-center gap-2 px-8 py-3 rounded-xl bg-indigo-600 text-white hover:bg-indigo-700 hover:scale-105 active:scale-95 transition-all shadow-lg hover:shadow-indigo-500/25 font-bold"
-              >
-                <MessageSquarePlus size={20} />
-                {content.contact.leaveMessageBtn}
-              </button>
+              {/* Leave Message Button */}
+              <AppleRevealItem delay={500}>
+                <button
+                  onClick={() => setIsMessageModalOpen(true)}
+                  className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full liquid-btn-primary text-white font-bold text-base shadow-xl active:scale-95 transition-all"
+                >
+                  <MessageSquarePlus size={20} />
+                  {content.contact.leaveMessageBtn}
+                </button>
+              </AppleRevealItem>
 
-              {/* X Social Link - direct child of parent flex to ensure gap consistency */}
-              <a 
-                href="https://x.com/Pigcasso66"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center p-3 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all hover:scale-110 active:scale-95 border border-slate-200 dark:border-slate-700 shadow-sm group"
-                aria-label="Visit my X profile"
-              >
-                <img 
-                  src="/images/x_icon.png" 
-                  alt="X" 
-                  className="w-5 h-5 object-contain dark:invert opacity-80 group-hover:opacity-100 transition-opacity"
-                />
-              </a>
+              {/* X Social Link */}
+              <AppleRevealItem delay={640}>
+                <a 
+                  href="https://x.com/Pigcasso66"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center p-3.5 rounded-full liquid-btn text-slate-700 dark:text-slate-300 active:scale-95 shadow-md group"
+                  aria-label="Visit my X profile"
+                >
+                  <img 
+                    src="/images/x_icon.png" 
+                    alt="X" 
+                    className="w-5 h-5 object-contain dark:invert opacity-80 group-hover:opacity-100 transition-opacity"
+                  />
+                </a>
+              </AppleRevealItem>
             </div>
           </div>
-        </section>
+        </AppleScrollSection>
 
-        {/* Footer Bar */}
-        <footer className="py-8 bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 transition-colors">
+        {/* Footer */}
+        <footer className="py-10 bg-transparent text-center space-y-2 relative z-10">
           <div className="max-w-6xl mx-auto px-6 text-center space-y-2">
             <p className="text-sm text-slate-500 dark:text-slate-400">
               {content.contact.footerText}
@@ -474,7 +501,7 @@ const PortfolioHome: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ onN
               href="https://beian.miit.gov.cn/" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-sm text-slate-500 dark:text-slate-400 font-sans-sc hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+              className="inline-block text-sm text-slate-500 dark:text-slate-400 font-sans-sc hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
             >
               {content.contact.icpText}
             </a>

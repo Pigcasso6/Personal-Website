@@ -65,7 +65,7 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
 
   return (
     <div 
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md animate-fade-in select-none touch-none"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/75 backdrop-blur-2xl animate-fade-in select-none touch-none"
       onClick={onClose}
       onWheel={(e) => e.stopPropagation()}
       onTouchMove={(e) => e.stopPropagation()}
@@ -78,10 +78,10 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
         onClick={(e) => e.stopPropagation()}
       >
         {/* Desktop Action Buttons: Floating outside top-right corner */}
-        <div className="hidden sm:flex absolute left-[calc(100%+14px)] top-0 flex-col gap-3 z-30">
+        <div className="hidden sm:flex absolute left-[calc(100%+14px)] top-0 flex-col gap-3.5 z-30">
           <button
             onClick={onClose}
-            className="w-11 h-11 rounded-full bg-slate-900/80 hover:bg-slate-900 text-white flex items-center justify-center backdrop-blur-md transition-all shadow-xl border border-white/20 hover:scale-110 active:scale-95 cursor-pointer"
+            className="w-11 h-11 rounded-full liquid-pill text-white flex items-center justify-center transition-all shadow-2xl hover:scale-110 active:scale-95 cursor-pointer"
             aria-label="Close"
           >
             <X size={20} />
@@ -89,7 +89,7 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
 
           <button
             onClick={() => setIsFlipped(!isFlipped)}
-            className="w-11 h-11 rounded-full bg-slate-900/80 hover:bg-slate-900 text-white flex items-center justify-center backdrop-blur-md transition-all shadow-xl border border-white/20 hover:scale-110 active:scale-95 cursor-pointer"
+            className="w-11 h-11 rounded-full liquid-pill text-white flex items-center justify-center transition-all shadow-2xl hover:scale-110 active:scale-95 cursor-pointer"
             aria-label="Flip"
           >
             <RefreshCw 
@@ -100,17 +100,17 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
         </div>
 
         {/* Mobile Action Buttons: Minimalist Gray Circle Icons inside top-right corner */}
-        <div className="flex sm:hidden absolute top-2.5 right-2.5 flex-col gap-2 z-30">
+        <div className="flex sm:hidden absolute top-3 right-3 flex-col gap-2 z-30">
           <button
             onClick={onClose}
-            className="w-8 h-8 rounded-full bg-slate-900/60 text-white flex items-center justify-center backdrop-blur-md transition-all active:scale-95 cursor-pointer"
+            className="w-8 h-8 rounded-full liquid-pill text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer shadow-lg"
             aria-label="Close"
           >
             <X size={16} />
           </button>
           <button
             onClick={() => setIsFlipped(!isFlipped)}
-            className="w-8 h-8 rounded-full bg-slate-900/60 text-white flex items-center justify-center backdrop-blur-md transition-all active:scale-95 cursor-pointer"
+            className="w-8 h-8 rounded-full liquid-pill text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer shadow-lg"
             aria-label="Flip"
           >
             <RefreshCw 
@@ -120,8 +120,8 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
           </button>
         </div>
 
-        {/* Certificate Frame Box with Narrow Border */}
-        <div className="w-full h-full bg-white dark:bg-slate-900 p-1 sm:p-1.5 rounded-xl shadow-2xl border border-slate-200/30 dark:border-slate-800/80">
+        {/* Certificate Frame Box with Liquid Glass Frame */}
+        <div className="w-full h-full liquid-glass p-1.5 sm:p-2 rounded-2xl shadow-2xl border border-white/50 dark:border-white/10">
           {/* 3D Flipping Card Container */}
           <div 
             className={`w-full h-full relative ${

@@ -53,26 +53,15 @@ const GlobalShortcuts: React.FC = () => {
 
 import { AnimatePresence } from 'framer-motion';
 
-// ... (imports remain the same)
-
-// ... (GlobalShortcuts component remains the same)
-
-// ... (VerbPractice component remains the same)
-
 const MainContent: React.FC = () => {
   const { version } = useVersion();
-  const [currentPage, setCurrentPage] = useState<'home' | 'verb'>('home');
-
-  if (currentPage === 'verb') {
-    return <VerbPractice onBack={() => setCurrentPage('home')} />;
-  }
 
   return (
     <AnimatePresence mode="wait">
       {version === 'v1' ? (
-        <PortfolioHome key="v1" onNavigateToVerbPractice={() => setCurrentPage('verb')} />
+        <PortfolioHome key="v1" onNavigateToVerbPractice={() => window.open('https://jp-verb-practice.pigcasso6.top', '_blank')} />
       ) : (
-        <PortfolioHomeV2 key="v2" onNavigateToVerbPractice={() => setCurrentPage('verb')} />
+        <PortfolioHomeV2 key="v2" onNavigateToVerbPractice={() => window.open('https://jp-verb-practice.pigcasso6.top', '_blank')} />
       )}
     </AnimatePresence>
   );

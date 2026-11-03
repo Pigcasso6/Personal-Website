@@ -184,17 +184,17 @@ const Hero: React.FC = () => {
         </h1>
         <div 
           className={`text-xl md:text-2xl text-slate-600 dark:text-slate-300 mb-8 mx-auto leading-relaxed animate-slide-up whitespace-pre-wrap ${descriptionMaxWidth}`} 
-          style={{ animationDelay: '0.1s' }}
+          style={{ animationDelay: '0.18s' }}
         >
           {renderDescription()}
         </div>
-        <div className="animate-slide-up" style={{ animationDelay: '0.2s' }}>
+        <div className="animate-slide-up" style={{ animationDelay: '0.36s' }}>
            <button 
              onClick={handleScrollDown}
-             className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-medium hover:bg-slate-800 dark:hover:bg-slate-100 transition-all hover:scale-105 active:scale-95 shadow-lg"
+             className="group relative inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full liquid-btn text-slate-900 dark:text-white font-semibold text-base shadow-xl active:scale-95 transition-all overflow-hidden"
            >
-             {content.hero.cta}
-             <ArrowDown size={18} />
+             <span className="relative z-10">{content.hero.cta}</span>
+             <ArrowDown size={18} className="relative z-10 transition-transform duration-300 group-hover:translate-y-1 text-indigo-600 dark:text-indigo-400" />
            </button>
         </div>
       </div>

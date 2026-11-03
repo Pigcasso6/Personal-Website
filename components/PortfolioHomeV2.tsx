@@ -5,6 +5,7 @@ import MessageModal from './MessageModal';
 import CertificateModal from './CertificateModal';
 import { Mail, Stamp, ExternalLink, ArrowRight, Sparkles, MessageSquarePlus, Languages, CalendarDays, Terminal, Code2, Cpu, CircleDashed, Dices, TrendingUp, Award, FileText, PencilRuler } from 'lucide-react';
 import { Language } from '../types';
+import { AppleScrollSection, AppleRevealItem } from './AppleScrollSection';
 
 const Typewriter: React.FC<{ strings: string[], language: Language }> = ({ strings, language }) => {
   const [text, setText] = useState('');
@@ -213,8 +214,8 @@ const PortfolioHomeV2: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ o
                 </div>
 
                 <div className="flex gap-4 pt-8">
-                  <a href="#projects" className="px-8 py-4 bg-slate-900 text-white dark:bg-white dark:text-slate-950 font-bold rounded-lg hover:bg-slate-800 dark:hover:bg-cyan-50 transition-all hover:scale-105 active:scale-95 flex items-center gap-2 shadow-lg shadow-cyan-500/20">
-                    {content.hero.cta} <ArrowRight size={20} />
+                  <a href="#projects" className="group px-8 py-4 liquid-btn text-slate-900 dark:text-white font-bold rounded-full transition-all flex items-center gap-2.5 shadow-xl active:scale-95">
+                    {content.hero.cta} <ArrowRight size={20} className="text-cyan-600 dark:text-cyan-400 group-hover:translate-x-1 transition-transform" />
                   </a>
                 </div>
               </div>
@@ -222,43 +223,43 @@ const PortfolioHomeV2: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ o
           </section>
 
           {/* Main Content Grid */}
-          <div className="max-w-7xl mx-auto px-6 py-32 grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-64">
+          <div className="max-w-7xl mx-auto px-6 py-24 md:py-32 grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-36 md:gap-y-48">
             
             {/* About Section */}
-            <div id="about" className="relative order-1 md:order-1 md:col-span-1 pt-8 md:pt-0 scroll-mt-20">
+            <AppleScrollSection as="div" id="about" className="relative order-1 md:order-1 md:col-span-1 pt-8 md:pt-0 scroll-mt-20">
               <FadingTitle className="text-7xl md:text-6xl">{content.about.title}</FadingTitle>
               
               <div className="pt-12 md:pt-20 relative z-10">
-                <div className="space-y-6 text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
+                <AppleRevealItem delay={180} className="liquid-glass rounded-3xl p-8 shadow-xl space-y-6 text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
                   {content.about.content.map((paragraph, index) => (
                     <p key={index}>{paragraph}</p>
                   ))}
-                </div>
-                <div className="mt-8">
-                  <a 
-                    href="https://www.postcrossing.com/user/Pigcasso6" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-white dark:bg-slate-800 text-cyan-600 dark:text-cyan-400 hover:bg-cyan-50 dark:hover:bg-cyan-900/30 transition-colors border border-slate-200 dark:border-cyan-500/20 shadow-sm"
-                  >
-                    <Stamp size={20} />
-                    {content.about.postcrossingLabel}
-                  </a>
-                </div>
+                  
+                  <div className="pt-2">
+                    <a 
+                      href="https://www.postcrossing.com/user/Pigcasso6" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-6 py-3 rounded-full liquid-btn text-cyan-600 dark:text-cyan-400 font-semibold shadow-md active:scale-95 transition-all"
+                    >
+                      <Stamp size={20} />
+                      {content.about.postcrossingLabel}
+                    </a>
+                  </div>
+                </AppleRevealItem>
               </div>
-            </div>
+            </AppleScrollSection>
 
             {/* Education Section */}
-            <div id="education" className="relative order-2 md:order-2 md:col-span-1 pt-8 md:pt-0 scroll-mt-20">
+            <AppleScrollSection as="div" id="education" className="relative order-2 md:order-2 md:col-span-1 pt-8 md:pt-0 scroll-mt-20">
               <FadingTitle className="text-7xl md:text-6xl">{content.education.title}</FadingTitle>
               
               <div className="pt-12 md:pt-20 relative z-10">
-                <div className="space-y-12 border-l-2 border-slate-200 dark:border-slate-800 ml-3 pl-8">
+                <div className="liquid-glass rounded-3xl p-8 shadow-xl space-y-10 border-l-4 border-cyan-500/40">
                   {content.education.items.map((item, index) => (
-                    <div key={index} className="relative">
-                      <div className="absolute -left-[41px] top-1.5 w-5 h-5 rounded-full bg-slate-50 dark:bg-slate-950 border-4 border-cyan-500"></div>
-                      <div className="flex flex-col gap-2">
-                        <span className="text-sm font-mono text-cyan-600 dark:text-cyan-400 font-bold bg-cyan-50 dark:bg-cyan-900/20 px-3 py-1 rounded-full w-fit">
+                    <AppleRevealItem key={index} delay={180 + index * 160} className="relative">
+                      <div className="flex flex-col gap-2.5">
+                        <span className="text-xs font-mono text-cyan-600 dark:text-cyan-400 font-bold liquid-pill px-3 py-1 rounded-full w-fit shadow-sm">
                           {item.period}
                         </span>
                         {item.url ? (
@@ -277,20 +278,20 @@ const PortfolioHomeV2: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ o
                           </h3>
                         )}
                       </div>
-                    </div>
+                    </AppleRevealItem>
                   ))}
                 </div>
               </div>
-            </div>
+            </AppleScrollSection>
 
             {/* Skills & Achievements Section V2 */}
-            <div id="skills" className="relative order-3 md:col-span-2 pt-8 md:pt-0 scroll-mt-20">
+            <AppleScrollSection as="div" id="skills" className="relative order-3 md:col-span-2 pt-8 md:pt-0 scroll-mt-20">
               <FadingTitle>{content.skills.title}</FadingTitle>
 
               <div className="pt-12 md:pt-20 relative z-10">
-                <div className="bg-white/60 dark:bg-slate-900/50 rounded-3xl p-8 border border-slate-200 dark:border-white/5 backdrop-blur-sm shadow-sm space-y-5 md:space-y-6">
+                <AppleRevealItem delay={180} className="liquid-glass liquid-sheen rounded-3xl p-8 shadow-2xl space-y-6">
                   <div className="flex items-center gap-3">
-                    <div className="w-11 h-11 bg-slate-100 dark:bg-slate-800 rounded-2xl text-cyan-600 dark:text-cyan-400 flex items-center justify-center font-bold text-xl leading-none select-none">
+                    <div className="w-11 h-11 liquid-pill rounded-2xl text-cyan-600 dark:text-cyan-400 flex items-center justify-center font-bold text-xl leading-none select-none shadow-sm">
                       あ
                     </div>
                     <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
@@ -308,244 +309,252 @@ const PortfolioHomeV2: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ o
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {/* N1 Card */}
-                    <div className="p-6 rounded-2xl bg-slate-100/70 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 flex flex-col justify-between gap-5 hover:border-cyan-500/40 transition-all">
-                      <div>
-                        <h4 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white leading-snug">
-                          {renderSkillTitle(content.skills.n1Title)}
-                        </h4>
+                    <AppleRevealItem delay={340} scale={true}>
+                      <div className="p-6 rounded-2xl liquid-glass liquid-glass-interactive flex flex-col justify-between gap-5 h-full">
+                        <div>
+                          <h4 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white leading-snug">
+                            {renderSkillTitle(content.skills.n1Title)}
+                          </h4>
 
-                        {/* Total Score Progress Bar */}
-                        <div className="flex items-center gap-3 my-3">
-                          <div className="flex-1 bg-slate-200 dark:bg-slate-700/80 h-2.5 rounded-full overflow-hidden">
-                            <div 
-                              className="bg-cyan-500 dark:bg-cyan-400 h-full rounded-full transition-all duration-1000"
-                              style={{ width: '80%' }}
-                            />
+                          {/* Total Score Progress Bar */}
+                          <div className="flex items-center gap-3 my-3">
+                            <div className="flex-1 liquid-track h-2.5 rounded-full overflow-hidden">
+                              <div 
+                                className="bg-gradient-to-r from-cyan-500 to-cyan-400 h-full rounded-full liquid-fill transition-all duration-1000"
+                                style={{ width: '80%' }}
+                              />
+                            </div>
+                            <span className="text-sm font-mono font-bold text-slate-800 dark:text-slate-200 shrink-0">
+                              {content.skills.n1Score}
+                            </span>
                           </div>
-                          <span className="text-sm font-mono font-bold text-slate-700 dark:text-slate-300 shrink-0">
-                            {content.skills.n1Score}
-                          </span>
+
+                          {/* Breakdown Progress Bars */}
+                          {content.skills.n1Breakdown && (
+                            <div className="mt-4 pt-3.5 border-t border-slate-200/60 dark:border-slate-700/60 grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-3">
+                              {[
+                                content.skills.n1Breakdown.languageKnowledge,
+                                content.skills.n1Breakdown.reading,
+                                content.skills.n1Breakdown.listening,
+                                content.skills.n1Breakdown.percentileRank,
+                              ].map((item, idx) => (
+                                <div key={idx} className="space-y-1">
+                                  <div className="flex items-center justify-between text-xs">
+                                    <span className="font-medium text-slate-600 dark:text-slate-400">
+                                      {item.label}
+                                    </span>
+                                    <span className="font-mono font-semibold text-slate-800 dark:text-slate-200">
+                                      {item.value}
+                                    </span>
+                                  </div>
+                                  <div className="w-full liquid-track h-1.5 rounded-full overflow-hidden">
+                                    <div
+                                      className={`h-full rounded-full liquid-fill transition-all duration-1000 ${
+                                        idx === 3
+                                          ? 'bg-gradient-to-r from-amber-400 to-amber-500'
+                                          : 'bg-gradient-to-r from-cyan-400 to-teal-500'
+                                      }`}
+                                      style={{ width: `${item.percentage}%` }}
+                                    />
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          )}
                         </div>
 
-                        {/* Breakdown Progress Bars */}
-                        {content.skills.n1Breakdown && (
-                          <div className="mt-4 pt-3.5 border-t border-slate-200 dark:border-slate-700/60 grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-3">
-                            {[
-                              content.skills.n1Breakdown.languageKnowledge,
-                              content.skills.n1Breakdown.reading,
-                              content.skills.n1Breakdown.listening,
-                              content.skills.n1Breakdown.percentileRank,
-                            ].map((item, idx) => (
-                              <div key={idx} className="space-y-1">
-                                <div className="flex items-center justify-between text-xs">
-                                  <span className="font-medium text-slate-600 dark:text-slate-400">
-                                    {item.label}
-                                  </span>
-                                  <span className="font-mono font-semibold text-slate-700 dark:text-slate-300">
-                                    {item.value}
-                                  </span>
-                                </div>
-                                <div className="w-full bg-slate-200/70 dark:bg-slate-700/60 h-1.5 rounded-full overflow-hidden">
-                                  <div
-                                    className={`h-full rounded-full transition-all duration-1000 ${
-                                      idx === 3
-                                        ? 'bg-amber-500 dark:bg-amber-400'
-                                        : 'bg-teal-500 dark:bg-teal-400'
-                                    }`}
-                                    style={{ width: `${item.percentage}%` }}
-                                  />
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        )}
-                      </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 w-full pt-1">
+                          <button
+                            onClick={() => openCertModal({
+                              title: `${content.skills.n1Title} - ${content.skills.viewCertificateBtn}`,
+                              frontImg: '/images/N1_C_F.jpg',
+                              backImg: '/images/N1_C_B.jpg',
+                            })}
+                            className="w-full inline-flex items-center justify-center gap-2 px-3 py-2.5 text-xs sm:text-sm font-bold rounded-xl liquid-btn-primary text-white transition-all shadow-md active:scale-95 text-center whitespace-nowrap"
+                          >
+                            <Award size={16} className="shrink-0" />
+                            <span>{content.skills.viewCertificateBtn}</span>
+                          </button>
 
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 w-full pt-1">
-                        <button
-                          onClick={() => openCertModal({
-                            title: `${content.skills.n1Title} - ${content.skills.viewCertificateBtn}`,
-                            frontImg: '/images/N1_C_F.jpg',
-                            backImg: '/images/N1_C_B.jpg',
-                          })}
-                          className="w-full inline-flex items-center justify-center gap-2 px-3 py-2.5 text-xs sm:text-sm font-bold rounded-lg bg-slate-900 text-white dark:bg-cyan-600 dark:hover:bg-cyan-500 hover:bg-slate-800 transition-all shadow-md active:scale-95 text-center whitespace-nowrap"
-                        >
-                          <Award size={16} className="shrink-0" />
-                          <span>{content.skills.viewCertificateBtn}</span>
-                        </button>
-
-                        <button
-                          onClick={() => openCertModal({
-                            title: `${content.skills.n1Title} - ${content.skills.viewReportBtn}`,
-                            frontImg: '/images/N1_S_F.jpg',
-                            backImg: '/images/N1_S_B.jpg',
-                          })}
-                          className="w-full inline-flex items-center justify-center gap-2 px-3 py-2.5 text-xs sm:text-sm font-bold rounded-lg bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 transition-colors active:scale-95 text-center whitespace-nowrap"
-                        >
-                          <FileText size={16} className="shrink-0" />
-                          <span>{content.skills.viewReportBtn}</span>
-                        </button>
+                          <button
+                            onClick={() => openCertModal({
+                              title: `${content.skills.n1Title} - ${content.skills.viewReportBtn}`,
+                              frontImg: '/images/N1_S_F.jpg',
+                              backImg: '/images/N1_S_B.jpg',
+                            })}
+                            className="w-full inline-flex items-center justify-center gap-2 px-3 py-2.5 text-xs sm:text-sm font-bold rounded-xl liquid-btn text-slate-800 dark:text-slate-200 transition-colors active:scale-95 text-center whitespace-nowrap"
+                          >
+                            <FileText size={16} className="shrink-0" />
+                            <span>{content.skills.viewReportBtn}</span>
+                          </button>
+                        </div>
                       </div>
-                    </div>
+                    </AppleRevealItem>
 
                     {/* N2 Card */}
-                    <div className="p-6 rounded-2xl bg-slate-100/70 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 flex flex-col justify-between gap-5 hover:border-cyan-500/40 transition-all">
-                      <div>
-                        <h4 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white leading-snug">
-                          {renderSkillTitle(content.skills.n2Title)}
-                        </h4>
+                    <AppleRevealItem delay={500} scale={true}>
+                      <div className="p-6 rounded-2xl liquid-glass liquid-glass-interactive flex flex-col justify-between gap-5 h-full">
+                        <div>
+                          <h4 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white leading-snug">
+                            {renderSkillTitle(content.skills.n2Title)}
+                          </h4>
 
-                        {/* Total Score Progress Bar */}
-                        <div className="flex items-center gap-3 my-3">
-                          <div className="flex-1 bg-slate-200 dark:bg-slate-700/80 h-2.5 rounded-full overflow-hidden">
-                            <div 
-                              className="bg-cyan-500 dark:bg-cyan-400 h-full rounded-full transition-all duration-1000"
-                              style={{ width: '98.33%' }}
-                            />
+                          {/* Total Score Progress Bar */}
+                          <div className="flex items-center gap-3 my-3">
+                            <div className="flex-1 liquid-track h-2.5 rounded-full overflow-hidden">
+                              <div 
+                                className="bg-gradient-to-r from-cyan-500 to-cyan-400 h-full rounded-full liquid-fill transition-all duration-1000"
+                                style={{ width: '98.33%' }}
+                              />
+                            </div>
+                            <span className="text-sm font-mono font-bold text-slate-800 dark:text-slate-200 shrink-0">
+                              {content.skills.n2Score}
+                            </span>
                           </div>
-                          <span className="text-sm font-mono font-bold text-slate-700 dark:text-slate-300 shrink-0">
-                            {content.skills.n2Score}
-                          </span>
+
+                          {/* Breakdown Progress Bars */}
+                          {content.skills.n2Breakdown && (
+                            <div className="mt-4 pt-3.5 border-t border-slate-200/60 dark:border-slate-700/60 grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-3">
+                              {[
+                                content.skills.n2Breakdown.languageKnowledge,
+                                content.skills.n2Breakdown.reading,
+                                content.skills.n2Breakdown.listening,
+                                content.skills.n2Breakdown.percentileRank,
+                              ].map((item, idx) => (
+                                <div key={idx} className="space-y-1">
+                                  <div className="flex items-center justify-between text-xs">
+                                    <span className="font-medium text-slate-600 dark:text-slate-400">
+                                      {item.label}
+                                    </span>
+                                    <span className="font-mono font-semibold text-slate-800 dark:text-slate-200">
+                                      {item.value}
+                                    </span>
+                                  </div>
+                                  <div className="w-full liquid-track h-1.5 rounded-full overflow-hidden">
+                                    <div
+                                      className={`h-full rounded-full liquid-fill transition-all duration-1000 ${
+                                        idx === 3
+                                          ? 'bg-gradient-to-r from-amber-400 to-amber-500'
+                                          : 'bg-gradient-to-r from-cyan-400 to-teal-500'
+                                      }`}
+                                      style={{ width: `${item.percentage}%` }}
+                                    />
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          )}
                         </div>
 
-                        {/* Breakdown Progress Bars */}
-                        {content.skills.n2Breakdown && (
-                          <div className="mt-4 pt-3.5 border-t border-slate-200 dark:border-slate-700/60 grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-3">
-                            {[
-                              content.skills.n2Breakdown.languageKnowledge,
-                              content.skills.n2Breakdown.reading,
-                              content.skills.n2Breakdown.listening,
-                              content.skills.n2Breakdown.percentileRank,
-                            ].map((item, idx) => (
-                              <div key={idx} className="space-y-1">
-                                <div className="flex items-center justify-between text-xs">
-                                  <span className="font-medium text-slate-600 dark:text-slate-400">
-                                    {item.label}
-                                  </span>
-                                  <span className="font-mono font-semibold text-slate-700 dark:text-slate-300">
-                                    {item.value}
-                                  </span>
-                                </div>
-                                <div className="w-full bg-slate-200/70 dark:bg-slate-700/60 h-1.5 rounded-full overflow-hidden">
-                                  <div
-                                    className={`h-full rounded-full transition-all duration-1000 ${
-                                      idx === 3
-                                        ? 'bg-amber-500 dark:bg-amber-400'
-                                        : 'bg-teal-500 dark:bg-teal-400'
-                                    }`}
-                                    style={{ width: `${item.percentage}%` }}
-                                  />
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        )}
-                      </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 w-full pt-1">
+                          <button
+                            onClick={() => openCertModal({
+                              title: `${content.skills.n2Title} - ${content.skills.viewCertificateBtn}`,
+                              frontImg: '/images/N2_C_F.jpg',
+                              backImg: '/images/N2_C_B.jpg',
+                            })}
+                            className="w-full inline-flex items-center justify-center gap-2 px-3 py-2.5 text-xs sm:text-sm font-bold rounded-xl liquid-btn-primary text-white transition-all shadow-md active:scale-95 text-center whitespace-nowrap"
+                          >
+                            <Award size={16} className="shrink-0" />
+                            <span>{content.skills.viewCertificateBtn}</span>
+                          </button>
 
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 w-full pt-1">
-                        <button
-                          onClick={() => openCertModal({
-                            title: `${content.skills.n2Title} - ${content.skills.viewCertificateBtn}`,
-                            frontImg: '/images/N2_C_F.jpg',
-                            backImg: '/images/N2_C_B.jpg',
-                          })}
-                          className="w-full inline-flex items-center justify-center gap-2 px-3 py-2.5 text-xs sm:text-sm font-bold rounded-lg bg-slate-900 text-white dark:bg-cyan-600 dark:hover:bg-cyan-500 hover:bg-slate-800 transition-all shadow-md active:scale-95 text-center whitespace-nowrap"
-                        >
-                          <Award size={16} className="shrink-0" />
-                          <span>{content.skills.viewCertificateBtn}</span>
-                        </button>
-
-                        <button
-                          onClick={() => openCertModal({
-                            title: `${content.skills.n2Title} - ${content.skills.viewReportBtn}`,
-                            frontImg: '/images/N2_S_F.jpg',
-                            backImg: '/images/N2_S_B.jpg',
-                          })}
-                          className="w-full inline-flex items-center justify-center gap-2 px-3 py-2.5 text-xs sm:text-sm font-bold rounded-lg bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 transition-colors active:scale-95 text-center whitespace-nowrap"
-                        >
-                          <FileText size={16} className="shrink-0" />
-                          <span>{content.skills.viewReportBtn}</span>
-                        </button>
+                          <button
+                            onClick={() => openCertModal({
+                              title: `${content.skills.n2Title} - ${content.skills.viewReportBtn}`,
+                              frontImg: '/images/N2_S_F.jpg',
+                              backImg: '/images/N2_S_B.jpg',
+                            })}
+                            className="w-full inline-flex items-center justify-center gap-2 px-3 py-2.5 text-xs sm:text-sm font-bold rounded-xl liquid-btn text-slate-800 dark:text-slate-200 transition-colors active:scale-95 text-center whitespace-nowrap"
+                          >
+                            <FileText size={16} className="shrink-0" />
+                            <span>{content.skills.viewReportBtn}</span>
+                          </button>
+                        </div>
                       </div>
-                    </div>
+                    </AppleRevealItem>
                   </div>
-                </div>
+                </AppleRevealItem>
               </div>
-            </div>
+            </AppleScrollSection>
 
             {/* Projects Section */}
-            <div id="projects" className="relative order-4 md:col-span-2 pt-8 md:pt-0 scroll-mt-20">
+            <AppleScrollSection as="div" id="projects" className="relative order-4 md:col-span-2 pt-8 md:pt-0 scroll-mt-20">
               <FadingTitle>{content.projects.title}</FadingTitle>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-12 md:pt-20 relative z-10">
                 {content.projects.items.map((project, index) => (
-                  <div key={index} className="group relative bg-white/60 dark:bg-slate-900/50 rounded-3xl p-8 border border-slate-200 dark:border-white/5 hover:border-cyan-500/30 transition-all duration-500 hover:-translate-y-2 overflow-hidden backdrop-blur-sm shadow-sm hover:shadow-xl">
-                    <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    
-                    <div className="relative z-10">
-                      <div className="flex justify-between items-start mb-6">
-                        <div className="p-4 bg-slate-100 dark:bg-slate-800 rounded-2xl text-cyan-600 dark:text-cyan-400 group-hover:text-white group-hover:bg-cyan-600 transition-all duration-300">
-                          {getProjectIcon(project.iconKey)}
+                  <AppleRevealItem key={index} delay={180 + index * 140} scale={true} className="h-full">
+                    <div className="group relative liquid-glass liquid-glass-interactive rounded-3xl p-8 transition-all duration-500 overflow-hidden shadow-xl h-full flex flex-col justify-between">
+                      <div className="relative z-10 flex flex-col flex-grow">
+                        <div className="flex justify-between items-start mb-6">
+                          <div className="p-4 liquid-pill rounded-2xl text-cyan-600 dark:text-cyan-400 group-hover:bg-cyan-600 group-hover:text-white transition-all duration-300 shadow-sm">
+                            {getProjectIcon(project.iconKey)}
+                          </div>
+                          <ArrowRight className="text-slate-400 dark:text-slate-500 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 -rotate-45 group-hover:rotate-0 transition-all duration-300" />
                         </div>
-                        <ArrowRight className="text-slate-400 dark:text-slate-600 group-hover:text-cyan-600 dark:group-hover:text-white -rotate-45 group-hover:rotate-0 transition-all duration-300" />
-                      </div>
-                      
-                      <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">
-                        {project.title}
-                      </h3>
-                      
-                      {project.description && (
-                        <p className="text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
-                          {project.description}
-                        </p>
-                      )}
+                        
+                        <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">
+                          {project.title}
+                        </h3>
+                        
+                        {project.description && (
+                          <p className="text-slate-600 dark:text-slate-300 mb-8 leading-relaxed flex-grow">
+                            {project.description}
+                          </p>
+                        )}
 
-                      <button 
-                        className="text-sm font-mono text-cyan-600 dark:text-cyan-400 hover:text-cyan-500 dark:hover:text-cyan-300 flex items-center gap-2 font-bold"
-                        onClick={() => {
-                          if (project.link === '/verb-practice') {
-                            onNavigateToVerbPractice();
-                          } else if (project.link) {
-                            window.open(project.link, '_blank');
-                          }
-                        }}
-                      >
-                        [{content.projects.viewProject}]
-                      </button>
+                        <div className={project.description ? "" : "mt-auto pt-4"}>
+                          <button 
+                            className="text-sm font-mono text-cyan-600 dark:text-cyan-400 hover:text-cyan-500 dark:hover:text-cyan-300 flex items-center gap-2 font-bold px-3 py-1.5 rounded-xl liquid-pill"
+                            onClick={() => {
+                              if (project.link === '/verb-practice') {
+                                onNavigateToVerbPractice();
+                              } else if (project.link) {
+                                window.open(project.link, '_blank');
+                              }
+                            }}
+                          >
+                            [{content.projects.viewProject}]
+                          </button>
+                        </div>
+                      </div>
                     </div>
-                  </div>
+                  </AppleRevealItem>
                 ))}
               </div>
-            </div>
+            </AppleScrollSection>
 
           </div>
 
           {/* Contact V2 */}
-          <section id="contact" className="pt-24 pb-32 md:py-32 relative border-t border-slate-200 dark:border-white/5 scroll-mt-20">
+          <AppleScrollSection id="contact" className="pt-24 pb-32 md:py-32 relative scroll-mt-20">
             <div className="max-w-4xl mx-auto px-6 text-center relative">
               <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-full flex justify-center pointer-events-none">
                  <FadingTitle className="!static !text-center">{content.contact.title}</FadingTitle>
               </div>
 
               <div className="relative z-10 pt-12 md:pt-20">
-                <p className="text-xl text-slate-600 dark:text-slate-400 mb-12">
-                  {content.contact.description}
-                </p>
+                <AppleRevealItem delay={180}>
+                  <p className="text-xl text-slate-600 dark:text-slate-300 mb-12">
+                    {content.contact.description}
+                  </p>
+                </AppleRevealItem>
                 
-                <div className="flex flex-col items-center gap-8">
-                  <div className="flex flex-col gap-4">
+                <div className="liquid-glass rounded-3xl p-8 md:p-12 shadow-2xl flex flex-col items-center gap-8">
+                  <AppleRevealItem delay={340} className="flex flex-col gap-4">
                     <a href="mailto:zliang723@connect.hkust-gz.edu.cn" className="text-xl md:text-2xl font-mono text-slate-900 dark:text-white hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
                       zliang723@connect.hkust-gz.edu.cn
                     </a>
                     <a href="mailto:liangzhu@pigcasso6.top" className="text-xl md:text-2xl font-mono text-slate-900 dark:text-white hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
                       liangzhu@pigcasso6.top
                     </a>
-                  </div>
+                  </AppleRevealItem>
 
-                  <div className="flex gap-6 mt-8">
+                  <AppleRevealItem delay={500} className="flex gap-6 mt-4">
                     <button
                       onClick={() => setIsMessageModalOpen(true)}
-                      className="px-8 py-3 rounded-lg bg-cyan-600 text-white font-bold hover:bg-cyan-500 transition-all shadow-lg shadow-cyan-500/20"
+                      className="px-8 py-3.5 rounded-full liquid-btn-primary text-white font-bold shadow-xl active:scale-95 transition-all"
                     >
                       {content.contact.leaveMessageBtn}
                     </button>
@@ -554,22 +563,22 @@ const PortfolioHomeV2: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ o
                       href="https://x.com/Pigcasso66"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-3 rounded-lg bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-700 transition-all border border-slate-200 dark:border-slate-700 group shadow-sm"
+                      className="p-3.5 rounded-full liquid-btn text-slate-700 dark:text-slate-300 active:scale-95 shadow-md group"
                     >
                       <img 
                         src="/images/x_icon.png" 
                         alt="X" 
-                        className="w-6 h-6 object-contain dark:invert opacity-80 group-hover:opacity-100 transition-opacity"
+                        className="w-5 h-5 object-contain dark:invert opacity-80 group-hover:opacity-100 transition-opacity"
                       />
                     </a>
-                  </div>
+                  </AppleRevealItem>
                 </div>
               </div>
             </div>
-          </section>
+          </AppleScrollSection>
 
           {/* Footer V2 */}
-          <footer className="py-8 border-t border-slate-200 dark:border-slate-800 transition-colors">
+          <footer className="py-10 bg-transparent text-center space-y-2 relative z-10">
             <div className="max-w-6xl mx-auto px-6 text-center space-y-2">
               <p className="text-sm text-slate-500 dark:text-slate-400">
                 {content.contact.footerText}
@@ -578,7 +587,7 @@ const PortfolioHomeV2: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ o
                 href="https://beian.miit.gov.cn/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-sm text-slate-500 dark:text-slate-400 font-sans-sc hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors"
+                className="inline-block text-sm text-slate-500 dark:text-slate-400 font-sans-sc hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors"
               >
                 {content.contact.icpText}
               </a>
