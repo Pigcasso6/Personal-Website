@@ -16,11 +16,11 @@ const Navbar: React.FC = () => {
   const [imgError, setImgError] = useState(false);
   const langMenuRef = useRef<HTMLDivElement>(null);
 
-  const languages: { code: Language; label: string }[] = [
-    { code: 'zh-CN', label: '简体中文' },
-    { code: 'zh-TW', label: '繁體中文' },
-    { code: 'en', label: 'English' },
-    { code: 'ja', label: '日本語' },
+  const languages: { code: Language; label: string; path: string }[] = [
+    { code: 'zh-CN', label: '简体中文', path: '/zh-cn' },
+    { code: 'zh-TW', label: '繁體中文', path: '/zh-tw' },
+    { code: 'en', label: 'English', path: '/en' },
+    { code: 'ja', label: '日本語', path: '/jp' },
   ];
 
   useEffect(() => {
@@ -136,20 +136,22 @@ const Navbar: React.FC = () => {
               {isLangMenuOpen && (
                 <div className="absolute right-0 top-full mt-2.5 w-36 liquid-glass liquid-sheen rounded-2xl p-1.5 overflow-hidden animate-fade-in shadow-2xl z-50">
                   {languages.map((lang) => (
-                    <button
+                    <a
                       key={lang.code}
-                      onClick={() => {
+                      href={lang.path}
+                      onClick={(e) => {
+                        e.preventDefault();
                         setLanguage(lang.code);
                         setIsLangMenuOpen(false);
                       }}
-                      className={`w-full text-left px-3.5 py-2 text-sm rounded-xl transition-all ${
+                      className={`block w-full text-left px-3.5 py-2 text-sm rounded-xl transition-all cursor-pointer ${
                         language === lang.code
                           ? 'bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 font-semibold'
                           : 'text-slate-700 dark:text-slate-300 hover:bg-white/50 dark:hover:bg-white/10'
                       }`}
                     >
                       {lang.label}
-                    </button>
+                    </a>
                   ))}
                 </div>
               )}
@@ -207,19 +209,21 @@ const Navbar: React.FC = () => {
           <div className="flex flex-col gap-4 pt-4 border-t border-slate-200/50 dark:border-slate-700/50 mt-2">
             <div className="flex flex-wrap gap-2">
               {languages.map((lang) => (
-                <button
+                <a
                   key={lang.code}
-                  onClick={() => {
+                  href={lang.path}
+                  onClick={(e) => {
+                    e.preventDefault();
                     setLanguage(lang.code);
                   }}
-                  className={`px-3 py-1.5 rounded-xl text-sm transition-all border ${
+                  className={`px-3 py-1.5 rounded-xl text-sm transition-all border cursor-pointer ${
                     language === lang.code
                       ? 'bg-indigo-500/20 border-indigo-400 text-indigo-700 dark:text-indigo-300 font-semibold shadow-sm'
                       : 'liquid-pill border-slate-200/60 dark:border-slate-700/60 text-slate-700 dark:text-slate-300'
                   }`}
                 >
                   {lang.label}
-                </button>
+                </a>
               ))}
             </div>
             
