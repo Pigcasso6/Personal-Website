@@ -65,7 +65,7 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
 
   return (
     <div 
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/75 backdrop-blur-2xl animate-fade-in select-none touch-none"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-md sm:backdrop-blur-xl animate-fade-in select-none"
       onClick={onClose}
       onWheel={(e) => e.stopPropagation()}
       onTouchMove={(e) => e.stopPropagation()}
@@ -81,7 +81,7 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
         <div className="hidden sm:flex absolute left-[calc(100%+14px)] top-0 flex-col gap-3.5 z-30">
           <button
             onClick={onClose}
-            className="w-11 h-11 rounded-full liquid-pill text-white flex items-center justify-center transition-all shadow-2xl hover:scale-110 active:scale-95 cursor-pointer"
+            className="w-11 h-11 rounded-full liquid-pill text-white flex items-center justify-center transition-all shadow-2xl hover:scale-110 active:scale-95 cursor-pointer touch-manipulation"
             aria-label="Close"
           >
             <X size={20} />
@@ -89,7 +89,7 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
 
           <button
             onClick={() => setIsFlipped(!isFlipped)}
-            className="w-11 h-11 rounded-full liquid-pill text-white flex items-center justify-center transition-all shadow-2xl hover:scale-110 active:scale-95 cursor-pointer"
+            className="w-11 h-11 rounded-full liquid-pill text-white flex items-center justify-center transition-all shadow-2xl hover:scale-110 active:scale-95 cursor-pointer touch-manipulation"
             aria-label="Flip"
           >
             <RefreshCw 
@@ -100,21 +100,21 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
         </div>
 
         {/* Mobile Action Buttons: Minimalist Gray Circle Icons inside top-right corner */}
-        <div className="flex sm:hidden absolute top-3 right-3 flex-col gap-2 z-30">
+        <div className="flex sm:hidden absolute top-3 right-3 flex-col gap-2.5 z-30 pointer-events-auto">
           <button
             onClick={onClose}
-            className="w-8 h-8 rounded-full liquid-pill text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer shadow-lg"
+            className="w-9 h-9 rounded-full liquid-pill text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer shadow-lg touch-manipulation"
             aria-label="Close"
           >
-            <X size={16} />
+            <X size={17} />
           </button>
           <button
             onClick={() => setIsFlipped(!isFlipped)}
-            className="w-8 h-8 rounded-full liquid-pill text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer shadow-lg"
+            className="w-9 h-9 rounded-full liquid-pill text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer shadow-lg touch-manipulation"
             aria-label="Flip"
           >
             <RefreshCw 
-              size={15} 
+              size={16} 
               className={`transition-transform duration-700 ${isFlipped ? 'rotate-180' : ''}`} 
             />
           </button>
@@ -131,6 +131,7 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
               transformStyle: 'preserve-3d',
               WebkitTransformStyle: 'preserve-3d',
               transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
+              willChange: 'transform',
             }}
           >
             {/* Front Image Side (F image - rotateY 0deg) */}

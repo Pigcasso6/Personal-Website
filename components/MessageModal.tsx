@@ -78,15 +78,16 @@ const MessageModal: React.FC<MessageModalProps> = ({ isOpen, onClose, version = 
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
       {/* Backdrop */}
       <div 
-        className="absolute inset-0 bg-slate-900/50 dark:bg-black/70 backdrop-blur-xl animate-fade-in"
+        className="absolute inset-0 bg-slate-900/60 dark:bg-black/75 backdrop-blur-md sm:backdrop-blur-xl animate-fade-in"
         onClick={onClose}
       ></div>
 
       {/* Modal Content */}
-      <div className="relative w-full max-w-lg liquid-glass liquid-sheen rounded-3xl shadow-2xl p-8 animate-slide-up border border-white/70 dark:border-white/15">
+      <div className="relative w-full max-w-lg liquid-glass liquid-sheen rounded-3xl shadow-2xl p-6 sm:p-8 animate-fade-in border border-white/70 dark:border-white/15">
         <button 
           onClick={onClose}
-          className="absolute top-5 right-5 p-2 rounded-full liquid-pill text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white transition-all active:scale-90"
+          className="absolute top-5 right-5 p-2.5 rounded-full liquid-pill text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white transition-all active:scale-90 cursor-pointer touch-manipulation z-20"
+          aria-label="Close"
         >
           <X size={18} />
         </button>
@@ -103,7 +104,7 @@ const MessageModal: React.FC<MessageModalProps> = ({ isOpen, onClose, version = 
             <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-2">{formText.success}</h4>
             <button 
               onClick={onClose}
-              className="mt-6 px-7 py-2.5 rounded-full liquid-btn text-slate-800 dark:text-slate-200 font-semibold transition-all active:scale-95"
+              className="mt-6 px-7 py-2.5 rounded-full liquid-btn text-slate-800 dark:text-slate-200 font-semibold transition-all active:scale-95 cursor-pointer touch-manipulation"
             >
               {formText.close}
             </button>
@@ -161,7 +162,7 @@ const MessageModal: React.FC<MessageModalProps> = ({ isOpen, onClose, version = 
             <button
               type="submit"
               disabled={isSubmitting}
-              className={`w-full flex items-center justify-center gap-2 ${isV2 ? 'bg-cyan-600 hover:bg-cyan-500 shadow-cyan-500/20' : 'liquid-btn-primary'} text-white font-bold py-3.5 rounded-2xl transition-all disabled:opacity-70 disabled:cursor-not-allowed shadow-xl active:scale-95`}
+              className={`w-full flex items-center justify-center gap-2 ${isV2 ? 'bg-cyan-600 hover:bg-cyan-500 shadow-cyan-500/20' : 'liquid-btn-primary'} text-white font-bold py-3.5 rounded-2xl transition-all disabled:opacity-70 disabled:cursor-not-allowed shadow-xl active:scale-95 touch-manipulation cursor-pointer`}
             >
               {isSubmitting ? (
                 <>

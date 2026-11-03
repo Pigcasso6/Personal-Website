@@ -84,11 +84,13 @@ const PortfolioHome: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ onN
   };
 
   return (
-    <div className={`min-h-screen flex flex-col selection:bg-indigo-100 dark:selection:bg-indigo-900/50 ${getFontClass(language)}`}>
+    <div className={`relative min-h-screen flex flex-col selection:bg-indigo-100 dark:selection:bg-indigo-900/50 ${getFontClass(language)}`}>
       <BackgroundDecor />
-      <Navbar />
       
-      <main className="flex-grow">
+      <div className="relative z-10 flex flex-col flex-grow">
+        <Navbar />
+        
+        <main className="flex-grow">
         <Hero />
 
         {/* About Section */}
@@ -508,6 +510,7 @@ const PortfolioHome: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ onN
           </div>
         </footer>
       </main>
+      </div>
 
       <MessageModal 
         isOpen={isMessageModalOpen} 

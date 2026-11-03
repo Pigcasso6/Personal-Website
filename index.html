@@ -27,10 +27,14 @@
       };
     </script>
 
-    <!-- Google Fonts -->
+    <!-- Google Fonts (Non-render-blocking for instant first paint) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+JP:wght@400;700&family=Noto+Serif+SC:wght@400;700&family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+JP:wght@400;700&family=Noto+Serif+SC:wght@400;700&family=Noto+Serif+TC:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+JP:wght@400;700&family=Noto+Serif+SC:wght@400;700&family=Noto+Serif+TC:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+JP:wght@400;700&family=Noto+Serif+SC:wght@400;700&family=Noto+Serif+TC:wght@400;700&display=swap">
+    </noscript>
 
     <!-- Tailwind CSS (CDN for simplicity in layout, though production usually uses build step. Keeping for compatibility with current class names) -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -50,8 +54,8 @@
               'serif-jp': ['"Noto Serif JP"', 'serif'],
             },
             animation: {
-              'fade-in': 'fadeIn 0.4s ease-out',
-              'slide-up': 'slideUp 1.35s cubic-bezier(0.16, 1, 0.3, 1) both',
+              'fade-in': 'fadeIn 0.3s ease-out',
+              'slide-up': 'slideUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) both',
               'blob': 'blob 7s infinite',
             },
             keyframes: {
@@ -60,8 +64,8 @@
                 '100%': { opacity: '1' },
               },
               slideUp: {
-                '0%': { transform: 'translate3d(0, 48px, 0)', opacity: '0', filter: 'blur(8px)' },
-                '100%': { transform: 'translate3d(0, 0, 0)', opacity: '1', filter: 'blur(0px)' },
+                '0%': { transform: 'translate3d(0, 36px, 0)', opacity: '0' },
+                '100%': { transform: 'translate3d(0, 0, 0)', opacity: '1' },
               },
               blob: {
                 '0%': { transform: 'translate(0px, 0px) scale(1)' },

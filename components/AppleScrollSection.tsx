@@ -30,10 +30,10 @@ export const AppleScrollSection: React.FC<AppleScrollSectionProps> = ({
   className = '',
   children,
   as: Component = 'section',
-  threshold = 0.1,
-  rootMargin = '0px 0px -100px 0px',
+  threshold = 0.05,
+  rootMargin = '0px 0px -40px 0px',
   delay = 0,
-  duration = 1350,
+  duration = 1100,
 }) => {
   const ref = useRef<HTMLElement>(null);
   const [isInView, setIsInView] = useState(false);
@@ -52,7 +52,7 @@ export const AppleScrollSection: React.FC<AppleScrollSectionProps> = ({
 
     // Check if element is already well inside the visible viewport on initial load (e.g., top of page or refreshed)
     const rect = node.getBoundingClientRect();
-    if (rect.top < window.innerHeight * 0.45 && rect.bottom > 0) {
+    if (rect.top < window.innerHeight * 0.85 && rect.bottom > 0) {
       setIsInView(true);
       return;
     }
@@ -149,9 +149,8 @@ export const AppleRevealItem: React.FC<AppleRevealItemProps> = ({
         ...style,
         opacity: isInView ? 1 : 0,
         transform: isInView ? finalTransform : initialTransform,
-        filter: isInView ? 'blur(0px)' : 'blur(8px)',
-        transition: `opacity ${duration}ms cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, transform ${duration}ms cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, filter ${duration}ms cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
-        willChange: isInView ? 'auto' : 'opacity, transform, filter',
+        transition: `opacity ${duration}ms cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, transform ${duration}ms cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
+        willChange: isInView ? 'auto' : 'opacity, transform',
       }}
     >
       {children}
