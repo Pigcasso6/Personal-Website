@@ -78,7 +78,7 @@ const MessageModal: React.FC<MessageModalProps> = ({ isOpen, onClose, version = 
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
       {/* Backdrop */}
       <div 
-        className="absolute inset-0 bg-slate-900/60 dark:bg-black/75 backdrop-blur-md sm:backdrop-blur-xl animate-fade-in"
+        className="absolute inset-0 bg-slate-950/75 animate-fade-in"
         onClick={onClose}
         onTouchEnd={(e) => {
           if (e.target === e.currentTarget) {
@@ -93,7 +93,7 @@ const MessageModal: React.FC<MessageModalProps> = ({ isOpen, onClose, version = 
         <button 
           onClick={(e) => { e.stopPropagation(); onClose(); }}
           onTouchEnd={(e) => { e.preventDefault(); e.stopPropagation(); onClose(); }}
-          className="absolute top-4 right-4 sm:top-5 sm:right-5 w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full liquid-pill text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white transition-all active:scale-90 cursor-pointer touch-manipulation z-30"
+          className="absolute top-4 right-4 sm:top-5 sm:right-5 w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full bg-slate-200/80 hover:bg-slate-300 dark:bg-slate-800/80 dark:hover:bg-slate-700 text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-all active:scale-90 cursor-pointer border border-white/50 dark:border-white/10 touch-manipulation z-30"
           aria-label="Close"
         >
           <X size={18} />

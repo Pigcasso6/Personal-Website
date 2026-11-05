@@ -30,10 +30,10 @@ export const AppleScrollSection: React.FC<AppleScrollSectionProps> = ({
   className = '',
   children,
   as: Component = 'section',
-  threshold = 0.05,
-  rootMargin = '0px 0px -40px 0px',
+  threshold = 0.01,
+  rootMargin = '120px 0px 40px 0px',
   delay = 0,
-  duration = 1100,
+  duration = 750,
 }) => {
   const ref = useRef<HTMLElement>(null);
   const [isInView, setIsInView] = useState(false);
@@ -50,9 +50,9 @@ export const AppleScrollSection: React.FC<AppleScrollSectionProps> = ({
     const node = ref.current;
     if (!node) return;
 
-    // Check if element is already well inside the visible viewport on initial load (e.g., top of page or refreshed)
+    // Check if element is already within reach of the viewport on initial load
     const rect = node.getBoundingClientRect();
-    if (rect.top < window.innerHeight * 0.85 && rect.bottom > 0) {
+    if (rect.top < window.innerHeight + 120 && rect.bottom > -100) {
       setIsInView(true);
       return;
     }
@@ -127,8 +127,8 @@ export const AppleRevealItem: React.FC<AppleRevealItemProps> = ({
   children,
   className = '',
   delay = 0,
-  yOffset = 48,
-  duration = 1350,
+  yOffset = 30,
+  duration = 800,
   as: Component = 'div',
   style = {},
   scale = false,

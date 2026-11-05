@@ -81,7 +81,7 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
 
   return (
     <div 
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-md sm:backdrop-blur-xl animate-fade-in select-none"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 animate-fade-in select-none"
       onClick={handleClose}
       onTouchEnd={(e) => {
         if (e.target === e.currentTarget) {
@@ -103,7 +103,7 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
           <button
             onClick={handleClose}
             onTouchEnd={handleClose}
-            className="w-11 h-11 rounded-full liquid-pill text-white flex items-center justify-center transition-all shadow-2xl hover:scale-110 active:scale-95 cursor-pointer touch-manipulation"
+            className="w-11 h-11 rounded-full bg-slate-900/70 hover:bg-slate-900/90 text-white flex items-center justify-center transition-all shadow-2xl hover:scale-110 active:scale-95 cursor-pointer border border-white/30 touch-manipulation"
             aria-label="Close"
           >
             <X size={20} />
@@ -112,7 +112,7 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
           <button
             onClick={handleFlip}
             onTouchEnd={handleFlip}
-            className="w-11 h-11 rounded-full liquid-pill text-white flex items-center justify-center transition-all shadow-2xl hover:scale-110 active:scale-95 cursor-pointer touch-manipulation"
+            className="w-11 h-11 rounded-full bg-slate-900/70 hover:bg-slate-900/90 text-white flex items-center justify-center transition-all shadow-2xl hover:scale-110 active:scale-95 cursor-pointer border border-white/30 touch-manipulation"
             aria-label="Flip"
           >
             <RefreshCw 
@@ -130,7 +130,7 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
           <button
             onClick={handleClose}
             onTouchEnd={handleClose}
-            className="w-10 h-10 min-w-[40px] min-h-[40px] rounded-full liquid-pill text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer shadow-lg touch-manipulation"
+            className="w-10 h-10 min-w-[40px] min-h-[40px] rounded-full bg-slate-900/70 active:bg-slate-900/90 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer shadow-xl border border-white/30 touch-manipulation"
             aria-label="Close"
           >
             <X size={18} />
@@ -138,7 +138,7 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
           <button
             onClick={handleFlip}
             onTouchEnd={handleFlip}
-            className="w-10 h-10 min-w-[40px] min-h-[40px] rounded-full liquid-pill text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer shadow-lg touch-manipulation"
+            className="w-10 h-10 min-w-[40px] min-h-[40px] rounded-full bg-slate-900/70 active:bg-slate-900/90 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer shadow-xl border border-white/30 touch-manipulation"
             aria-label="Flip"
           >
             <RefreshCw 
