@@ -3,11 +3,38 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no" />
     <title>Pigcahome</title>
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/images/avatar-rounded-square.png">
+
+    <!-- Disable multi-finger pinch zoom site-wide on mobile devices -->
+    <script>
+      (function() {
+        document.addEventListener('touchstart', function(e) {
+          if (e.touches && e.touches.length > 1) {
+            e.preventDefault();
+          }
+        }, { passive: false });
+
+        document.addEventListener('touchmove', function(e) {
+          if (e.touches && e.touches.length > 1) {
+            e.preventDefault();
+          }
+        }, { passive: false });
+
+        document.addEventListener('gesturestart', function(e) {
+          e.preventDefault();
+        }, { passive: false });
+        document.addEventListener('gesturechange', function(e) {
+          e.preventDefault();
+        }, { passive: false });
+        document.addEventListener('gestureend', function(e) {
+          e.preventDefault();
+        }, { passive: false });
+      })();
+    </script>
 
     <!-- Global Error Handler -->
     <script>
@@ -79,7 +106,11 @@
       }
     </script>
     <style>
-      html { scroll-behavior: smooth; }
+      html, body {
+        scroll-behavior: smooth;
+        touch-action: pan-x pan-y;
+        -webkit-text-size-adjust: 100%;
+      }
       ::-webkit-scrollbar { width: 8px; }
       ::-webkit-scrollbar-track { background: transparent; }
       ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }

@@ -104,20 +104,20 @@ const PortfolioHome: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ onN
             </AppleRevealItem>
             <div className="grid md:grid-cols-2 gap-12 items-stretch">
               <AppleRevealItem delay={180} className="h-full flex flex-col">
-                <div className="h-full flex flex-col justify-between space-y-6 text-lg text-slate-600 dark:text-slate-300 leading-relaxed liquid-glass p-7 md:p-8 rounded-3xl shadow-xl">
-                  <div className="space-y-6">
+                <div className="flex flex-col space-y-6 text-lg text-slate-600 dark:text-slate-300 leading-relaxed liquid-glass p-7 md:p-8 rounded-3xl shadow-xl h-full">
+                  <div className="space-y-5">
                     {content.about.content.map((paragraph, index) => (
                       <p key={index}>{paragraph}</p>
                     ))}
                   </div>
                   
                   {/* Postcrossing Button */}
-                  <div className="pt-2">
+                  <div className="pt-2 flex justify-center md:justify-start w-full">
                     <a 
                       href="https://www.postcrossing.com/user/Pigcasso6" 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="max-w-full inline-flex items-center justify-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-full liquid-btn text-indigo-700 dark:text-indigo-300 font-semibold shadow-md active:scale-95 transition-all text-[clamp(11px,3.2vw,15px)] sm:text-base whitespace-nowrap"
+                      className="w-[92%] sm:w-auto max-w-sm inline-flex items-center justify-center gap-2.5 px-6 sm:px-8 py-3 rounded-full liquid-btn text-indigo-700 dark:text-indigo-300 font-semibold shadow-md active:scale-95 transition-all text-xs sm:text-sm md:text-base whitespace-nowrap"
                     >
                       <Stamp className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
                       <span className="whitespace-nowrap">{content.about.postcrossingLabel}</span>
@@ -126,14 +126,16 @@ const PortfolioHome: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ onN
                 </div>
               </AppleRevealItem>
               
-              <AppleRevealItem delay={340} scale={true} className="relative group h-full flex flex-col">
-                <div className="absolute -inset-2 bg-gradient-to-r from-indigo-500/30 to-purple-500/30 rounded-3xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-500"></div>
-                <div className="relative h-full w-full liquid-glass p-2.5 rounded-3xl shadow-2xl overflow-hidden flex flex-col">
-                  <img 
-                    src="https://picsum.photos/600/800?grayscale" 
-                    alt="Liang Zhu" 
-                    className="relative rounded-2xl w-full h-full min-h-[320px] object-cover filter grayscale hover:grayscale-0 transition-all duration-700 flex-grow"
-                  />
+              <AppleRevealItem delay={340} scale={true} className="relative group h-full min-h-0 flex flex-col">
+                <div className="absolute -inset-2 bg-gradient-to-r from-indigo-500/30 to-purple-500/30 rounded-3xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-500 pointer-events-none"></div>
+                <div className="relative h-[340px] md:h-full w-full min-h-0 liquid-glass p-2.5 rounded-3xl shadow-2xl overflow-hidden flex flex-col">
+                  <div className="relative w-full h-full min-h-0 overflow-hidden rounded-2xl flex-1">
+                    <img 
+                      src="https://picsum.photos/600/800?grayscale" 
+                      alt="Liang Zhu" 
+                      className="absolute inset-0 w-full h-full object-cover filter grayscale hover:grayscale-0 transition-all duration-700"
+                    />
+                  </div>
                 </div>
               </AppleRevealItem>
             </div>
