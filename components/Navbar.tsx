@@ -23,6 +23,13 @@ const Navbar: React.FC = () => {
   const menuTouchStartY = useRef<number | null>(null);
   const menuTouchDeltaY = useRef<number>(0);
 
+  // iOS 26 Liquid Glass Navigation Links Long-Press & Vertical Drag Selector state
+  const navItemRefs = useRef<(HTMLAnchorElement | null)[]>([]);
+  const [isNavScrubbing, setIsNavScrubbing] = useState(false);
+  const [scrubbingIndex, setScrubbingIndex] = useState<number | null>(null);
+  const navLongPressTimer = useRef<NodeJS.Timeout | null>(null);
+  const navTouchStartY = useRef<number | null>(null);
+
   // iOS 26 Liquid Glass Segmented Language Slider state
   const segmentedTrackRef = useRef<HTMLDivElement>(null);
   const [isDraggingLang, setIsDraggingLang] = useState(false);
@@ -89,6 +96,102 @@ const Navbar: React.FC = () => {
     setDragIndex(null);
   };
 
+  // Nav Links Long-Press & Vertical Drag calculation and handlers
+  const calcNavIndexFromClientY = (clientY: number): number => {
+    let closestIndex = 0;
+    let minDistance = Infinity;
+
+    for (let i = 0; i < navItemRefs.current.length; i++) {
+      const el = navItemRefs.current[i];
+      if (el) {
+        const rect = el.getBoundingClientRect();
+        if (clientY >= rect.top && clientY <= rect.bottom) {
+          return i;
+        }
+        const centerY = rect.top + rect.height / 2;
+        const dist = Math.abs(clientY - centerY);
+        if (dist < minDistance) {
+          minDistance = dist;
+          closestIndex = i;
+        }
+      }
+    }
+    return closestIndex;
+  };
+
+  const handleNavTouchStart = (e: React.TouchEvent) => {
+    const touch = e.touches[0];
+    navTouchStartY.current = touch.clientY;
+    const initialIndex = calcNavIndexFromClientY(touch.clientY);
+
+    if (navLongPressTimer.current) clearTimeout(navLongPressTimer.current);
+    navLongPressTimer.current = setTimeout(() => {
+      setIsNavScrubbing(true);
+      setScrubbingIndex(initialIndex);
+      if (typeof navigator !== 'undefined' && 'vibrate' in navigator) {
+        try { navigator.vibrate(12); } catch (_) {}
+      }
+    }, 180);
+  };
+
+  const handleNavTouchMove = (e: React.TouchEvent) => {
+    const touch = e.touches[0];
+    if (navTouchStartY.current !== null) {
+      const deltaY = touch.clientY - navTouchStartY.current;
+
+      // If NOT long-pressing, a fast swipe upward collapses the menu immediately
+      if (!isNavScrubbing) {
+        if (deltaY < -28) {
+          if (navLongPressTimer.current) clearTimeout(navLongPressTimer.current);
+          setIsMobileMenuOpen(false);
+          navTouchStartY.current = null;
+          return;
+        }
+      } else {
+        // We are in liquid glass selector scrubbing mode
+        e.stopPropagation();
+        const newIndex = calcNavIndexFromClientY(touch.clientY);
+        if (newIndex !== scrubbingIndex) {
+          setScrubbingIndex(newIndex);
+          if (typeof navigator !== 'undefined' && 'vibrate' in navigator) {
+            try { navigator.vibrate(6); } catch (_) {}
+          }
+        }
+      }
+    }
+  };
+
+  const handleNavTouchEnd = (e: React.TouchEvent) => {
+    if (navLongPressTimer.current) {
+      clearTimeout(navLongPressTimer.current);
+      navLongPressTimer.current = null;
+    }
+
+    if (isNavScrubbing && scrubbingIndex !== null) {
+      e.stopPropagation();
+      const targetLink = navLinks[scrubbingIndex];
+      if (targetLink) {
+        handleNavClick(e as any, targetLink.href);
+      }
+      setIsNavScrubbing(false);
+      setScrubbingIndex(null);
+    } else {
+      setIsNavScrubbing(false);
+      setScrubbingIndex(null);
+    }
+    navTouchStartY.current = null;
+  };
+
+  const handleNavTouchCancel = () => {
+    if (navLongPressTimer.current) {
+      clearTimeout(navLongPressTimer.current);
+      navLongPressTimer.current = null;
+    }
+    setIsNavScrubbing(false);
+    setScrubbingIndex(null);
+    navTouchStartY.current = null;
+  };
+
   // Swipe up gesture for the mobile menu container
   const handleMenuTouchStart = (e: React.TouchEvent) => {
     menuTouchStartY.current = e.touches[0].clientY;
@@ -102,12 +205,33 @@ const Navbar: React.FC = () => {
   };
 
   const handleMenuTouchEnd = () => {
-    if (menuTouchDeltaY.current < -35) {
+    if (menuTouchDeltaY.current < -25) {
       setIsMobileMenuOpen(false);
     }
     menuTouchStartY.current = null;
     menuTouchDeltaY.current = 0;
   };
+
+  // Prevent any background page scrolling while mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+
+      const preventTouchMove = (e: TouchEvent) => {
+        if (e.cancelable) {
+          e.preventDefault();
+        }
+      };
+
+      window.addEventListener('touchmove', preventTouchMove, { passive: false });
+
+      return () => {
+        document.body.style.overflow = originalOverflow;
+        window.removeEventListener('touchmove', preventTouchMove);
+      };
+    }
+  }, [isMobileMenuOpen]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -301,25 +425,73 @@ const Navbar: React.FC = () => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: -10 }}
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            style={{ transformOrigin: 'top center' }}
+            style={{
+              transformOrigin: 'top center',
+              touchAction: 'none',
+              WebkitTouchCallout: 'none',
+              WebkitUserSelect: 'none',
+              userSelect: 'none',
+            }}
             onTouchStart={handleMenuTouchStart}
             onTouchMove={handleMenuTouchMove}
             onTouchEnd={handleMenuTouchEnd}
-            className="md:hidden w-[calc(100%-3rem)] max-w-6xl mx-auto mt-2.5 liquid-glass liquid-sheen rounded-3xl p-6 flex flex-col gap-4 shadow-2xl border border-white/40 dark:border-white/10 pointer-events-auto"
+            className="md:hidden w-[calc(100%-3rem)] max-w-6xl mx-auto mt-2.5 liquid-glass liquid-sheen rounded-3xl p-6 flex flex-col gap-4 shadow-2xl border border-white/40 dark:border-white/10 pointer-events-auto select-none touch-none"
           >
             {/* iOS Pull / Swipe-Up Indicator Bar */}
-            <div className="w-10 h-1 rounded-full bg-slate-300 dark:bg-white/20 mx-auto -mt-2 mb-1 opacity-70" />
+            <div className="w-10 h-1 rounded-full bg-slate-300 dark:bg-white/20 mx-auto -mt-2 mb-1 opacity-70 pointer-events-none" />
 
-            {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                onClick={(e) => handleNavClick(e, link.href)}
-                className="text-lg font-medium text-slate-900 dark:text-slate-100 py-2 px-3 rounded-xl hover:bg-white/40 dark:hover:bg-white/10 transition-colors"
-              >
-                {link.label}
-              </a>
-            ))}
+            {/* 5 Navigation Buttons with Long-Press & Vertical Drag Liquid Glass Selector */}
+            <div 
+              className="flex flex-col gap-1 relative select-none touch-none"
+              onTouchStart={handleNavTouchStart}
+              onTouchMove={handleNavTouchMove}
+              onTouchEnd={handleNavTouchEnd}
+              onTouchCancel={handleNavTouchCancel}
+              onContextMenu={(e) => e.preventDefault()}
+              style={{
+                WebkitTouchCallout: 'none',
+                WebkitUserSelect: 'none',
+                userSelect: 'none',
+                touchAction: 'none',
+              }}
+            >
+              {navLinks.map((link, index) => {
+                const isSelected = isNavScrubbing && scrubbingIndex === index;
+                const isOther = isNavScrubbing && scrubbingIndex !== null && scrubbingIndex !== index;
+
+                return (
+                  <a
+                    key={link.label}
+                    ref={(el) => { navItemRefs.current[index] = el; }}
+                    href={link.href}
+                    onClick={(e) => handleNavClick(e, link.href)}
+                    onContextMenu={(e) => e.preventDefault()}
+                    className={`relative text-lg py-2.5 px-4 rounded-2xl select-none touch-none transition-all duration-200 cursor-pointer ${
+                      isSelected
+                        ? 'liquid-glass liquid-sheen bg-white/85 dark:bg-slate-800/90 text-indigo-600 dark:text-indigo-400 font-bold border border-white/90 dark:border-white/25 shadow-xl scale-[1.02]'
+                        : isOther
+                        ? 'text-slate-400 dark:text-slate-500 font-medium opacity-50 scale-[0.98]'
+                        : 'text-slate-900 dark:text-slate-100 font-medium hover:bg-white/40 dark:hover:bg-white/10'
+                    }`}
+                    style={{
+                      WebkitTouchCallout: 'none',
+                      WebkitUserSelect: 'none',
+                      userSelect: 'none',
+                      touchAction: 'none',
+                    }}
+                  >
+                    <div className="flex items-center justify-between pointer-events-none">
+                      <span>{link.label}</span>
+                      {isSelected && (
+                        <span className="text-xs font-semibold px-2 py-0.5 rounded-full liquid-pill bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-800 animate-fade-in">
+                          松手进入
+                        </span>
+                      )}
+                    </div>
+                  </a>
+                );
+              })}
+            </div>
             <div className="flex flex-col gap-4 pt-4 border-t border-slate-200/50 dark:border-slate-700/50 mt-1">
               
               {/* iOS 26 Liquid Glass Drag-and-Slide Segmented Language Selector */}
