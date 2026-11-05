@@ -5,6 +5,7 @@ import { useTheme } from '../contexts/ThemeContext';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useVersion } from '../contexts/VersionContext';
 import { Language } from '../types';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const Navbar: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
@@ -15,6 +16,8 @@ const Navbar: React.FC = () => {
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
   const [imgError, setImgError] = useState(false);
   const langMenuRef = useRef<HTMLDivElement>(null);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const mobileMenuBtnRef = useRef<HTMLButtonElement>(null);
 
   const languages: { code: Language; label: string; path: string }[] = [
     { code: 'zh-CN', label: '简体中文', path: '/zh-cn' },
@@ -29,16 +32,27 @@ const Navbar: React.FC = () => {
     };
     window.addEventListener('scroll', handleScroll);
     
-    const handleClickOutside = (event: MouseEvent) => {
-      if (langMenuRef.current && !langMenuRef.current.contains(event.target as Node)) {
+    const handleClickOutside = (event: MouseEvent | TouchEvent) => {
+      const target = event.target as Node;
+      if (langMenuRef.current && !langMenuRef.current.contains(target)) {
         setIsLangMenuOpen(false);
       }
+      if (
+        mobileMenuRef.current &&
+        !mobileMenuRef.current.contains(target) &&
+        mobileMenuBtnRef.current &&
+        !mobileMenuBtnRef.current.contains(target)
+      ) {
+        setIsMobileMenuOpen(false);
+      }
     };
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside as EventListener);
+    document.addEventListener('touchstart', handleClickOutside as EventListener, { passive: true });
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside as EventListener);
+      document.removeEventListener('touchstart', handleClickOutside as EventListener);
     };
   }, []);
 
@@ -184,8 +198,9 @@ const Navbar: React.FC = () => {
         {/* Mobile Menu Button */}
         <div className="md:hidden flex items-center gap-3">
           <button
+            ref={mobileMenuBtnRef}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="p-2 rounded-xl liquid-pill text-slate-800 dark:text-slate-100 active:scale-95"
+            className="p-2 rounded-xl liquid-pill text-slate-800 dark:text-slate-100 active:scale-95 touch-manipulation cursor-pointer"
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
@@ -193,66 +208,77 @@ const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Menu Overlay */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden w-[calc(100%-2rem)] max-w-md mx-auto mt-2 liquid-glass liquid-sheen rounded-3xl p-6 flex flex-col gap-4 shadow-2xl animate-fade-in border border-white/40 dark:border-white/10 pointer-events-auto">
-          {navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              onClick={(e) => handleNavClick(e, link.href)}
-              className="text-lg font-medium text-slate-900 dark:text-slate-100 py-2 px-3 rounded-xl hover:bg-white/40 dark:hover:bg-white/10 transition-colors"
-            >
-              {link.label}
-            </a>
-          ))}
-          <div className="flex flex-col gap-4 pt-4 border-t border-slate-200/50 dark:border-slate-700/50 mt-2">
-            <div className="flex flex-wrap gap-2">
-              {languages.map((lang) => (
-                <a
-                  key={lang.code}
-                  href={lang.path}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setLanguage(lang.code);
-                  }}
-                  className={`px-3 py-1.5 rounded-xl text-sm transition-all border cursor-pointer ${
-                    language === lang.code
-                      ? 'bg-indigo-500/20 border-indigo-400 text-indigo-700 dark:text-indigo-300 font-semibold shadow-sm'
-                      : 'liquid-pill border-slate-200/60 dark:border-slate-700/60 text-slate-700 dark:text-slate-300'
-                  }`}
-                >
-                  {lang.label}
-                </a>
-              ))}
-            </div>
-            
-            <div className="flex items-center gap-4 pt-1">
-              {!isScrolled && (
+      {/* Mobile Menu Overlay with Smooth Expand/Collapse Animation */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div 
+            ref={mobileMenuRef}
+            key="mobile-nav-menu"
+            initial={{ opacity: 0, scale: 0.96, y: -12 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.96, y: -10 }}
+            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            style={{ transformOrigin: 'top center' }}
+            className="md:hidden w-[calc(100%-3rem)] max-w-6xl mx-auto mt-2.5 liquid-glass liquid-sheen rounded-3xl p-6 flex flex-col gap-4 shadow-2xl border border-white/40 dark:border-white/10 pointer-events-auto"
+          >
+            {navLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
+                className="text-lg font-medium text-slate-900 dark:text-slate-100 py-2 px-3 rounded-xl hover:bg-white/40 dark:hover:bg-white/10 transition-colors"
+              >
+                {link.label}
+              </a>
+            ))}
+            <div className="flex flex-col gap-4 pt-4 border-t border-slate-200/50 dark:border-slate-700/50 mt-2">
+              <div className="flex flex-wrap gap-2">
+                {languages.map((lang) => (
+                  <a
+                    key={lang.code}
+                    href={lang.path}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setLanguage(lang.code);
+                    }}
+                    className={`px-3 py-1.5 rounded-xl text-sm transition-all border cursor-pointer ${
+                      language === lang.code
+                        ? 'bg-indigo-500/20 border-indigo-400 text-indigo-700 dark:text-indigo-300 font-semibold shadow-sm'
+                        : 'liquid-pill border-slate-200/60 dark:border-slate-700/60 text-slate-700 dark:text-slate-300'
+                    }`}
+                  >
+                    {lang.label}
+                  </a>
+                ))}
+              </div>
+              
+              <div className="flex items-center gap-4 pt-1">
+                {!isScrolled && (
+                  <button
+                    onClick={toggleVersion}
+                    className="flex items-center gap-2 px-3 py-2 rounded-xl liquid-pill text-slate-700 dark:text-slate-200 cursor-pointer"
+                  >
+                    {version === 'v1' ? <Zap size={18} /> : <Layout size={18} />}
+                    <span className="text-xs font-bold">
+                      {version === 'v1' ? content.nav.switchToModern : content.nav.switchToClassic}
+                    </span>
+                  </button>
+                )}
+
                 <button
-                  onClick={toggleVersion}
-                  className="flex items-center gap-2 px-3 py-2 rounded-xl liquid-pill text-slate-700 dark:text-slate-200"
+                  onClick={toggleTheme}
+                  className="flex items-center gap-2 px-3 py-2 rounded-xl liquid-pill text-slate-700 dark:text-slate-200 cursor-pointer"
                 >
-                  {version === 'v1' ? <Zap size={18} /> : <Layout size={18} />}
+                  {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
                   <span className="text-xs font-bold">
-                    {version === 'v1' ? content.nav.switchToModern : content.nav.switchToClassic}
+                    {theme === 'dark' ? content.theme.light : content.theme.dark}
                   </span>
                 </button>
-              )}
-
-              <button
-                onClick={toggleTheme}
-                className="flex items-center gap-2 px-3 py-2 rounded-xl liquid-pill text-slate-700 dark:text-slate-200"
-              >
-                {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
-                <span className="text-xs font-bold">
-                  {theme === 'dark' ? content.theme.light : content.theme.dark}
-                </span>
-              </button>
+              </div>
             </div>
-          </div>
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 };
