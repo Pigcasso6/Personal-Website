@@ -81,7 +81,7 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
 
   return (
     <div 
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 animate-fade-in select-none"
+      className="fixed inset-0 z-50 flex items-center justify-center pt-14 pb-4 px-3 sm:p-6 bg-black/85 animate-fade-in select-none"
       onClick={handleClose}
       onTouchEnd={(e) => {
         if (e.target === e.currentTarget) {
@@ -94,59 +94,32 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
     >
       {/* Outer Wrapper for frame + outside buttons, centered relative to screen */}
       <div 
-        className="relative w-[86vw] max-w-[400px] max-h-[72vh] h-auto sm:w-auto sm:h-[88vh] sm:max-h-[88vh] sm:max-w-[80vw] flex items-center justify-center"
+        className="relative w-[86vw] max-w-[400px] max-h-[72vh] h-auto sm:w-auto sm:h-[86vh] sm:max-h-[86vh] sm:max-w-[78vw] flex items-center justify-center"
         style={{ aspectRatio: '210 / 297', perspective: '1200px' }}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Desktop Action Buttons: Floating outside top-right corner */}
-        <div className="hidden sm:flex absolute left-[calc(100%+14px)] top-0 flex-col gap-3.5 z-40">
-          <button
-            onClick={handleClose}
-            onTouchEnd={handleClose}
-            className="w-11 h-11 rounded-full bg-slate-900/70 hover:bg-slate-900/90 text-white flex items-center justify-center transition-all shadow-2xl hover:scale-110 active:scale-95 cursor-pointer border border-white/30 touch-manipulation"
-            aria-label="Close"
-          >
-            <X size={20} />
-          </button>
-
-          <button
-            onClick={handleFlip}
-            onTouchEnd={handleFlip}
-            className="w-11 h-11 rounded-full bg-slate-900/70 hover:bg-slate-900/90 text-white flex items-center justify-center transition-all shadow-2xl hover:scale-110 active:scale-95 cursor-pointer border border-white/30 touch-manipulation"
-            aria-label="Flip"
-          >
-            <RefreshCw 
-              size={18} 
-              className={`transition-transform duration-700 ${isFlipped ? 'rotate-180' : ''}`} 
-            />
-          </button>
-        </div>
-
-        {/* Mobile Action Buttons: Minimalist Gray Circle Icons inside top-right corner */}
-        <div 
-          className="flex sm:hidden absolute top-3 right-3 flex-col gap-2.5 z-40 pointer-events-auto"
-          style={{ transform: 'translateZ(100px)', WebkitTransform: 'translateZ(100px)' }}
+        {/* Flip Button: Outside Top-Left Corner */}
+        <button
+          onClick={handleFlip}
+          onTouchEnd={handleFlip}
+          className="absolute -top-12 sm:-top-13 left-0 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-slate-900/80 hover:bg-slate-900 text-white flex items-center justify-center transition-all shadow-2xl hover:scale-105 active:scale-95 cursor-pointer border border-white/30 touch-manipulation z-50 pointer-events-auto"
+          aria-label="Flip"
         >
-          <button
-            onClick={handleClose}
-            onTouchEnd={handleClose}
-            className="w-10 h-10 min-w-[40px] min-h-[40px] rounded-full bg-slate-900/70 active:bg-slate-900/90 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer shadow-xl border border-white/30 touch-manipulation"
-            aria-label="Close"
-          >
-            <X size={18} />
-          </button>
-          <button
-            onClick={handleFlip}
-            onTouchEnd={handleFlip}
-            className="w-10 h-10 min-w-[40px] min-h-[40px] rounded-full bg-slate-900/70 active:bg-slate-900/90 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer shadow-xl border border-white/30 touch-manipulation"
-            aria-label="Flip"
-          >
-            <RefreshCw 
-              size={17} 
-              className={`transition-transform duration-700 ${isFlipped ? 'rotate-180' : ''}`} 
-            />
-          </button>
-        </div>
+          <RefreshCw 
+            size={18} 
+            className={`transition-transform duration-700 ${isFlipped ? 'rotate-180' : ''}`} 
+          />
+        </button>
+
+        {/* Close Button: Outside Top-Right Corner */}
+        <button
+          onClick={handleClose}
+          onTouchEnd={handleClose}
+          className="absolute -top-12 sm:-top-13 right-0 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-slate-900/80 hover:bg-slate-900 text-white flex items-center justify-center transition-all shadow-2xl hover:scale-105 active:scale-95 cursor-pointer border border-white/30 touch-manipulation z-50 pointer-events-auto"
+          aria-label="Close"
+        >
+          <X size={20} />
+        </button>
 
         {/* Certificate Frame Box with Liquid Glass Frame */}
         <div className="w-full h-full liquid-glass p-1.5 sm:p-2 rounded-2xl shadow-2xl border border-white/50 dark:border-white/10">

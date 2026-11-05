@@ -117,7 +117,7 @@ const PortfolioHome: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ onN
                       href="https://www.postcrossing.com/user/Pigcasso6" 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="w-[92%] sm:w-auto max-w-sm inline-flex items-center justify-center gap-2.5 px-6 sm:px-8 py-3 rounded-full liquid-btn text-indigo-700 dark:text-indigo-300 font-semibold shadow-md active:scale-95 transition-all text-xs sm:text-sm md:text-base whitespace-nowrap"
+                      className="w-[94%] sm:w-auto max-w-md inline-flex items-center justify-center gap-2 sm:gap-2.5 px-4 sm:px-7 py-3.5 rounded-full liquid-btn text-indigo-700 dark:text-indigo-300 font-semibold shadow-md active:scale-95 transition-all text-[13.5px] xs:text-sm sm:text-base tracking-tight whitespace-nowrap"
                     >
                       <Stamp className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
                       <span className="whitespace-nowrap">{content.about.postcrossingLabel}</span>

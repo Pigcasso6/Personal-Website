@@ -19,12 +19,95 @@ const Navbar: React.FC = () => {
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const mobileMenuBtnRef = useRef<HTMLButtonElement>(null);
 
+  // Swipe up to collapse mobile menu refs
+  const menuTouchStartY = useRef<number | null>(null);
+  const menuTouchDeltaY = useRef<number>(0);
+
+  // iOS 26 Liquid Glass Segmented Language Slider state
+  const segmentedTrackRef = useRef<HTMLDivElement>(null);
+  const [isDraggingLang, setIsDraggingLang] = useState(false);
+  const [dragIndex, setDragIndex] = useState<number | null>(null);
+
   const languages: { code: Language; label: string; path: string }[] = [
     { code: 'zh-CN', label: '简体中文', path: '/zh-cn' },
     { code: 'zh-TW', label: '繁體中文', path: '/zh-tw' },
     { code: 'en', label: 'English', path: '/en' },
     { code: 'ja', label: '日本語', path: '/jp' },
   ];
+
+  const getLangIndex = (code: Language) => {
+    const idx = languages.findIndex(l => l.code === code);
+    return idx >= 0 ? idx : 0;
+  };
+
+  const activeLangIndex = isDraggingLang && dragIndex !== null ? dragIndex : getLangIndex(language);
+
+  const calcLangIndexFromClientX = (clientX: number): number => {
+    if (!segmentedTrackRef.current) return 0;
+    const rect = segmentedTrackRef.current.getBoundingClientRect();
+    const x = clientX - rect.left;
+    const ratio = x / rect.width;
+    const idx = Math.floor(ratio * languages.length);
+    return Math.max(0, Math.min(languages.length - 1, idx));
+  };
+
+  const handleLangTouchStart = (e: React.TouchEvent) => {
+    e.stopPropagation();
+    const touch = e.touches[0];
+    const idx = calcLangIndexFromClientX(touch.clientX);
+    setIsDraggingLang(true);
+    setDragIndex(idx);
+    if (typeof navigator !== 'undefined' && 'vibrate' in navigator) {
+      try { navigator.vibrate(8); } catch (_) {}
+    }
+  };
+
+  const handleLangTouchMove = (e: React.TouchEvent) => {
+    e.stopPropagation();
+    const touch = e.touches[0];
+    const idx = calcLangIndexFromClientX(touch.clientX);
+    if (idx !== dragIndex) {
+      setDragIndex(idx);
+      if (typeof navigator !== 'undefined' && 'vibrate' in navigator) {
+        try { navigator.vibrate(8); } catch (_) {}
+      }
+    }
+  };
+
+  const handleLangTouchEnd = (e: React.TouchEvent) => {
+    e.stopPropagation();
+    if (dragIndex !== null && dragIndex >= 0 && dragIndex < languages.length) {
+      setLanguage(languages[dragIndex].code);
+    }
+    setIsDraggingLang(false);
+    setDragIndex(null);
+  };
+
+  const handleLangTouchCancel = (e: React.TouchEvent) => {
+    e.stopPropagation();
+    setIsDraggingLang(false);
+    setDragIndex(null);
+  };
+
+  // Swipe up gesture for the mobile menu container
+  const handleMenuTouchStart = (e: React.TouchEvent) => {
+    menuTouchStartY.current = e.touches[0].clientY;
+    menuTouchDeltaY.current = 0;
+  };
+
+  const handleMenuTouchMove = (e: React.TouchEvent) => {
+    if (menuTouchStartY.current !== null) {
+      menuTouchDeltaY.current = e.touches[0].clientY - menuTouchStartY.current;
+    }
+  };
+
+  const handleMenuTouchEnd = () => {
+    if (menuTouchDeltaY.current < -35) {
+      setIsMobileMenuOpen(false);
+    }
+    menuTouchStartY.current = null;
+    menuTouchDeltaY.current = 0;
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -90,7 +173,7 @@ const Navbar: React.FC = () => {
   const AVATAR_URL = "/images/avatar.png";
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 flex flex-col items-center py-3 md:py-4 pointer-events-none">
+    <nav className={`${isScrolled ? 'fixed' : 'absolute'} top-0 left-0 right-0 z-50 flex flex-col items-center py-3 md:py-4 pointer-events-none`}>
       <div 
         className={`pointer-events-auto liquid-nav-capsule h-16 md:h-18 flex items-center justify-between border ${
           isScrolled
@@ -107,7 +190,7 @@ const Navbar: React.FC = () => {
         >
           {!imgError ? (
             <img 
-              src={AVATAR_URL}
+              src={AVATAR_URL} 
               alt="Liang Zhu" 
               className="h-9 w-9 md:h-10 md:w-10 rounded-full object-cover dark:invert select-none" 
               onError={() => setImgError(true)}
@@ -219,8 +302,14 @@ const Navbar: React.FC = () => {
             exit={{ opacity: 0, scale: 0.96, y: -10 }}
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
             style={{ transformOrigin: 'top center' }}
+            onTouchStart={handleMenuTouchStart}
+            onTouchMove={handleMenuTouchMove}
+            onTouchEnd={handleMenuTouchEnd}
             className="md:hidden w-[calc(100%-3rem)] max-w-6xl mx-auto mt-2.5 liquid-glass liquid-sheen rounded-3xl p-6 flex flex-col gap-4 shadow-2xl border border-white/40 dark:border-white/10 pointer-events-auto"
           >
+            {/* iOS Pull / Swipe-Up Indicator Bar */}
+            <div className="w-10 h-1 rounded-full bg-slate-300 dark:bg-white/20 mx-auto -mt-2 mb-1 opacity-70" />
+
             {navLinks.map((link) => (
               <a
                 key={link.label}
@@ -231,25 +320,64 @@ const Navbar: React.FC = () => {
                 {link.label}
               </a>
             ))}
-            <div className="flex flex-col gap-4 pt-4 border-t border-slate-200/50 dark:border-slate-700/50 mt-2">
-              <div className="flex flex-wrap gap-2">
-                {languages.map((lang) => (
-                  <a
-                    key={lang.code}
-                    href={lang.path}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setLanguage(lang.code);
-                    }}
-                    className={`px-3 py-1.5 rounded-xl text-sm transition-all border cursor-pointer ${
-                      language === lang.code
-                        ? 'bg-indigo-500/20 border-indigo-400 text-indigo-700 dark:text-indigo-300 font-semibold shadow-sm'
-                        : 'liquid-pill border-slate-200/60 dark:border-slate-700/60 text-slate-700 dark:text-slate-300'
-                    }`}
-                  >
-                    {lang.label}
-                  </a>
-                ))}
+            <div className="flex flex-col gap-4 pt-4 border-t border-slate-200/50 dark:border-slate-700/50 mt-1">
+              
+              {/* iOS 26 Liquid Glass Drag-and-Slide Segmented Language Selector */}
+              <div 
+                ref={segmentedTrackRef}
+                onTouchStart={handleLangTouchStart}
+                onTouchMove={handleLangTouchMove}
+                onTouchEnd={handleLangTouchEnd}
+                onTouchCancel={handleLangTouchCancel}
+                onContextMenu={(e) => e.preventDefault()}
+                className="relative w-full p-1 rounded-2xl liquid-glass border border-white/60 dark:border-white/10 select-none shadow-inner touch-none overflow-hidden"
+                style={{
+                  WebkitTouchCallout: 'none',
+                  WebkitUserSelect: 'none',
+                  userSelect: 'none',
+                  touchAction: 'none',
+                }}
+              >
+                {/* Sliding Liquid Glass Highlight Capsule */}
+                <div 
+                  className={`absolute top-1 bottom-1 rounded-xl liquid-pill bg-white/80 dark:bg-slate-800/90 shadow-md border border-white/90 dark:border-white/20 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none ${
+                    isDraggingLang ? 'scale-[0.98] ring-2 ring-indigo-400/40 dark:ring-indigo-500/40' : ''
+                  }`}
+                  style={{
+                    width: `calc(25% - 2px)`,
+                    left: `calc(${activeLangIndex * 25}% + 1px)`,
+                  }}
+                />
+
+                {/* 4 Language Segments */}
+                <div className="grid grid-cols-4 relative z-10">
+                  {languages.map((lang, index) => {
+                    const isSelected = activeLangIndex === index;
+                    return (
+                      <button
+                        key={lang.code}
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setLanguage(lang.code);
+                        }}
+                        onContextMenu={(e) => e.preventDefault()}
+                        className={`py-2 px-1 text-center text-xs sm:text-sm font-semibold rounded-xl transition-colors duration-200 select-none cursor-pointer touch-none truncate ${
+                          isSelected
+                            ? 'text-indigo-600 dark:text-indigo-400 font-bold'
+                            : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
+                        }`}
+                        style={{
+                          WebkitTouchCallout: 'none',
+                          WebkitUserSelect: 'none',
+                          userSelect: 'none',
+                        }}
+                      >
+                        {lang.label}
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
               
               <div className="flex items-center gap-4 pt-1">
