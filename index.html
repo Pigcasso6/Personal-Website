@@ -9,7 +9,7 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/images/avatar-rounded-square.png">
 
-    <!-- Disable multi-finger pinch zoom site-wide on mobile devices without blocking single-finger taps -->
+    <!-- Disable multi-finger pinch zoom & long-press selection site-wide on mobile devices without blocking single-finger taps -->
     <script>
       (function() {
         // Prevent multi-touch gesture zoom on iOS Safari without hijacking standard single-finger touch/tap pipeline
@@ -22,6 +22,20 @@
         document.addEventListener('gestureend', function(e) {
           e.preventDefault();
         }, { passive: false });
+
+        // Globally prevent long-press text selection and callouts
+        document.addEventListener('selectstart', function(e) {
+          var tag = e.target && e.target.tagName;
+          if (tag !== 'INPUT' && tag !== 'TEXTAREA') {
+            e.preventDefault();
+          }
+        });
+        document.addEventListener('contextmenu', function(e) {
+          var tag = e.target && e.target.tagName;
+          if (tag !== 'INPUT' && tag !== 'TEXTAREA') {
+            e.preventDefault();
+          }
+        });
       })();
     </script>
 
@@ -95,6 +109,18 @@
         scroll-behavior: smooth;
         touch-action: pan-x pan-y;
         -webkit-text-size-adjust: 100%;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        user-select: none;
+      }
+      *, *::before, *::after {
+        -webkit-touch-callout: none !important;
+        -webkit-user-select: none !important;
+        user-select: none !important;
+      }
+      input, textarea, [contenteditable="true"] {
+        -webkit-user-select: text !important;
+        user-select: text !important;
       }
       ::-webkit-scrollbar { width: 8px; }
       ::-webkit-scrollbar-track { background: transparent; }

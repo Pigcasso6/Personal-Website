@@ -29,6 +29,7 @@ const Navbar: React.FC = () => {
   const [scrubbingIndex, setScrubbingIndex] = useState<number | null>(null);
   const navLongPressTimer = useRef<NodeJS.Timeout | null>(null);
   const navTouchStartY = useRef<number | null>(null);
+  const navTouchDeltaY = useRef<number>(0);
 
   // iOS 26 Liquid Glass Segmented Language Slider state
   const segmentedTrackRef = useRef<HTMLDivElement>(null);
@@ -122,6 +123,7 @@ const Navbar: React.FC = () => {
   const handleNavTouchStart = (e: React.TouchEvent) => {
     const touch = e.touches[0];
     navTouchStartY.current = touch.clientY;
+    navTouchDeltaY.current = 0;
     const initialIndex = calcNavIndexFromClientY(touch.clientY);
 
     if (navLongPressTimer.current) clearTimeout(navLongPressTimer.current);
@@ -137,18 +139,10 @@ const Navbar: React.FC = () => {
   const handleNavTouchMove = (e: React.TouchEvent) => {
     const touch = e.touches[0];
     if (navTouchStartY.current !== null) {
-      const deltaY = touch.clientY - navTouchStartY.current;
+      navTouchDeltaY.current = touch.clientY - navTouchStartY.current;
 
-      // If NOT long-pressing, a fast swipe upward collapses the menu immediately
-      if (!isNavScrubbing) {
-        if (deltaY < -28) {
-          if (navLongPressTimer.current) clearTimeout(navLongPressTimer.current);
-          setIsMobileMenuOpen(false);
-          navTouchStartY.current = null;
-          return;
-        }
-      } else {
-        // We are in liquid glass selector scrubbing mode
+      // If user starts scrubbing with long-press, track vertical selector
+      if (isNavScrubbing) {
         e.stopPropagation();
         const newIndex = calcNavIndexFromClientY(touch.clientY);
         if (newIndex !== scrubbingIndex) {
@@ -175,11 +169,15 @@ const Navbar: React.FC = () => {
       }
       setIsNavScrubbing(false);
       setScrubbingIndex(null);
+    } else if (!isNavScrubbing && navTouchDeltaY.current < -25) {
+      // Swiped up on nav area: trigger smooth collapse animation identically to clicking close button
+      setIsMobileMenuOpen(false);
     } else {
       setIsNavScrubbing(false);
       setScrubbingIndex(null);
     }
     navTouchStartY.current = null;
+    navTouchDeltaY.current = 0;
   };
 
   const handleNavTouchCancel = () => {
@@ -190,6 +188,7 @@ const Navbar: React.FC = () => {
     setIsNavScrubbing(false);
     setScrubbingIndex(null);
     navTouchStartY.current = null;
+    navTouchDeltaY.current = 0;
   };
 
   // Swipe up gesture for the mobile menu container
@@ -457,7 +456,6 @@ const Navbar: React.FC = () => {
             >
               {navLinks.map((link, index) => {
                 const isSelected = isNavScrubbing && scrubbingIndex === index;
-                const isOther = isNavScrubbing && scrubbingIndex !== null && scrubbingIndex !== index;
 
                 return (
                   <a
@@ -469,8 +467,6 @@ const Navbar: React.FC = () => {
                     className={`relative text-lg py-2.5 px-4 rounded-2xl select-none touch-none transition-all duration-200 cursor-pointer ${
                       isSelected
                         ? 'liquid-glass liquid-sheen bg-white/85 dark:bg-slate-800/90 text-indigo-600 dark:text-indigo-400 font-bold border border-white/90 dark:border-white/25 shadow-xl scale-[1.02]'
-                        : isOther
-                        ? 'text-slate-400 dark:text-slate-500 font-medium opacity-50 scale-[0.98]'
                         : 'text-slate-900 dark:text-slate-100 font-medium hover:bg-white/40 dark:hover:bg-white/10'
                     }`}
                     style={{
@@ -480,13 +476,8 @@ const Navbar: React.FC = () => {
                       touchAction: 'none',
                     }}
                   >
-                    <div className="flex items-center justify-between pointer-events-none">
+                    <div className="flex items-center pointer-events-none">
                       <span>{link.label}</span>
-                      {isSelected && (
-                        <span className="text-xs font-semibold px-2 py-0.5 rounded-full liquid-pill bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-800 animate-fade-in">
-                          松手进入
-                        </span>
-                      )}
                     </div>
                   </a>
                 );

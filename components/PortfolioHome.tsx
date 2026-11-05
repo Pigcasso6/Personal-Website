@@ -456,11 +456,11 @@ const PortfolioHome: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ onN
                 <div className="w-16 h-16 rounded-2xl liquid-pill flex items-center justify-center text-indigo-600 dark:text-indigo-400 shadow-md">
                   <Mail className="w-8 h-8" strokeWidth={1.5} />
                 </div>
-                <div className="flex flex-col items-center gap-3">
-                  <a href="mailto:zliang723@connect.hkust-gz.edu.cn" className="text-lg md:text-2xl font-bold text-indigo-600 dark:text-indigo-400 hover:underline decoration-2 underline-offset-8 transition-all break-all text-center">
+                <div className="flex flex-col items-center gap-3 w-full max-w-full overflow-hidden px-2">
+                  <a href="mailto:zliang723@connect.hkust-gz.edu.cn" className="text-[13.5px] min-[390px]:text-[15px] sm:text-lg md:text-2xl font-bold text-indigo-600 dark:text-indigo-400 hover:underline decoration-2 underline-offset-8 transition-all whitespace-nowrap text-center">
                     zliang723@connect.hkust-gz.edu.cn
                   </a>
-                  <a href="mailto:liangzhu@pigcasso6.top" className="text-lg md:text-2xl font-bold text-indigo-600 dark:text-indigo-400 hover:underline decoration-2 underline-offset-8 transition-all break-all text-center">
+                  <a href="mailto:liangzhu@pigcasso6.top" className="text-[14px] min-[390px]:text-[16px] sm:text-lg md:text-2xl font-bold text-indigo-600 dark:text-indigo-400 hover:underline decoration-2 underline-offset-8 transition-all whitespace-nowrap text-center">
                     liangzhu@pigcasso6.top
                   </a>
                 </div>
