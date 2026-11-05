@@ -240,10 +240,10 @@ const PortfolioHomeV2: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ o
                       href="https://www.postcrossing.com/user/Pigcasso6" 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-6 py-3 rounded-full liquid-btn text-cyan-600 dark:text-cyan-400 font-semibold shadow-md active:scale-95 transition-all"
+                      className="max-w-full inline-flex items-center justify-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-full liquid-btn text-cyan-600 dark:text-cyan-400 font-semibold shadow-md active:scale-95 transition-all text-[clamp(11px,3.2vw,15px)] sm:text-base whitespace-nowrap"
                     >
-                      <Stamp size={20} />
-                      {content.about.postcrossingLabel}
+                      <Stamp className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
+                      <span className="whitespace-nowrap">{content.about.postcrossingLabel}</span>
                     </a>
                   </div>
                 </AppleRevealItem>
@@ -351,8 +351,8 @@ const PortfolioHomeV2: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ o
                                     <div
                                       className={`h-full rounded-full liquid-fill transition-all duration-1000 ${
                                         idx === 3
-                                          ? 'bg-gradient-to-r from-amber-400 to-amber-500'
-                                          : 'bg-gradient-to-r from-cyan-400 to-teal-500'
+                                          ? 'bg-gradient-to-r from-indigo-400 to-cyan-400'
+                                          : 'bg-gradient-to-r from-cyan-500 to-blue-500'
                                       }`}
                                       style={{ width: `${item.percentage}%` }}
                                     />
@@ -434,8 +434,8 @@ const PortfolioHomeV2: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ o
                                     <div
                                       className={`h-full rounded-full liquid-fill transition-all duration-1000 ${
                                         idx === 3
-                                          ? 'bg-gradient-to-r from-amber-400 to-amber-500'
-                                          : 'bg-gradient-to-r from-cyan-400 to-teal-500'
+                                          ? 'bg-gradient-to-r from-indigo-400 to-cyan-400'
+                                          : 'bg-gradient-to-r from-cyan-500 to-blue-500'
                                       }`}
                                       style={{ width: `${item.percentage}%` }}
                                     />

@@ -80,7 +80,7 @@ const Navbar: React.FC = () => {
       <div 
         className={`pointer-events-auto liquid-nav-capsule h-16 md:h-18 flex items-center justify-between border ${
           isScrolled
-            ? 'w-[calc(100%-2rem)] sm:w-[calc(100%-3rem)] md:w-[calc(100%-4.5rem)] max-w-5xl px-5 md:px-7 rounded-2xl md:rounded-full liquid-nav shadow-xl'
+            ? 'w-[calc(100%-3rem)] max-w-[848px] px-5 md:px-7 rounded-2xl md:rounded-full liquid-nav shadow-xl'
             : 'w-full max-w-7xl px-6 md:px-10 rounded-2xl md:rounded-full bg-transparent border-transparent shadow-none'
         }`}
       >

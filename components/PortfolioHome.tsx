@@ -102,12 +102,14 @@ const PortfolioHome: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ onN
                 {content.about.title}
               </h2>
             </AppleRevealItem>
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              <AppleRevealItem delay={180} className="space-y-6">
-                <div className="space-y-6 text-lg text-slate-600 dark:text-slate-300 leading-relaxed liquid-glass p-7 md:p-8 rounded-3xl shadow-xl">
-                  {content.about.content.map((paragraph, index) => (
-                    <p key={index}>{paragraph}</p>
-                  ))}
+            <div className="grid md:grid-cols-2 gap-12 items-stretch">
+              <AppleRevealItem delay={180} className="h-full flex flex-col">
+                <div className="h-full flex flex-col justify-between space-y-6 text-lg text-slate-600 dark:text-slate-300 leading-relaxed liquid-glass p-7 md:p-8 rounded-3xl shadow-xl">
+                  <div className="space-y-6">
+                    {content.about.content.map((paragraph, index) => (
+                      <p key={index}>{paragraph}</p>
+                    ))}
+                  </div>
                   
                   {/* Postcrossing Button */}
                   <div className="pt-2">
@@ -115,22 +117,22 @@ const PortfolioHome: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ onN
                       href="https://www.postcrossing.com/user/Pigcasso6" 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-6 py-3 rounded-full liquid-btn text-indigo-700 dark:text-indigo-300 font-semibold shadow-md active:scale-95 transition-all"
+                      className="max-w-full inline-flex items-center justify-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-full liquid-btn text-indigo-700 dark:text-indigo-300 font-semibold shadow-md active:scale-95 transition-all text-[clamp(11px,3.2vw,15px)] sm:text-base whitespace-nowrap"
                     >
-                      <Stamp size={20} />
-                      {content.about.postcrossingLabel}
+                      <Stamp className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
+                      <span className="whitespace-nowrap">{content.about.postcrossingLabel}</span>
                     </a>
                   </div>
                 </div>
               </AppleRevealItem>
               
-              <AppleRevealItem delay={340} scale={true} className="relative group">
+              <AppleRevealItem delay={340} scale={true} className="relative group h-full flex flex-col">
                 <div className="absolute -inset-2 bg-gradient-to-r from-indigo-500/30 to-purple-500/30 rounded-3xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-500"></div>
-                <div className="relative liquid-glass p-2.5 rounded-3xl shadow-2xl overflow-hidden">
+                <div className="relative h-full w-full liquid-glass p-2.5 rounded-3xl shadow-2xl overflow-hidden flex flex-col">
                   <img 
                     src="https://picsum.photos/600/800?grayscale" 
                     alt="Liang Zhu" 
-                    className="relative rounded-2xl w-full h-[480px] object-cover filter grayscale hover:grayscale-0 transition-all duration-700"
+                    className="relative rounded-2xl w-full h-full min-h-[320px] object-cover filter grayscale hover:grayscale-0 transition-all duration-700 flex-grow"
                   />
                 </div>
               </AppleRevealItem>
@@ -210,8 +212,8 @@ const PortfolioHome: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ onN
                                 <div
                                   className={`h-full rounded-full liquid-fill transition-all duration-1000 ${
                                     idx === 3
-                                      ? 'bg-gradient-to-r from-amber-400 to-amber-500'
-                                      : 'bg-gradient-to-r from-teal-400 to-emerald-500'
+                                      ? 'bg-gradient-to-r from-violet-500 to-purple-400'
+                                      : 'bg-gradient-to-r from-indigo-500 to-sky-400'
                                   }`}
                                   style={{ width: `${item.percentage}%` }}
                                 />
@@ -293,8 +295,8 @@ const PortfolioHome: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ onN
                                 <div
                                   className={`h-full rounded-full liquid-fill transition-all duration-1000 ${
                                     idx === 3
-                                      ? 'bg-gradient-to-r from-amber-400 to-amber-500'
-                                      : 'bg-gradient-to-r from-teal-400 to-emerald-500'
+                                      ? 'bg-gradient-to-r from-violet-500 to-purple-400'
+                                      : 'bg-gradient-to-r from-indigo-500 to-sky-400'
                                   }`}
                                   style={{ width: `${item.percentage}%` }}
                                 />
