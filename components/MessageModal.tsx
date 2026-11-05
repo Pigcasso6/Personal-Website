@@ -80,13 +80,20 @@ const MessageModal: React.FC<MessageModalProps> = ({ isOpen, onClose, version = 
       <div 
         className="absolute inset-0 bg-slate-900/60 dark:bg-black/75 backdrop-blur-md sm:backdrop-blur-xl animate-fade-in"
         onClick={onClose}
+        onTouchEnd={(e) => {
+          if (e.target === e.currentTarget) {
+            e.preventDefault();
+            onClose();
+          }
+        }}
       ></div>
 
       {/* Modal Content */}
       <div className="relative w-full max-w-lg liquid-glass liquid-sheen rounded-3xl shadow-2xl p-6 sm:p-8 animate-fade-in border border-white/70 dark:border-white/15">
         <button 
-          onClick={onClose}
-          className="absolute top-5 right-5 p-2.5 rounded-full liquid-pill text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white transition-all active:scale-90 cursor-pointer touch-manipulation z-20"
+          onClick={(e) => { e.stopPropagation(); onClose(); }}
+          onTouchEnd={(e) => { e.preventDefault(); e.stopPropagation(); onClose(); }}
+          className="absolute top-4 right-4 sm:top-5 sm:right-5 w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full liquid-pill text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white transition-all active:scale-90 cursor-pointer touch-manipulation z-30"
           aria-label="Close"
         >
           <X size={18} />
@@ -104,6 +111,7 @@ const MessageModal: React.FC<MessageModalProps> = ({ isOpen, onClose, version = 
             <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-2">{formText.success}</h4>
             <button 
               onClick={onClose}
+              onTouchEnd={(e) => { e.preventDefault(); onClose(); }}
               className="mt-6 px-7 py-2.5 rounded-full liquid-btn text-slate-800 dark:text-slate-200 font-semibold transition-all active:scale-95 cursor-pointer touch-manipulation"
             >
               {formText.close}

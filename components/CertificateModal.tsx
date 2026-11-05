@@ -23,6 +23,22 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
   const [imgErrorFront, setImgErrorFront] = useState(false);
   const [imgErrorBack, setImgErrorBack] = useState(false);
 
+  const handleClose = (e?: React.SyntheticEvent) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    onClose();
+  };
+
+  const handleFlip = (e?: React.SyntheticEvent) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    setIsFlipped(prev => !prev);
+  };
+
   // Reset flip state instantly on open without transition animation & lock body scroll
   useEffect(() => {
     if (isOpen) {
@@ -66,7 +82,12 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
   return (
     <div 
       className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-md sm:backdrop-blur-xl animate-fade-in select-none"
-      onClick={onClose}
+      onClick={handleClose}
+      onTouchEnd={(e) => {
+        if (e.target === e.currentTarget) {
+          handleClose(e);
+        }
+      }}
       onWheel={(e) => e.stopPropagation()}
       onTouchMove={(e) => e.stopPropagation()}
       onContextMenu={(e) => e.preventDefault()}
@@ -78,9 +99,10 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
         onClick={(e) => e.stopPropagation()}
       >
         {/* Desktop Action Buttons: Floating outside top-right corner */}
-        <div className="hidden sm:flex absolute left-[calc(100%+14px)] top-0 flex-col gap-3.5 z-30">
+        <div className="hidden sm:flex absolute left-[calc(100%+14px)] top-0 flex-col gap-3.5 z-40">
           <button
-            onClick={onClose}
+            onClick={handleClose}
+            onTouchEnd={handleClose}
             className="w-11 h-11 rounded-full liquid-pill text-white flex items-center justify-center transition-all shadow-2xl hover:scale-110 active:scale-95 cursor-pointer touch-manipulation"
             aria-label="Close"
           >
@@ -88,7 +110,8 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
           </button>
 
           <button
-            onClick={() => setIsFlipped(!isFlipped)}
+            onClick={handleFlip}
+            onTouchEnd={handleFlip}
             className="w-11 h-11 rounded-full liquid-pill text-white flex items-center justify-center transition-all shadow-2xl hover:scale-110 active:scale-95 cursor-pointer touch-manipulation"
             aria-label="Flip"
           >
@@ -100,21 +123,26 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
         </div>
 
         {/* Mobile Action Buttons: Minimalist Gray Circle Icons inside top-right corner */}
-        <div className="flex sm:hidden absolute top-3 right-3 flex-col gap-2.5 z-30 pointer-events-auto">
+        <div 
+          className="flex sm:hidden absolute top-3 right-3 flex-col gap-2.5 z-40 pointer-events-auto"
+          style={{ transform: 'translateZ(100px)', WebkitTransform: 'translateZ(100px)' }}
+        >
           <button
-            onClick={onClose}
-            className="w-9 h-9 rounded-full liquid-pill text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer shadow-lg touch-manipulation"
+            onClick={handleClose}
+            onTouchEnd={handleClose}
+            className="w-10 h-10 min-w-[40px] min-h-[40px] rounded-full liquid-pill text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer shadow-lg touch-manipulation"
             aria-label="Close"
           >
-            <X size={17} />
+            <X size={18} />
           </button>
           <button
-            onClick={() => setIsFlipped(!isFlipped)}
-            className="w-9 h-9 rounded-full liquid-pill text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer shadow-lg touch-manipulation"
+            onClick={handleFlip}
+            onTouchEnd={handleFlip}
+            className="w-10 h-10 min-w-[40px] min-h-[40px] rounded-full liquid-pill text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer shadow-lg touch-manipulation"
             aria-label="Flip"
           >
             <RefreshCw 
-              size={16} 
+              size={17} 
               className={`transition-transform duration-700 ${isFlipped ? 'rotate-180' : ''}`} 
             />
           </button>
@@ -154,6 +182,8 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
                 <img
                   src={frontImg}
                   alt="Certificate Front"
+                  decoding="async"
+                  loading="eager"
                   className="w-full h-full object-contain rounded-lg select-none pointer-events-none"
                   draggable={false}
                   onContextMenu={(e) => e.preventDefault()}
@@ -195,6 +225,8 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
                 <img
                   src={backImg}
                   alt="Certificate Back"
+                  decoding="async"
+                  loading="eager"
                   className="w-full h-full object-contain rounded-lg select-none pointer-events-none"
                   draggable={false}
                   onContextMenu={(e) => e.preventDefault()}

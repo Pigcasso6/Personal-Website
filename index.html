@@ -9,21 +9,10 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/images/avatar-rounded-square.png">
 
-    <!-- Disable multi-finger pinch zoom site-wide on mobile devices -->
+    <!-- Disable multi-finger pinch zoom site-wide on mobile devices without blocking single-finger taps -->
     <script>
       (function() {
-        document.addEventListener('touchstart', function(e) {
-          if (e.touches && e.touches.length > 1) {
-            e.preventDefault();
-          }
-        }, { passive: false });
-
-        document.addEventListener('touchmove', function(e) {
-          if (e.touches && e.touches.length > 1) {
-            e.preventDefault();
-          }
-        }, { passive: false });
-
+        // Prevent multi-touch gesture zoom on iOS Safari without hijacking standard single-finger touch/tap pipeline
         document.addEventListener('gesturestart', function(e) {
           e.preventDefault();
         }, { passive: false });
@@ -54,16 +43,15 @@
       };
     </script>
 
-    <!-- Google Fonts (Non-render-blocking for instant first paint) -->
+    <!-- Google Fonts (Non-blocking async load with Apple native system font fallbacks) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+JP:wght@400;700&family=Noto+Serif+SC:wght@400;700&family=Noto+Serif+TC:wght@400;700&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+JP:wght@400;700&family=Noto+Serif+SC:wght@400;700&family=Noto+Serif+TC:wght@400;700&display=swap" media="print" onload="this.media='all'">
     <noscript>
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+JP:wght@400;700&family=Noto+Serif+SC:wght@400;700&family=Noto+Serif+TC:wght@400;700&display=swap">
     </noscript>
 
-    <!-- Tailwind CSS (CDN for simplicity in layout, though production usually uses build step. Keeping for compatibility with current class names) -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -71,14 +59,14 @@
         theme: {
           extend: {
             fontFamily: {
-              sans: ['Inter', 'system-ui', 'sans-serif'],
-              serif: ['Merriweather', 'serif'],
-              'sans-sc': ['"Noto Sans SC"', 'sans-serif'],
-              'serif-sc': ['"Noto Serif SC"', 'serif'],
-              'sans-tc': ['"Noto Sans TC"', 'sans-serif'],
-              'serif-tc': ['"Noto Serif TC"', 'serif'],
-              'sans-jp': ['"Noto Sans JP"', 'sans-serif'],
-              'serif-jp': ['"Noto Serif JP"', 'serif'],
+              sans: ['-apple-system', 'BlinkMacSystemFont', '"SF Pro Display"', '"SF Pro Text"', 'Inter', 'system-ui', 'sans-serif'],
+              serif: ['Merriweather', 'Georgia', 'serif'],
+              'sans-sc': ['-apple-system', 'BlinkMacSystemFont', '"PingFang SC"', '"Hiragino Sans GB"', '"Noto Sans SC"', 'sans-serif'],
+              'serif-sc': ['"Songti SC"', '"Noto Serif SC"', 'serif'],
+              'sans-tc': ['-apple-system', 'BlinkMacSystemFont', '"PingFang TC"', '"Noto Sans TC"', 'sans-serif'],
+              'serif-tc': ['"Songti TC"', '"Noto Serif TC"', 'serif'],
+              'sans-jp': ['-apple-system', 'BlinkMacSystemFont', '"Hiragino Sans"', '"Hiragino Kaku Gothic ProN"', '"Noto Sans JP"', 'sans-serif'],
+              'serif-jp': ['"Hiragino Mincho ProN"', '"Noto Serif JP"', 'serif'],
             },
             animation: {
               'fade-in': 'fadeIn 0.3s ease-out',
