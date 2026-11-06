@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowDown } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 
@@ -172,13 +173,22 @@ const Hero: React.FC = () => {
   // Adjust max-width specifically for Japanese to fit the long sentence on one line
   const descriptionMaxWidth = language === 'ja' ? 'max-w-6xl' : 'max-w-4xl';
 
+  // Apple-style unhurried scroll fade-out and upward drift as user scrolls past Hero
+  const { scrollY } = useScroll();
+  const heroOpacity = useTransform(scrollY, [0, 420], [1, 0]);
+  const heroY = useTransform(scrollY, [0, 420], [0, -48]);
+  const heroScale = useTransform(scrollY, [0, 420], [1, 0.95]);
+
   return (
     <section 
       id="home" 
       className="relative flex flex-col items-center justify-center pt-20 pb-20 overflow-hidden" 
       style={{ minHeight: '100svh' }}
     >
-      <div className={`mx-auto px-6 text-center z-10 ${language === 'ja' ? 'max-w-7xl' : 'max-w-4xl'}`}>
+      <motion.div 
+        style={{ opacity: heroOpacity, y: heroY, scale: heroScale }}
+        className={`mx-auto px-6 text-center z-10 will-change-transform ${language === 'ja' ? 'max-w-7xl' : 'max-w-4xl'}`}
+      >
         <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-slate-900 dark:text-white mb-6 animate-slide-up">
           {renderGreeting()}
         </h1>
@@ -197,7 +207,7 @@ const Hero: React.FC = () => {
              <ArrowDown size={18} className="relative z-10 transition-transform duration-300 group-hover:translate-y-1 text-indigo-600 dark:text-indigo-400" />
            </button>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

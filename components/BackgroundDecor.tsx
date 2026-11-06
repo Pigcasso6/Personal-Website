@@ -6,26 +6,26 @@ const BackgroundDecor: React.FC = () => {
   const { isChristmas } = useTheme();
   const { scrollYProgress } = useScroll();
 
-  // Scroll-linked fluid parallax movements across sections (0: top of page -> 1: bottom of page)
-  const layer1Y = useTransform(scrollYProgress, [0, 1], ['0%', '-48%']);
-  const layer1X = useTransform(scrollYProgress, [0, 0.5, 1], ['0%', '9%', '-7%']);
-  const layer1Scale = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1.14, 0.9]);
-  const layer1Opacity = useTransform(scrollYProgress, [0, 0.35, 0.7, 1], [0.85, 0.6, 0.35, 0.2]);
+  // Scroll-linked fluid parallax movements across sections (calm, unhurried Apple-style flow)
+  const layer1Y = useTransform(scrollYProgress, [0, 1], ['0%', '-24%']);
+  const layer1X = useTransform(scrollYProgress, [0, 0.5, 1], ['0%', '5%', '-4%']);
+  const layer1Scale = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1.08, 0.94]);
+  const layer1Opacity = useTransform(scrollYProgress, [0, 0.45, 0.8, 1], [0.85, 0.7, 0.45, 0.25]);
 
-  const layer2Y = useTransform(scrollYProgress, [0, 1], ['0%', '-40%']);
-  const layer2X = useTransform(scrollYProgress, [0, 0.5, 1], ['0%', '-13%', '7%']);
-  const layer2Scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.94, 1.2, 1.02]);
-  const layer2Opacity = useTransform(scrollYProgress, [0, 0.3, 0.65, 1], [0.45, 0.85, 0.6, 0.3]);
+  const layer2Y = useTransform(scrollYProgress, [0, 1], ['0%', '-20%']);
+  const layer2X = useTransform(scrollYProgress, [0, 0.5, 1], ['0%', '-7%', '4%']);
+  const layer2Scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.96, 1.12, 1.02]);
+  const layer2Opacity = useTransform(scrollYProgress, [0, 0.35, 0.75, 1], [0.4, 0.82, 0.65, 0.35]);
 
-  const layer3Y = useTransform(scrollYProgress, [0, 1], ['0%', '-34%']);
-  const layer3X = useTransform(scrollYProgress, [0, 0.5, 1], ['0%', '13%', '-5%']);
-  const layer3Scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.9, 1.24, 1.06]);
-  const layer3Opacity = useTransform(scrollYProgress, [0, 0.35, 0.65, 1], [0.35, 0.65, 0.85, 0.45]);
+  const layer3Y = useTransform(scrollYProgress, [0, 1], ['0%', '-18%']);
+  const layer3X = useTransform(scrollYProgress, [0, 0.5, 1], ['0%', '7%', '-3%']);
+  const layer3Scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.94, 1.14, 1.04]);
+  const layer3Opacity = useTransform(scrollYProgress, [0, 0.35, 0.7, 1], [0.3, 0.6, 0.82, 0.5]);
 
-  const layer4Y = useTransform(scrollYProgress, [0, 1], ['0%', '-56%']);
-  const layer4X = useTransform(scrollYProgress, [0, 0.5, 1], ['0%', '-12%', '8%']);
-  const layer4Scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.86, 1.12, 1.28]);
-  const layer4Opacity = useTransform(scrollYProgress, [0, 0.45, 0.8, 1], [0.2, 0.45, 0.75, 0.9]);
+  const layer4Y = useTransform(scrollYProgress, [0, 1], ['0%', '-28%']);
+  const layer4X = useTransform(scrollYProgress, [0, 0.5, 1], ['0%', '-6%', '5%']);
+  const layer4Scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.92, 1.08, 1.18]);
+  const layer4Opacity = useTransform(scrollYProgress, [0, 0.4, 0.75, 1], [0.22, 0.45, 0.75, 0.88]);
 
   if (isChristmas) {
     return (
