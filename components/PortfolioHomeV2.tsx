@@ -541,12 +541,12 @@ const PortfolioHomeV2: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ o
                   </p>
                 </AppleRevealItem>
                 
-                <div className="liquid-glass rounded-3xl p-8 md:p-12 shadow-2xl flex flex-col items-center gap-8">
-                  <AppleRevealItem delay={340} className="flex flex-col gap-4 w-full max-w-full overflow-hidden items-center px-2">
-                    <a href="mailto:zliang723@connect.hkust-gz.edu.cn" className="text-[13px] min-[390px]:text-[14.5px] sm:text-xl md:text-2xl font-mono text-slate-900 dark:text-white hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors whitespace-nowrap text-center">
+                <div className="liquid-glass rounded-3xl p-6 sm:p-8 md:p-12 shadow-2xl flex flex-col items-center gap-8">
+                  <AppleRevealItem delay={340} className="flex flex-col gap-4 w-full max-w-full overflow-hidden items-center px-1">
+                    <a href="mailto:zliang723@connect.hkust-gz.edu.cn" className="text-[14px] min-[375px]:text-[15px] min-[410px]:text-[16.5px] sm:text-xl md:text-2xl font-mono tracking-tight text-slate-900 dark:text-white hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors whitespace-nowrap text-center">
                       zliang723@connect.hkust-gz.edu.cn
                     </a>
-                    <a href="mailto:liangzhu@pigcasso6.top" className="text-[14px] min-[390px]:text-[15.5px] sm:text-xl md:text-2xl font-mono text-slate-900 dark:text-white hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors whitespace-nowrap text-center">
+                    <a href="mailto:liangzhu@pigcasso6.top" className="text-[15px] min-[375px]:text-[16px] min-[410px]:text-[17.5px] sm:text-xl md:text-2xl font-mono tracking-tight text-slate-900 dark:text-white hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors whitespace-nowrap text-center">
                       liangzhu@pigcasso6.top
                     </a>
                   </AppleRevealItem>

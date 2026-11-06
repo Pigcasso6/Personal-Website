@@ -24,7 +24,7 @@ const Navbar: React.FC = () => {
   const menuTouchDeltaY = useRef<number>(0);
 
   // iOS 26 Liquid Glass Navigation Links Long-Press & Vertical Drag Selector state
-  const navItemRefs = useRef<(HTMLAnchorElement | null)[]>([]);
+  const navItemRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const [isNavScrubbing, setIsNavScrubbing] = useState(false);
   const [scrubbingIndex, setScrubbingIndex] = useState<number | null>(null);
   const navLongPressTimer = useRef<NodeJS.Timeout | null>(null);
@@ -270,12 +270,16 @@ const Navbar: React.FC = () => {
     { label: content.nav.contact, href: '#contact' },
   ];
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
+  const handleNavClick = (e?: React.SyntheticEvent | MouseEvent | TouchEvent, href?: string) => {
+    if (e && e.preventDefault) {
+      e.preventDefault();
+    }
     setIsMobileMenuOpen(false);
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    if (href) {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 
@@ -452,34 +456,40 @@ const Navbar: React.FC = () => {
                 WebkitUserSelect: 'none',
                 userSelect: 'none',
                 touchAction: 'none',
+                WebkitTapHighlightColor: 'transparent',
               }}
             >
               {navLinks.map((link, index) => {
                 const isSelected = isNavScrubbing && scrubbingIndex === index;
 
                 return (
-                  <a
+                  <button
                     key={link.label}
                     ref={(el) => { navItemRefs.current[index] = el; }}
-                    href={link.href}
+                    type="button"
+                    draggable={false}
+                    onDragStart={(e) => e.preventDefault()}
                     onClick={(e) => handleNavClick(e, link.href)}
                     onContextMenu={(e) => e.preventDefault()}
-                    className={`relative text-lg py-2.5 px-4 rounded-2xl select-none touch-none transition-all duration-200 cursor-pointer ${
+                    className={`relative w-full text-left text-lg py-2.5 px-4 rounded-2xl select-none touch-none cursor-pointer outline-none focus:outline-none ${
                       isSelected
-                        ? 'liquid-glass liquid-sheen bg-white/85 dark:bg-slate-800/90 text-indigo-600 dark:text-indigo-400 font-bold border border-white/90 dark:border-white/25 shadow-xl scale-[1.02]'
-                        : 'text-slate-900 dark:text-slate-100 font-medium hover:bg-white/40 dark:hover:bg-white/10'
+                        ? 'liquid-glass liquid-sheen bg-white/85 dark:bg-slate-800/90 text-indigo-600 dark:text-indigo-400 font-bold border border-white/90 dark:border-white/25 shadow-xl scale-[1.01]'
+                        : 'bg-transparent border border-transparent text-slate-900 dark:text-white font-medium'
                     }`}
                     style={{
                       WebkitTouchCallout: 'none',
                       WebkitUserSelect: 'none',
                       userSelect: 'none',
                       touchAction: 'none',
+                      WebkitTapHighlightColor: 'transparent',
+                      WebkitUserDrag: 'none',
+                      transition: isNavScrubbing ? 'none' : 'transform 0.15s ease',
                     }}
                   >
                     <div className="flex items-center pointer-events-none">
                       <span>{link.label}</span>
                     </div>
-                  </a>
+                  </button>
                 );
               })}
             </div>
