@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import Navbar from './Navbar';
 import MessageModal from './MessageModal';
@@ -63,6 +64,9 @@ const FadingTitle: React.FC<{ children: React.ReactNode; className?: string }> =
 
 const PortfolioHomeV2: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ onNavigateToVerbPractice }) => {
   const { content, language } = useLanguage();
+  const { scrollYProgress } = useScroll();
+  const v2BgY1 = useTransform(scrollYProgress, [0, 1], ['0%', '-45%']);
+  const v2BgY2 = useTransform(scrollYProgress, [0, 1], ['0%', '-55%']);
   const [isMessageModalOpen, setIsMessageModalOpen] = useState(false);
   const [certModal, setCertModal] = useState<{
     isOpen: boolean;
@@ -188,8 +192,14 @@ const PortfolioHomeV2: React.FC<{ onNavigateToVerbPractice: () => void }> = ({ o
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-100 via-slate-200 to-slate-300 dark:from-slate-900 dark:via-slate-950 dark:to-black transition-colors duration-300"></div>
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"></div>
-        <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-cyan-400/20 dark:bg-cyan-600/20 rounded-full blur-[120px] transition-colors duration-300"></div>
-        <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-cyan-400/20 dark:bg-cyan-600/20 rounded-full blur-[120px] transition-colors duration-300"></div>
+        <motion.div 
+          style={{ y: v2BgY1 }}
+          className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-cyan-400/20 dark:bg-cyan-600/20 rounded-full blur-[120px] transition-colors duration-300 will-change-transform" 
+        />
+        <motion.div 
+          style={{ y: v2BgY2 }}
+          className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-cyan-400/20 dark:bg-cyan-600/20 rounded-full blur-[120px] transition-colors duration-300 will-change-transform" 
+        />
       </div>
 
       <div className="relative z-10 flex flex-col flex-grow">
